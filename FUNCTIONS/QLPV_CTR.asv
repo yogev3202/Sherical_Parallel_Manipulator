@@ -1,0 +1,56 @@
+function [Uopt,settings] = QLPV_CTR(settings)
+
+
+    lbw             = settings.lbw;
+    ubw             = settings.ubw;
+    lbg             = settings.lbg;
+    ubg             = settings.ubg;
+    lam_g0          = settings.lam_g;
+    lam_x0          = settings.lam_x;
+    Q               = settings.Q;
+    QN              = settings.QN;
+    Ts              = settings.Ts;
+    x_int           = settings.x_int;
+    u_int           = settings.u_int;
+    xr              = settings.xr;
+    ur              = settings.ur;
+    Rho           = settings.Rho;
+    QPGuess         = settings.QPGuess;
+    Refs = [xr]
+
+  
+    k = 0;
+    ErrTol = 1;
+  
+        while (k <= 8)
+    
+            %(Rho_index = nu*N+nx*(N+1)+4*nx+2*nu+1+1)
+            % Rho_vec(Rho_index:Rho_index + nx*(N+1)-1)
+            
+            tic;
+            [X,F,G,lamg,lamx,lamp] = GenMPC('MPC_step',QPGuess,Refs,RefsN,Ts,Q,QN,...
+                                         Rho,lbw,ubw,lbg,ubg,lam_x0,lam_g0);
+            CPT = toc*1e3;
+
+            QPGuess = [U;X];
+            Uopt = Umpc;
+            Rho = [x_int;X(1:end-6)];
+            % Rho = X;
+            % lam_g0 = lam_g;
+            % lam_x0 = lam_x;
+            ErrTol = norm(Rho - Rho);
+            % Rho_0 = Rho;
+
+            k = k+1;
+   
+        end
+
+     settings.J = J;
+
+
+
+
+
+
+end
+

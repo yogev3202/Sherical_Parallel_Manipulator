@@ -1,0 +1,78 @@
+function [U_ub,U_lb,ubA,lbA,Acons,A_hat] = QP_Cons(qlmpc_info,N,nx)
+
+
+import casadi.*
+
+
+U_ub = repmat(ones(3,1)*20*1e-3,N,1);
+U_lb = repmat(-ones(3,1)*20*1e-3,N,1);
+
+A_hat = MX.zeros(1*(N+1), nx*(N+1));
+G = MX.zeros((N+1), 1);
+
+epsilon = qlmpc_info.epsilon;
+Rhok = qlmpc_info.Rho;
+x0 = qlmpc_info.x0;
+
+
+% q = MX.sym('q', nx);
+q = x0;
+CI = ConditionIndex(q);
+Grad_CI = jacobian(CI,q);
+F_CI = Function('F_CI',{q},{CI});
+F_Grad_CI = casadi.Function('F_Grad_CI',{q},{Grad_CI});
+d = CI - Grad_CI*q;
+F_d = casadi.Function('F_d',{q},{d});
+
+
+ubA_hat = casadi.MX.zeros(1*(N+1),1);
+lbA_hat = casadi.MX.zeros(1*(N+1),1);
+
+for k =1:1:N+1
+    
+    Rho_range = (k-1)*nx+1:k*nx;
+    Ahat_range = (k-1)*1+1:k*1;
+    
+    rhok = Rhok(Rho_range);
+      
+    Ak_cons = [F_Grad_CI(rhok)];
+    A_hat(Ahat_range,Rho_range) = Ak_cons;
+    
+    dk = F_d(rhok);
+    ubAk = [inf];
+    lbAk = [epsilon-dk];
+    
+    ubA_hat(Ahat_range) = ubAk;
+    lbA_hat(Ahat_range) = lbAk;
+
+    
+
+    
+   
+end
+
+% F_ubA_hat = casadi.Function('F_ubA_hat',{Rhok},{lbA_hat});
+
+% ubA = ubA_hat;
+% lbA = F_ubA_hat;
+
+H = qlmpc_info.H;
+S = qlmpc_info.S;
+W_hat = qlmpc_info.W_hat;
+xk = qlmpc_info.x0;
+
+
+lbA  = lbA_hat-A_hat*(H*xk+W_hat);
+ubA  = ubA_hat - A_hat*(H*xk+W_hat);
+Acons = A_hat*S;
+
+% F_lbA = casadi.Function('F_lbA',{Rhok,xk},{lbA_temp});
+% F_ubA = casadi.Function('F_ubA',{Rhok,xk},{ubA_temp});
+% F_A_STR = casadi.Function('F_A_STR',{Rhok},{A_STR_temp});
+% 
+% ubA = F_ubA;
+% lbA = F_lbA;
+% Acons = F_A_STR;
+
+end
+
