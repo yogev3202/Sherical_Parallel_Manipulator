@@ -1,0 +1,572 @@
+%implements s6_b0_54myb_TLCInterface "C"
+
+%function getInputAddr_6_3_0_5_1_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_3_0_5_1_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_3_0_5_1_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_3_0_5_1_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_3_0_5_1_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_3_0_5_1_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_7_0_5_2_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_e" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_7_0_5_2_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_e" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_7_0_5_2_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_e" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_7_0_5_2_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_e" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_7_0_5_2_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_e" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_7_0_5_2_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_e" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_8_0_5_3_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain1" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_8_0_5_3_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain1" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_8_0_5_3_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain1" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_8_0_5_3_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain1" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_8_0_5_3_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain1" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_8_0_5_3_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain1" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_9_0_5_4_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_c" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_9_0_5_4_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_c" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_9_0_5_4_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_c" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_9_0_5_4_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_c" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_9_0_5_4_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_c" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_9_0_5_4_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_c" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_10_0_5_5_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain2" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_10_0_5_5_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain2" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_10_0_5_5_0_1(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain3" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_10_0_5_5_0_1(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain3" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_10_0_5_5_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain2" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_10_0_5_5_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain2" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_10_0_5_5_1_1(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain3" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_10_0_5_5_1_1(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain3" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_10_0_5_5_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain2" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_10_0_5_5_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain2" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_10_0_5_5_2_1(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain3" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_10_0_5_5_2_1(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain3" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_12_0_5_6_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_cw" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_12_0_5_6_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_cw" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_12_0_5_6_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_cw" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_12_0_5_6_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_cw" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_12_0_5_6_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_cw" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_12_0_5_6_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_cw" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_13_0_5_7_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_i" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_13_0_5_7_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_i" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_13_0_5_7_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_i" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_13_0_5_7_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_i" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_13_0_5_7_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_i" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_13_0_5_7_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_i" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_14_0_5_8_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain4" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_14_0_5_8_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain4" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_41_0_5_9_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_ca"
+%endfunction
+
+%function getInput_6_41_0_5_9_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_ca"
+%endfunction
+
+%function getInputAddr_6_47_0_5_10_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_d" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_47_0_5_10_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_d" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_49_0_5_11_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_k" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_49_0_5_11_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_k" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_0_0_7_0_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&rtb_Delay" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_0_0_7_0_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "rtb_Delay" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_3_0_7_1_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_3_0_7_1_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_3_0_7_1_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_3_0_7_1_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_3_0_7_1_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_3_0_7_1_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_7_0_7_2_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_e" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_7_0_7_2_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_e" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_7_0_7_2_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_e" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_7_0_7_2_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_e" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_7_0_7_2_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_e" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_7_0_7_2_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_e" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_8_0_7_3_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain1" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_8_0_7_3_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain1" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_8_0_7_3_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain1" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_8_0_7_3_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain1" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_8_0_7_3_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain1" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_8_0_7_3_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain1" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_9_0_7_4_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_c" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_9_0_7_4_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_c" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_9_0_7_4_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_c" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_9_0_7_4_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_c" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_9_0_7_4_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_c" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_9_0_7_4_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_c" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_10_0_7_5_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain2" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_10_0_7_5_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain2" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_10_0_7_5_0_1(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain3" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_10_0_7_5_0_1(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain3" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_10_0_7_5_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain2" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_10_0_7_5_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain2" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_10_0_7_5_1_1(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain3" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_10_0_7_5_1_1(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain3" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_10_0_7_5_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain2" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_10_0_7_5_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain2" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_10_0_7_5_2_1(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain3" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_10_0_7_5_2_1(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain3" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_12_0_7_6_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_cw" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_12_0_7_6_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_cw" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_12_0_7_6_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_cw" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_12_0_7_6_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_cw" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_12_0_7_6_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_cw" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_12_0_7_6_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_cw" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_13_0_7_7_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_i" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_13_0_7_7_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_i" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_13_0_7_7_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_i" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_13_0_7_7_1_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_i" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_13_0_7_7_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_i" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_13_0_7_7_2_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_i" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_14_0_7_8_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain4" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_14_0_7_8_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain4" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_41_0_7_9_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_ca"
+%endfunction
+
+%function getInput_6_41_0_7_9_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_ca"
+%endfunction
+
+%function getInputAddr_6_47_0_7_10_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_d" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_47_0_7_10_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_d" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInputAddr_6_49_0_7_11_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&DynamicValidation_B.Gain_k" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+
+%function getInput_6_49_0_7_11_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "DynamicValidation_B.Gain_k" + SLibCG_ArrayIndexer(ucv, lcv, sigIdx)
+%endfunction
+

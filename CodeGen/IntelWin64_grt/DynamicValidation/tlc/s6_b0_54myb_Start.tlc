@@ -1,0 +1,187 @@
+%implements s6_b0_54myb_Start "C"
+
+%function Start(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+
+NeModelParameters modelParameters;
+NeModelParameters modelParameters_0;
+NeslSimulationData *tmp_1;
+NeslSimulator *tmp;
+NeuDiagnosticManager *diagnosticManager;
+NeuDiagnosticTree *diagnosticTree;
+NeuDiagnosticTree *diagnosticTree_0;
+char *msg;
+char *msg_0;
+real_T tmp_2;
+int32_T tmp_3;
+boolean_T tmp_0;
+%closefile localVarDecl
+%assign tlcSetupRuntimeResourcesFcnOfS6B0 = OpaqueTLCBlockFcn("SetupRuntimeResources", 6, 0, 0, 5, 0)
+%assign tlcSetupRuntimeResourcesFcnOfS6B3 = OpaqueTLCBlockFcn("SetupRuntimeResources", 6, 3, 0, 5, 1)
+%assign tlcSetupRuntimeResourcesFcnOfS6B7 = OpaqueTLCBlockFcn("SetupRuntimeResources", 6, 7, 0, 5, 2)
+%assign tlcSetupRuntimeResourcesFcnOfS6B8 = OpaqueTLCBlockFcn("SetupRuntimeResources", 6, 8, 0, 5, 3)
+%assign tlcSetupRuntimeResourcesFcnOfS6B9 = OpaqueTLCBlockFcn("SetupRuntimeResources", 6, 9, 0, 5, 4)
+%assign tlcSetupRuntimeResourcesFcnOfS6B10 = OpaqueTLCBlockFcn("SetupRuntimeResources", 6, 10, 0, 5, 5)
+%assign tlcSetupRuntimeResourcesFcnOfS6B12 = OpaqueTLCBlockFcn("SetupRuntimeResources", 6, 12, 0, 5, 6)
+%assign tlcSetupRuntimeResourcesFcnOfS6B13 = OpaqueTLCBlockFcn("SetupRuntimeResources", 6, 13, 0, 5, 7)
+%assign tlcSetupRuntimeResourcesFcnOfS6B14 = OpaqueTLCBlockFcn("SetupRuntimeResources", 6, 14, 0, 5, 8)
+%assign tlcSetupRuntimeResourcesFcnOfS6B41 = OpaqueTLCBlockFcn("SetupRuntimeResources", 6, 41, 0, 5, 9)
+%assign tlcSetupRuntimeResourcesFcnOfS6B47 = OpaqueTLCBlockFcn("SetupRuntimeResources", 6, 47, 0, 5, 10)
+%assign tlcSetupRuntimeResourcesFcnOfS6B49 = OpaqueTLCBlockFcn("SetupRuntimeResources", 6, 49, 0, 5, 11)
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS6B0)
+/* {S!d2}SetupRuntimeResources for Scope: '<S1>/Scope' */
+%<tlcSetupRuntimeResourcesFcnOfS6B0>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS6B3)
+/* {S!d4}SetupRuntimeResources for Scope: '<S1>/Scope1' */
+%<tlcSetupRuntimeResourcesFcnOfS6B3>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS6B7)
+/* {S!d6}SetupRuntimeResources for Scope: '<S1>/Scope2' */
+%<tlcSetupRuntimeResourcesFcnOfS6B7>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS6B8)
+/* {S!d8}SetupRuntimeResources for Scope: '<S1>/Scope3' */
+%<tlcSetupRuntimeResourcesFcnOfS6B8>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS6B9)
+/* {S!d10}SetupRuntimeResources for Scope: '<S1>/Scope4' */
+%<tlcSetupRuntimeResourcesFcnOfS6B9>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS6B10)
+/* {S!d12}SetupRuntimeResources for Scope: '<S1>/Scope5' */
+%<tlcSetupRuntimeResourcesFcnOfS6B10>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS6B12)
+/* {S!d14}SetupRuntimeResources for Scope: '<S1>/Scope6' */
+%<tlcSetupRuntimeResourcesFcnOfS6B12>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS6B13)
+/* {S!d16}SetupRuntimeResources for Scope: '<S1>/Scope7' */
+%<tlcSetupRuntimeResourcesFcnOfS6B13>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS6B14)
+/* {S!d18}SetupRuntimeResources for Scope: '<S1>/Scope8' */
+%<tlcSetupRuntimeResourcesFcnOfS6B14>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS6B41)
+/* {S!d20}SetupRuntimeResources for Scope: '<S37>/Scope' */
+%<tlcSetupRuntimeResourcesFcnOfS6B41>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS6B47)
+/* {S!d22}SetupRuntimeResources for Scope: '<S12>/Scope1' */
+%<tlcSetupRuntimeResourcesFcnOfS6B47>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS6B49)
+/* {S!d24}SetupRuntimeResources for Scope: '<S12>/Scope3' */
+%<tlcSetupRuntimeResourcesFcnOfS6B49>\
+%endif
+/* {S!d26}Start for SimscapeExecutionBlock: '<S68>/STATE_1' */
+tmp = nesl_lease_simulator("DynamicValidation/Dynamic_Model_PID/SPM MODEL/Solver Configuration_1", 0, 0);
+DynamicValidation_DW.STATE_1_Simulator = (void *)tmp;
+tmp_0 = pointer_is_null(DynamicValidation_DW.STATE_1_Simulator);
+if (tmp_0) {
+    DynamicValidation_dfaed711_1_gateway();
+    tmp = nesl_lease_simulator("DynamicValidation/Dynamic_Model_PID/SPM MODEL/Solver Configuration_1", 0, 0);
+    DynamicValidation_DW.STATE_1_Simulator = (void *)tmp;
+}
+tmp_1 = nesl_create_simulation_data();
+DynamicValidation_DW.STATE_1_SimData = (void *)tmp_1;
+diagnosticManager = rtw_create_diagnostics();
+DynamicValidation_DW.STATE_1_DiagMgr = (void *)diagnosticManager;
+modelParameters.mSolverType = NE_SOLVER_TYPE_ODE;
+modelParameters.mSolverAbsTol = 0.001;
+modelParameters.mSolverRelTol = 0.001;
+modelParameters.mSolverModifyAbsTol = NE_MODIFY_ABS_TOL_NO;
+modelParameters.mStartTime = 0.0;
+modelParameters.mLoadInitialState = false;
+modelParameters.mUseSimState = false;
+modelParameters.mLinTrimCompile = false;
+modelParameters.mLoggingMode = SSC_LOGGING_OFF;
+modelParameters.mRTWModifiedTimeStamp = 6.28776809E+8;
+modelParameters.mUseModelRefSolver = false;
+modelParameters.mTargetFPGAHIL = false;
+tmp_2 = %<(SLibCG_SE(SLibCGIRGetVarStepSolverPropertyValue("RelTol", "0.001")))>;
+modelParameters.mSolverTolerance = tmp_2;
+tmp_2 = %<(SLibCG_SE(SLibCGIRGetFixStepSolverPropertyValue("FixedStep", "0.0")))>;
+modelParameters.mFixedStepSize = tmp_2;
+tmp_0 = %<(SLibCG_SE(SLibCGIRHasCompiledModelPropertyValue("SolverType", "VariableStep")))>;
+modelParameters.mVariableStepSolver = tmp_0;
+tmp_0 = %<(SLibCG_SE(SLibCGIRHasCompiledModelPropertyValue("Solver", "odeN")))>;
+modelParameters.mIsUsingODEN = tmp_0;
+modelParameters.mZcDisabled = true;
+diagnosticManager = (NeuDiagnosticManager *)DynamicValidation_DW.STATE_1_DiagMgr;
+diagnosticTree = neu_diagnostic_manager_get_initial_tree(diagnosticManager);
+tmp_3 = nesl_initialize_simulator((NeslSimulator *)DynamicValidation_DW.STATE_1_Simulator, &modelParameters, diagnosticManager);
+if (tmp_3 != 0) {
+    tmp_0 = error_buffer_is_empty(%<(LibGetRTModelErrorStatus())>);
+    if (tmp_0) {
+        msg = rtw_diagnostics_msg(diagnosticTree);
+        %<(LibSetRTModelErrorStatus("msg"))>;
+    }
+}
+/* {E!d26}End of Start for SimscapeExecutionBlock: '<S68>/STATE_1' */
+
+/* {S!d28}Start for SimscapeExecutionBlock: '<S68>/OUTPUT_1_0' */
+tmp = nesl_lease_simulator("DynamicValidation/Dynamic_Model_PID/SPM MODEL/Solver Configuration_1", 1, 0);
+DynamicValidation_DW.OUTPUT_1_0_Simulator = (void *)tmp;
+tmp_0 = pointer_is_null(DynamicValidation_DW.OUTPUT_1_0_Simulator);
+if (tmp_0) {
+    DynamicValidation_dfaed711_1_gateway();
+    tmp = nesl_lease_simulator("DynamicValidation/Dynamic_Model_PID/SPM MODEL/Solver Configuration_1", 1, 0);
+    DynamicValidation_DW.OUTPUT_1_0_Simulator = (void *)tmp;
+}
+tmp_1 = nesl_create_simulation_data();
+DynamicValidation_DW.OUTPUT_1_0_SimData = (void *)tmp_1;
+diagnosticManager = rtw_create_diagnostics();
+DynamicValidation_DW.OUTPUT_1_0_DiagMgr = (void *)diagnosticManager;
+modelParameters_0.mSolverType = NE_SOLVER_TYPE_ODE;
+modelParameters_0.mSolverAbsTol = 0.001;
+modelParameters_0.mSolverRelTol = 0.001;
+modelParameters_0.mSolverModifyAbsTol = NE_MODIFY_ABS_TOL_NO;
+modelParameters_0.mStartTime = 0.0;
+modelParameters_0.mLoadInitialState = false;
+modelParameters_0.mUseSimState = false;
+modelParameters_0.mLinTrimCompile = false;
+modelParameters_0.mLoggingMode = SSC_LOGGING_OFF;
+modelParameters_0.mRTWModifiedTimeStamp = 6.28776809E+8;
+modelParameters_0.mUseModelRefSolver = false;
+modelParameters_0.mTargetFPGAHIL = false;
+tmp_2 = %<(SLibCG_SE(SLibCGIRGetVarStepSolverPropertyValue("RelTol", "0.001")))>;
+modelParameters_0.mSolverTolerance = tmp_2;
+tmp_2 = %<(SLibCG_SE(SLibCGIRGetFixStepSolverPropertyValue("FixedStep", "0.0")))>;
+modelParameters_0.mFixedStepSize = tmp_2;
+tmp_0 = %<(SLibCG_SE(SLibCGIRHasCompiledModelPropertyValue("SolverType", "VariableStep")))>;
+modelParameters_0.mVariableStepSolver = tmp_0;
+tmp_0 = %<(SLibCG_SE(SLibCGIRHasCompiledModelPropertyValue("Solver", "odeN")))>;
+modelParameters_0.mIsUsingODEN = tmp_0;
+modelParameters_0.mZcDisabled = true;
+diagnosticManager = (NeuDiagnosticManager *)DynamicValidation_DW.OUTPUT_1_0_DiagMgr;
+diagnosticTree_0 = neu_diagnostic_manager_get_initial_tree(diagnosticManager);
+tmp_3 = nesl_initialize_simulator((NeslSimulator *)DynamicValidation_DW.OUTPUT_1_0_Simulator, &modelParameters_0, diagnosticManager);
+if (tmp_3 != 0) {
+    tmp_0 = error_buffer_is_empty(%<(LibGetRTModelErrorStatus())>);
+    if (tmp_0) {
+        msg_0 = rtw_diagnostics_msg(diagnosticTree_0);
+        %<(LibSetRTModelErrorStatus("msg_0"))>;
+    }
+}
+/* {E!d28}End of Start for SimscapeExecutionBlock: '<S68>/OUTPUT_1_0' */
+
+/* {S!d30}Start for If: '<S62>/If' */
+DynamicValidation_DW.If_ActiveSubsystem = -1;
+%closefile cfgTxt
+%<cfgTxt>
+%<LibSetSystemField(system, "CachedStartLocalVars", localVarDecl)>
+%endfunction
+%function StartFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Start(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 5, fcnProtoType)>
+%endfunction

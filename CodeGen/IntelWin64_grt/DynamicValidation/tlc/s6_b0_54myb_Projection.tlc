@@ -1,0 +1,83 @@
+%implements s6_b0_54myb_Projection "C"
+
+%function Projection(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+
+NeslSimulationData *simulationData;
+NeuDiagnosticManager *diagnosticManager;
+NeuDiagnosticTree *diagnosticTree;
+char *msg;
+real_T tmp_0[12];
+real_T time;
+int32_T tmp_2;
+int_T tmp_1[4];
+boolean_T tmp;
+%closefile localVarDecl
+/* {S!d362}Projection for SimscapeExecutionBlock: '<S68>/STATE_1' */
+simulationData = (NeslSimulationData *)DynamicValidation_DW.STATE_1_SimData;
+time = %<(SLibCG_SE(LibGetT()))>;
+simulationData->mData->mTime.mN = 1;
+simulationData->mData->mTime.mX = &time;
+simulationData->mData->mContStates.mN = 12;
+simulationData->mData->mContStates.mX = &DynamicValidation_X.DynamicValidationDynamic_Mode_e[0];
+simulationData->mData->mDiscStates.mN = 0;
+simulationData->mData->mDiscStates.mX = &DynamicValidation_DW.STATE_1_Discrete;
+simulationData->mData->mModeVector.mN = 0;
+simulationData->mData->mModeVector.mX = &DynamicValidation_DW.STATE_1_Modes;
+tmp = %<(SLibCG_SE(SLibCGIRGetSolverFoundZcEvents()))>;
+simulationData->mData->mFoundZcEvents = tmp;
+simulationData->mData->mIsMajorTimeStep = %<(SLibCG_SE(LibIsMajorTimeStep()))>;
+tmp = %<(SLibCG_SE(SLibCGIRGetSolverAssertCheck()))>;
+simulationData->mData->mIsSolverAssertCheck = tmp;
+simulationData->mData->mIsSolverCheckingCIC = false;
+tmp = %<(SLibCG_SE(RTMIsSolverComputingJacobian()))>;
+simulationData->mData->mIsComputingJacobian = tmp;
+simulationData->mData->mIsEvaluatingF0 = false;
+simulationData->mData->mIsSolverRequestingReset = false;
+simulationData->mData->mIsModeUpdateTimeStep = %<(SLibCG_SE(RTMGetIsModeUpdateTimeStep()))>;
+tmp_1[0] = 0;
+tmp_0[0] = DynamicValidation_B.INPUT_1_1_1[0];
+tmp_0[1] = DynamicValidation_B.INPUT_1_1_1[1];
+tmp_0[2] = DynamicValidation_B.INPUT_1_1_1[2];
+tmp_0[3] = DynamicValidation_B.INPUT_1_1_1[3];
+tmp_1[1] = 4;
+tmp_0[4] = DynamicValidation_B.INPUT_2_1_1[0];
+tmp_0[5] = DynamicValidation_B.INPUT_2_1_1[1];
+tmp_0[6] = DynamicValidation_B.INPUT_2_1_1[2];
+tmp_0[7] = DynamicValidation_B.INPUT_2_1_1[3];
+tmp_1[2] = 8;
+tmp_0[8] = DynamicValidation_B.INPUT_3_1_1[0];
+tmp_0[9] = DynamicValidation_B.INPUT_3_1_1[1];
+tmp_0[10] = DynamicValidation_B.INPUT_3_1_1[2];
+tmp_0[11] = DynamicValidation_B.INPUT_3_1_1[3];
+tmp_1[3] = 12;
+simulationData->mData->mInputValues.mN = 12;
+simulationData->mData->mInputValues.mX = &tmp_0[0];
+simulationData->mData->mInputOffsets.mN = 4;
+simulationData->mData->mInputOffsets.mX = &tmp_1[0];
+diagnosticManager = (NeuDiagnosticManager *)DynamicValidation_DW.STATE_1_DiagMgr;
+diagnosticTree = neu_diagnostic_manager_get_initial_tree(diagnosticManager);
+tmp_2 = ne_simulator_method((NeslSimulator *)DynamicValidation_DW.STATE_1_Simulator, NESL_SIM_PROJECTION, simulationData, diagnosticManager);
+if (tmp_2 != 0) {
+    tmp = error_buffer_is_empty(%<(LibGetRTModelErrorStatus())>);
+    if (tmp) {
+        msg = rtw_diagnostics_msg(diagnosticTree);
+        %<(LibSetRTModelErrorStatus("msg"))>;
+    }
+}
+/* {E!d362}End of Projection for SimscapeExecutionBlock: '<S68>/STATE_1' */
+%closefile cfgTxt
+%<cfgTxt>
+%<LibSetSystemField(system, "CachedProjectionLocalVars", localVarDecl)>
+%endfunction
+%function ProjectionFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Projection(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 10, fcnProtoType)>
+%endfunction

@@ -1,0 +1,283 @@
+%implements s6_b0_54myb_Functions "C"
+
+%function DynamicValidation_cross_Fcn0(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+c[0] = a[1] * b[2] - b[1] * a[2];
+c[1] = b[0] * a[2] - a[0] * b[2];
+c[2] = a[0] * b[1] - b[0] * a[1];
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void DynamicValidation_cross(\
+%assign comma = ""
+%<comma>const real_T a[3]\
+%assign comma = ", "
+%<comma>const real_T b[3]\
+%assign comma = ", "
+%<comma>real_T c[3]\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 0, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function rt_powd_snf_Fcn1(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+real_T y;
+if (rtIsNaN(u0) || rtIsNaN(u1)) {
+    y = %<LibGetMathConstant(LibRealNonFinite("nan"), FcnGetDataTypeIdFromName("double"))>;
+} else {
+    real_T tmp;
+    real_T tmp_0;
+    tmp = fabs(u0);
+    tmp_0 = fabs(u1);
+    if (rtIsInf(u1)) {
+        if (tmp == 1.0) {
+            y = 1.0;
+        } else if (tmp > 1.0) {
+            if (u1 > 0.0) {
+                y = %<LibGetMathConstant(LibRealNonFinite("inf"), FcnGetDataTypeIdFromName("double"))>;
+            } else {
+                y = 0.0;
+            }
+        } else if (u1 > 0.0) {
+            y = 0.0;
+        } else {
+            y = %<LibGetMathConstant(LibRealNonFinite("inf"), FcnGetDataTypeIdFromName("double"))>;
+        }
+    } else if (tmp_0 == 0.0) {
+        y = 1.0;
+    } else if (tmp_0 == 1.0) {
+        if (u1 > 0.0) {
+            y = u0;
+        } else {
+            y = 1.0 / u0;
+        }
+    } else if (u1 == 2.0) {
+        y = u0 * u0;
+    } else if ((u1 == 0.5) && (u0 >= 0.0)) {
+        y = sqrt(u0);
+    } else if ((u0 < 0.0) && (u1 > floor(u1))) {
+        y = %<LibGetMathConstant(LibRealNonFinite("nan"), FcnGetDataTypeIdFromName("double"))>;
+    } else {
+        y = pow(u0, u1);
+    }
+}
+return y;
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+extern real_T rt_powd_snf(\
+%assign comma = ""
+%<comma>real_T u0\
+%assign comma = ", "
+%<comma>real_T u1\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 1, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function DynamicValidation_norm_Fcn2(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+real_T absxk;
+real_T scale;
+real_T t;
+real_T y;
+scale = 3.3121686421112381E-170;
+absxk = fabs(x[0]);
+if (absxk > 3.3121686421112381E-170) {
+    y = 1.0;
+    scale = absxk;
+} else {
+    t = absxk / 3.3121686421112381E-170;
+    y = t * t;
+}
+absxk = fabs(x[1]);
+if (absxk > scale) {
+    t = scale / absxk;
+    y = y * t * t + 1.0;
+    scale = absxk;
+} else {
+    t = absxk / scale;
+    y += t * t;
+}
+absxk = fabs(x[2]);
+if (absxk > scale) {
+    t = scale / absxk;
+    y = y * t * t + 1.0;
+    scale = absxk;
+} else {
+    t = absxk / scale;
+    y += t * t;
+}
+return scale * sqrt(y);
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static real_T DynamicValidation_norm(\
+%assign comma = ""
+%<comma>const real_T x[3]\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 2, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function DynamicValidation_mpower_Fcn3(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+real_T x[9];
+real_T absx11;
+real_T absx21;
+real_T absx31;
+int32_T p1;
+int32_T p2;
+int32_T p3;
+memcpy(&x[0], &a[0], 9U * sizeof(real_T));
+p1 = 0;
+p2 = 3;
+p3 = 6;
+absx11 = fabs(a[0]);
+absx21 = fabs(a[1]);
+absx31 = fabs(a[2]);
+if ((absx21 > absx11) && (absx21 > absx31)) {
+    p1 = 3;
+    p2 = 0;
+    x[0] = a[1];
+    x[1] = a[0];
+    x[3] = a[4];
+    x[4] = a[3];
+    x[6] = a[7];
+    x[7] = a[6];
+} else if (absx31 > absx11) {
+    p1 = 6;
+    p3 = 0;
+    x[0] = a[2];
+    x[2] = a[0];
+    x[3] = a[5];
+    x[5] = a[3];
+    x[6] = a[8];
+    x[8] = a[6];
+}
+x[1] /= x[0];
+x[2] /= x[0];
+x[4] -= x[1] * x[3];
+x[5] -= x[2] * x[3];
+x[7] -= x[1] * x[6];
+x[8] -= x[2] * x[6];
+if (fabs(x[5]) > fabs(x[4])) {
+    int32_T itmp;
+    itmp = p2;
+    p2 = p3;
+    p3 = itmp;
+    absx11 = x[1];
+    x[1] = x[2];
+    x[2] = absx11;
+    absx11 = x[4];
+    x[4] = x[5];
+    x[5] = absx11;
+    absx11 = x[7];
+    x[7] = x[8];
+    x[8] = absx11;
+}
+x[5] /= x[4];
+x[8] -= x[5] * x[7];
+absx11 = (x[1] * x[5] - x[2]) / x[8];
+absx21 = -(x[7] * absx11 + x[1]) / x[4];
+c[p1] = ((1.0 - x[3] * absx21) - x[6] * absx11) / x[0];
+c[p1 + 1] = absx21;
+c[p1 + 2] = absx11;
+absx11 = -x[5] / x[8];
+absx21 = (1.0 - x[7] * absx11) / x[4];
+c[p2] = -(x[3] * absx21 + x[6] * absx11) / x[0];
+c[p2 + 1] = absx21;
+c[p2 + 2] = absx11;
+absx11 = 1.0 / x[8];
+absx21 = -x[7] * absx11 / x[4];
+c[p3] = -(x[3] * absx21 + x[6] * absx11) / x[0];
+c[p3 + 1] = absx21;
+c[p3 + 2] = absx11;
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void DynamicValidation_mpower(\
+%assign comma = ""
+%<comma>const real_T a[9]\
+%assign comma = ", "
+%<comma>real_T c[9]\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 3, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function rt_atan2d_snf_Fcn4(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+real_T y;
+if (rtIsNaN(u0) || rtIsNaN(u1)) {
+    y = %<LibGetMathConstant(LibRealNonFinite("nan"), FcnGetDataTypeIdFromName("double"))>;
+} else if (rtIsInf(u0) && rtIsInf(u1)) {
+    int32_T tmp;
+    int32_T tmp_0;
+    if (u0 > 0.0) {
+        tmp = 1;
+    } else {
+        tmp = -1;
+    }
+    if (u1 > 0.0) {
+        tmp_0 = 1;
+    } else {
+        tmp_0 = -1;
+    }
+    y = atan2(tmp, tmp_0);
+} else if (u1 == 0.0) {
+    if (u0 > 0.0) {
+        y = RT_PI / 2.0;
+    } else if (u0 < 0.0) {
+        y = -(RT_PI / 2.0);
+    } else {
+        y = 0.0;
+    }
+} else {
+    y = atan2(u0, u1);
+}
+return y;
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+extern real_T rt_atan2d_snf(\
+%assign comma = ""
+%<comma>real_T u0\
+%assign comma = ", "
+%<comma>real_T u1\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 4, fcnProtoType)>
+%return fcnBuff
+%endfunction
+

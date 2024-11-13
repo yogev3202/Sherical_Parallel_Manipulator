@@ -1,0 +1,3679 @@
+%implements s6_b0_54myb_Outputs "C"
+
+%function Outputs(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+
+NeslSimulationData *simulationData;
+NeuDiagnosticManager *diagnosticManager;
+NeuDiagnosticTree *diagnosticTree;
+NeuDiagnosticTree *diagnosticTree_0;
+char *msg;
+char *msg_0;
+real_T tmp_3[24];
+real_T tmp_0[12];
+real_T DCM11[9];
+real_T DCM12[9];
+real_T DCM13[9];
+real_T DCM21[9];
+real_T DCM22[9];
+real_T DCM23[9];
+real_T Em[9];
+real_T I11_Sf[9];
+real_T I12_Sf[9];
+real_T I13_Sf[9];
+real_T I21_Sf[9];
+real_T I22_Sf[9];
+real_T I23_Sf[9];
+real_T Ip_Sf[9];
+real_T Jw11[9];
+real_T Jw12[9];
+real_T Jw13[9];
+real_T Jw21[9];
+real_T Jw22[9];
+real_T Jw23[9];
+real_T Qm[9];
+real_T dEm[9];
+real_T Ja1[3];
+real_T Ja2[3];
+real_T Ja3[3];
+real_T Jm1[3];
+real_T Jm2[3];
+real_T Jm3[3];
+real_T P11[3];
+real_T P12[3];
+real_T P21[3];
+real_T P22[3];
+real_T P23[3];
+real_T Wp[3];
+real_T dJa1[3];
+real_T dJa2[3];
+real_T dP11[3];
+real_T dP21[3];
+real_T dP22[3];
+real_T dP23[3];
+real_T dv1v[3];
+real_T dv2v[3];
+real_T dv3v[3];
+real_T dw1v[3];
+real_T dw2v[3];
+real_T dw3v[3];
+real_T v1v[3];
+real_T v2v[3];
+real_T v3v[3];
+real_T w1v[3];
+real_T w2v[3];
+real_T w3v[3];
+real_T x[3];
+real_T A1_1;
+real_T B1_1;
+real_T b_b;
+real_T dh11;
+real_T h11;
+real_T h12;
+real_T h21;
+real_T h22;
+real_T q_a;
+real_T time;
+real_T time_0;
+real_T time_1;
+real_T time_2;
+int_T tmp_4[5];
+int_T tmp_1[4];
+boolean_T first_output;
+boolean_T tmp;
+boolean_T tmp_2;
+static const real_T h[3] = %<(TLC_STR_CTX(0))>;
+real_T Em_0[9];
+real_T I11_Sf_0[9];
+real_T I12_Sf_0[9];
+real_T I13_Sf_0[9];
+real_T I21_Sf_0[9];
+real_T I22_Sf_0[9];
+real_T I23_Sf_0[9];
+real_T Ip_Sf_0[9];
+real_T Jw11_0[9];
+real_T Jw12_0[9];
+real_T Jw13_0[9];
+real_T Jw21_0[9];
+real_T Jw22_0[9];
+real_T Jw23_0[9];
+real_T dEm_0[9];
+real_T Ja1_0[3];
+real_T Ja2_0[3];
+real_T Ja3_0[3];
+real_T Jm1_0[3];
+real_T Jm2_0[3];
+real_T Jm3_0[3];
+real_T P21_0[3];
+real_T P22_0[3];
+real_T P23_0[3];
+real_T Wp_0[3];
+real_T dJa1_0[3];
+real_T dJa2_0[3];
+real_T dP11_0[3];
+real_T dP21_0[3];
+real_T dP22_0[3];
+real_T dP23_0[3];
+real_T dv1v_0[3];
+real_T dv2v_0[3];
+real_T dv3v_0[3];
+real_T dw1v_0[3];
+real_T dw2v_0[3];
+real_T dw3v_0[3];
+real_T w1v_0[3];
+real_T w2v_0[3];
+real_T w3v_0[3];
+static const real_T g[3] = %<(TLC_STR_CTX(1))>;
+__m128d tmp_10;
+__m128d tmp_11;
+__m128d tmp_12;
+__m128d tmp_13;
+__m128d tmp_14;
+__m128d tmp_15;
+__m128d tmp_16;
+__m128d tmp_17;
+__m128d tmp_18;
+__m128d tmp_y;
+__m128d tmp_z;
+real_T rtb_OUTPUT_1_0[17];
+real_T DCM11_0[9];
+real_T DCM11_tmp[9];
+real_T DCM12_0[9];
+real_T DCM12_1[9];
+real_T DCM13_0[9];
+real_T DCM13_1[9];
+real_T DCM21_0[9];
+real_T DCM21_1[9];
+real_T DCM22_0[9];
+real_T DCM23_0[9];
+real_T Em_1[9];
+real_T Gain4_tmp[9];
+real_T Gain4_tmp_0[9];
+real_T Gain4_tmp_1[9];
+real_T Gain4_tmp_2[9];
+real_T Gain4_tmp_3[9];
+real_T Gain4_tmp_4[9];
+real_T Gain4_tmp_5[9];
+real_T Gain4_tmp_6[9];
+real_T Gain4_tmp_7[9];
+real_T Gain4_tmp_8[9];
+real_T Gain4_tmp_9[9];
+real_T Gain4_tmp_a[9];
+real_T Gain4_tmp_b[9];
+real_T Gain4_tmp_c[9];
+real_T Gain4_tmp_d[9];
+real_T Gain4_tmp_e[9];
+real_T Gain4_tmp_f[9];
+real_T Gain4_tmp_g[9];
+real_T Gain4_tmp_tmp[9];
+real_T I11_Sf_1[9];
+real_T I11_Sf_2[9];
+real_T I11_Sf_tmp[9];
+real_T I12_Sf_tmp[9];
+real_T I12_Sf_tmp_0[9];
+real_T I13_Sf_1[9];
+real_T I13_Sf_2[9];
+real_T I13_Sf_tmp[9];
+real_T I13_Sf_tmp_0[9];
+real_T I21_Sf_1[9];
+real_T I21_Sf_tmp[9];
+real_T I21_Sf_tmp_0[9];
+real_T I22_Sf_1[9];
+real_T I22_Sf_tmp[9];
+real_T I22_Sf_tmp_0[9];
+real_T I23_Sf_1[9];
+real_T I23_Sf_2[9];
+real_T I23_Sf_tmp[9];
+real_T I23_Sf_tmp_0[9];
+real_T Ip_Sf_tmp[9];
+real_T Ip_Sf_tmp_0[9];
+real_T Ja1_1[9];
+real_T Jw11_1[9];
+real_T Jw11_2[9];
+real_T Jw13_1[9];
+real_T Jw21_1[9];
+real_T Jw22_1[9];
+real_T P11_0[9];
+real_T P11_1[9];
+real_T P11_2[9];
+real_T P11_3[9];
+real_T P11_4[9];
+real_T Qm_0[9];
+real_T Qm_1[9];
+real_T dEm_1[9];
+real_T dP11_1[9];
+real_T dP11_2[9];
+real_T dP11_3[9];
+real_T dP11_4[9];
+real_T dP11_5[9];
+real_T dP11_6[9];
+real_T tmp_8[9];
+real_T tmp_9[9];
+real_T tmp_c[9];
+real_T tmp_d[9];
+real_T tmp_f[9];
+real_T tmp_g[9];
+real_T tmp_h[9];
+real_T tmp_j[9];
+real_T tmp_k[9];
+real_T tmp_l[9];
+real_T tmp_m[9];
+real_T tmp_n[9];
+real_T tmp_o[9];
+real_T tmp_p[9];
+real_T tmp_q[9];
+real_T tmp_r[9];
+real_T w3v_1[9];
+real_T DCM11_1[3];
+real_T Ja3_tmp[3];
+real_T Jm1_tmp[3];
+real_T Jm1_tmp_0[3];
+real_T Jm2_tmp[3];
+real_T Jm2_tmp_0[3];
+real_T Jm3_tmp[3];
+real_T Jm3_tmp_0[3];
+real_T P11_tmp[3];
+real_T P12_tmp[3];
+real_T P13_tmp[3];
+real_T Qm_2[3];
+real_T Qm_3[3];
+real_T Qm_4[3];
+real_T rtb_Delay[3];
+real_T rtb_qr[3];
+real_T tmp_5[3];
+real_T tmp_6[3];
+real_T tmp_7[3];
+real_T tmp_a[3];
+real_T tmp_b[3];
+real_T tmp_e[3];
+real_T tmp_i[3];
+real_T tmp_s[3];
+real_T tmp_t[3];
+real_T tmp_u[3];
+real_T tmp_v[3];
+real_T tmp_w[3];
+real_T tmp_x[3];
+real_T A1_1_tmp;
+real_T A1_1_tmp_0;
+real_T A1_1_tmp_1;
+real_T Em_2;
+real_T Em_3;
+real_T Em_4;
+real_T Ja1_2;
+real_T Ja3_1;
+real_T Jm1_tmp_1;
+real_T P21_1;
+real_T P21_2;
+real_T absx11;
+real_T absx31;
+real_T dEm_tmp;
+real_T dEm_tmp_0;
+real_T dv1v_1;
+real_T rtb_Product1;
+real_T rtb_Product1_0;
+real_T rtb_Product1_1;
+real_T rtb_Product1_2;
+real_T rtb_Product2;
+real_T rtb_Product3;
+real_T v1v_0;
+real_T v2v_0;
+real_T v3v_0;
+real_T w1v_1;
+real_T w1v_2;
+real_T w2v_1;
+int32_T DCM11_tmp_0;
+int32_T DCM11_tmp_1;
+int32_T DCM11_tmp_2;
+int32_T DCM11_tmp_tmp;
+int32_T DCM11_tmp_tmp_0;
+int32_T p2;
+int32_T p3;
+int32_T rtb_Product1_3;
+int8_T c[9];
+int8_T c_0;
+int8_T c_1;
+int8_T rtAction;
+static const int8_T e[9] = %<(TLC_STR_CTX(2))>;
+static const real_T e_b[3] = %<(TLC_STR_CTX(3))>;
+static const real_T f_b[3] = %<(TLC_STR_CTX(4))>;
+static const real_T g_b[3] = %<(TLC_STR_CTX(5))>;
+static const real_T h_b[3] = %<(TLC_STR_CTX(6))>;
+static const int8_T g_0[3] = %<(TLC_STR_CTX(7))>;
+static const real_T i_b[3] = %<(TLC_STR_CTX(8))>;
+static const real_T j_b[3] = %<(TLC_STR_CTX(9))>;
+static const real_T l_b[9] = %<(TLC_STR_CTX(10))>;
+static const real_T k_b[9] = %<(TLC_STR_CTX(11))>;
+static const real_T m_b[9] = %<(TLC_STR_CTX(12))>;
+static const real_T n_b[9] = %<(TLC_STR_CTX(13))>;
+static const real_T o_b[9] = %<(TLC_STR_CTX(14))>;
+static const real_T p_b[9] = %<(TLC_STR_CTX(15))>;
+static const real_T q_b[9] = %<(TLC_STR_CTX(16))>;
+static const int8_T d[3] = %<(TLC_STR_CTX(17))>;
+static const int8_T e_0[3] = %<(TLC_STR_CTX(18))>;
+static const real_T r_b[9] = %<(TLC_STR_CTX(19))>;
+static const real_T t_b[9] = %<(TLC_STR_CTX(20))>;
+static const real_T s_b[3] = %<(TLC_STR_CTX(21))>;
+static const real_T u_b[9] = %<(TLC_STR_CTX(22))>;
+static const real_T w_b[9] = %<(TLC_STR_CTX(23))>;
+static const real_T v_b[9] = %<(TLC_STR_CTX(24))>;
+static const real_T y_b[9] = %<(TLC_STR_CTX(25))>;
+static const real_T x_b[9] = %<(TLC_STR_CTX(26))>;
+%closefile localVarDecl
+%assign tlcOutputsFcnOfS6B0 = OpaqueTLCBlockFcn("Outputs", 6, 0, 0, 7, 0)
+%assign tlcOutputsFcnOfS6B3 = OpaqueTLCBlockFcn("Outputs", 6, 3, 0, 7, 1)
+%assign tlcOutputsFcnOfS6B7 = OpaqueTLCBlockFcn("Outputs", 6, 7, 0, 7, 2)
+%assign tlcOutputsFcnOfS6B8 = OpaqueTLCBlockFcn("Outputs", 6, 8, 0, 7, 3)
+%assign tlcOutputsFcnOfS6B9 = OpaqueTLCBlockFcn("Outputs", 6, 9, 0, 7, 4)
+%assign tlcOutputsFcnOfS6B10 = OpaqueTLCBlockFcn("Outputs", 6, 10, 0, 7, 5)
+%assign tlcOutputsFcnOfS6B12 = OpaqueTLCBlockFcn("Outputs", 6, 12, 0, 7, 6)
+%assign tlcOutputsFcnOfS6B13 = OpaqueTLCBlockFcn("Outputs", 6, 13, 0, 7, 7)
+%assign tlcOutputsFcnOfS6B14 = OpaqueTLCBlockFcn("Outputs", 6, 14, 0, 7, 8)
+%assign tlcOutputsFcnOfS6B41 = OpaqueTLCBlockFcn("Outputs", 6, 41, 0, 7, 9)
+%assign tlcOutputsFcnOfS6B47 = OpaqueTLCBlockFcn("Outputs", 6, 47, 0, 7, 10)
+%assign tlcOutputsFcnOfS6B49 = OpaqueTLCBlockFcn("Outputs", 6, 49, 0, 7, 11)
+if (%<(SLibCGIRIsSampleHit(1, 6))>) {
+    /* {S!d40}Delay: '<S1>/Delay' */
+    rtb_Delay[0] = DynamicValidation_DW.Delay_DSTATE[0];
+    rtb_Delay[1] = DynamicValidation_DW.Delay_DSTATE[1];
+    rtb_Delay[2] = DynamicValidation_DW.Delay_DSTATE[2];
+%if !WHITE_SPACE(tlcOutputsFcnOfS6B0)
+    /* {S!d42}Scope: '<S1>/Scope' */
+%<tlcOutputsFcnOfS6B0>\
+%endif
+}
+/* {S!d44}Clock: '<S1>/Clock' incorporates:
+ *  SimscapeExecutionBlock: '<S68>/OUTPUT_1_0'
+ *  SimscapeExecutionBlock: '<S68>/STATE_1'
+ */
+rtb_Product3 = %<(SLibCG_SE(LibGetT()))>;
+/* {S!d46}MATLAB Function: '<S1>/RegGeneratoe' incorporates:
+ *  Clock: '<S1>/Clock'
+ *  MATLAB Function: '<S1>/SPM_Inverse_Dynamic'
+ */
+rtb_qr[0] = 10.0 * rtb_Product3 * 0.017453292519943295;
+rtb_Product2 = sin(rtb_qr[0]);
+rtb_Product1 = cos(rtb_qr[0]);
+Em[0] = rtb_Product1;
+Em[3] = -rtb_Product2;
+Em[6] = 0.0;
+Em[1] = rtb_Product2;
+Em[4] = rtb_Product1;
+Em[7] = 0.0;
+rtb_Delay[0] = 0.17453292519943295;
+Em[2] = 0.0;
+rtb_Delay[1] = 0.0;
+Em[5] = 0.0;
+rtb_Delay[2] = 0.0;
+Em[8] = 1.0;
+for (p2 = 0; p2 < 3; p2++) {
+    rtb_Product1_1 = Em[p2 + 3];
+    rtb_Product1_2 = Em[p2];
+    rtb_Product1_3 = (int32_T)Em[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        Jw11[p2 + 3 * p3] = ((real_T)e[3 * p3 + 1] * rtb_Product1_1 + (real_T)e[3 * p3] * rtb_Product1_2) + (real_T)(e[3 * p3 + 2] * rtb_Product1_3);
+    }
+    rtb_Product1_1 = Jw11[p2 + 3];
+    rtb_Product1_2 = Jw11[p2];
+    rtb_Product1_0 = Jw11[p2 + 6];
+    v1v_0 = 0.0;
+    v2v_0 = 0.0;
+    v3v_0 = 0.0;
+    for (p3 = 0; p3 < 3; p3++) {
+        h11 = ((real_T)e[3 * p3 + 1] * rtb_Product1_1 + (real_T)e[3 * p3] * rtb_Product1_2) + (real_T)e[3 * p3 + 2] * rtb_Product1_0;
+        Qm[p2 + 3 * p3] = h11;
+        v1v_0 += h11 * e_b[p3];
+        v2v_0 += h11 * f_b[p3];
+        v3v_0 += h11 * g_b[p3];
+    }
+    v3v[p2] = v3v_0;
+    v2v[p2] = v2v_0;
+    v1v[p2] = v1v_0;
+}
+A1_1 = ((0.0 * v1v[0] + v1v[1]) * 0.90630778703664994 + 0.42261826174069944 * v1v[2]) + 0.50000000000000011;
+B1_1 = (v1v[0] - 0.0 * v1v[1]) * 0.90630778703664994;
+A1_1 = atan((-B1_1 - sqrt(B1_1 * B1_1 - (((0.0 * v1v[0] + v1v[1]) * -0.90630778703664994 + 0.42261826174069944 * v1v[2]) + 0.50000000000000011) * A1_1)) / A1_1) * 2.0;
+B1_1 = sin(A1_1);
+A1_1 = cos(A1_1);
+w1v[0] = 0.90630778703664994 * A1_1 * 0.0 - 0.90630778703664994 * B1_1;
+w1v[1] = 0.90630778703664994 * A1_1 + 0.0 * B1_1;
+w1v[2] = 0.0 * A1_1 - 0.42261826174069944;
+A1_1 = ((-0.86602540378443849 * v2v[0] + -0.50000000000000044 * v2v[1]) * 0.90630778703664994 + 0.42261826174069944 * v2v[2]) + 0.50000000000000011;
+B1_1 = (-0.50000000000000044 * v2v[0] - -0.86602540378443849 * v2v[1]) * 0.90630778703664994;
+A1_1 = atan((-B1_1 - sqrt(B1_1 * B1_1 - (((-0.86602540378443849 * v2v[0] + -0.50000000000000044 * v2v[1]) * -0.90630778703664994 + 0.42261826174069944 * v2v[2]) + 0.50000000000000011) * A1_1)) / A1_1) * 2.0;
+B1_1 = sin(A1_1);
+A1_1 = cos(A1_1);
+w2v[0] = 0.90630778703664994 * A1_1 * -0.86602540378443849 - -0.45315389351832536 * B1_1;
+w2v[1] = 0.90630778703664994 * A1_1 * -0.50000000000000044 + -0.78488556722139569 * B1_1;
+w2v[2] = 0.0 * A1_1 - 0.42261826174069944;
+A1_1 = ((0.86602540378443871 * v3v[0] + -0.49999999999999978 * v3v[1]) * 0.90630778703664994 + 0.42261826174069944 * v3v[2]) + 0.50000000000000011;
+B1_1 = (-0.49999999999999978 * v3v[0] - 0.86602540378443871 * v3v[1]) * 0.90630778703664994;
+A1_1 = atan((-B1_1 - sqrt(B1_1 * B1_1 - (((0.86602540378443871 * v3v[0] + -0.49999999999999978 * v3v[1]) * -0.90630778703664994 + 0.42261826174069944 * v3v[2]) + 0.50000000000000011) * A1_1)) / A1_1) * 2.0;
+B1_1 = sin(A1_1);
+A1_1 = cos(A1_1);
+w3v[0] = 0.90630778703664994 * A1_1 * 0.86602540378443871 - -0.45315389351832475 * B1_1;
+w3v[1] = 0.90630778703664994 * A1_1 * -0.49999999999999978 + 0.7848855672213958 * B1_1;
+w3v[2] = 0.0 * A1_1 - 0.42261826174069944;
+Em[0] = 0.0;
+Em[3] = -rtb_Product2;
+Em[6] = rtb_Product1;
+Em[1] = 0.0;
+Em[4] = rtb_Product1;
+Em[7] = rtb_Product2;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["w1v", "v1v", "P11_tmp"], 0, 7, 0))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["h_b", "v1v", "P21"], 0, 7, 1))>;
+h11 = 0.0;
+h21 = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    p3 = g_0[p2];
+    Em[3 * p2 + 2] = p3;
+    h11 += P11_tmp[p2] * h_b[p2];
+    h21 += P21[p2] * w1v[p2];
+    dP22_0[p2] = (Em[3 * p2 + 1] * P11_tmp[1] + Em[3 * p2] * P11_tmp[0]) + (real_T)p3 * P11_tmp[2];
+}
+A1_1_tmp = 1.0 / h11;
+Ja1[0] = A1_1_tmp * dP22_0[0];
+Ja1[1] = A1_1_tmp * dP22_0[1];
+Ja1[2] = A1_1_tmp * dP22_0[2];
+A1_1_tmp_0 = 1.0 / h21;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["w2v", "v2v", "P12_tmp"], 0, 7, 2))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["i_b", "v2v", "P22"], 0, 7, 3))>;
+h12 = 0.0;
+h22 = 0.0;
+B1_1 = P21[1];
+P21_1 = P21[0];
+P21_2 = P21[2];
+w1v_1 = w1v[0];
+w1v_2 = w1v[1];
+v1v_0 = w1v[2];
+for (p2 = 0; p2 < 3; p2++) {
+    Ja1_2 = Ja1[p2];
+    A1_1 = 0.0 * Ja1_2;
+    Jw11[3 * p2] = A1_1;
+    rtb_Product1_3 = 3 * p2 + 1;
+    Jw11[rtb_Product1_3] = A1_1;
+    Em_2 = Em[rtb_Product1_3];
+    Em_3 = Em[3 * p2];
+    p3 = 3 * p2 + 2;
+    Em_4 = Em[p3];
+    Jm1_tmp_1 = (Em_2 * B1_1 + Em_3 * P21_1) + Em_4 * P21_2;
+    Jw11[p3] = -Ja1_2;
+    Jm1_tmp_0[p2] = Jm1_tmp_1;
+    Jm1_tmp_1 *= A1_1_tmp_0;
+    Jm1[p2] = Jm1_tmp_1;
+    h12 += P12_tmp[p2] * i_b[p2];
+    h22 += P22[p2] * w2v[p2];
+    Jw21[3 * p2] = w1v_1 * Jm1_tmp_1 + A1_1;
+    Jw21[rtb_Product1_3] = w1v_2 * Jm1_tmp_1 + A1_1;
+    Jw21[p3] = v1v_0 * Jm1_tmp_1 + -Ja1_2;
+    dP23_0[p2] = (Em_2 * P12_tmp[1] + Em_3 * P12_tmp[0]) + Em_4 * P12_tmp[2];
+}
+A1_1_tmp_1 = 1.0 / h12;
+Ja2[0] = A1_1_tmp_1 * dP23_0[0];
+Ja2[1] = A1_1_tmp_1 * dP23_0[1];
+Ja2[2] = A1_1_tmp_1 * dP23_0[2];
+rtb_Product1_0 = 1.0 / h22;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["w3v", "v3v", "P13_tmp"], 0, 7, 4))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["j_b", "v3v", "P23"], 0, 7, 5))>;
+B1_1 = 0.0;
+P21_2 = P22[1];
+w1v_1 = P22[0];
+w1v_2 = P22[2];
+v1v_0 = w2v[0];
+v3v_0 = w2v[1];
+w2v_1 = w2v[2];
+for (p2 = 0; p2 < 3; p2++) {
+    v2v_0 = Ja2[p2];
+    A1_1 = -0.0 * v2v_0;
+    Jw12[3 * p2] = A1_1;
+    p3 = 3 * p2 + 1;
+    Jw12[p3] = A1_1;
+    rtb_Product1_3 = 3 * p2 + 2;
+    Em_2 = (Em[3 * p2] * w1v_1 + Em[p3] * P21_2) + Em[rtb_Product1_3] * w1v_2;
+    Jw12[rtb_Product1_3] = -v2v_0;
+    Jm2_tmp_0[p2] = Em_2;
+    Jm1_tmp_1 = rtb_Product1_0 * Em_2;
+    Jm2[p2] = Jm1_tmp_1;
+    Jw22[3 * p2] = v1v_0 * Jm1_tmp_1 + A1_1;
+    Jw22[p3] = v3v_0 * Jm1_tmp_1 + A1_1;
+    Jw22[rtb_Product1_3] = w2v_1 * Jm1_tmp_1 + -v2v_0;
+    B1_1 += P13_tmp[p2] * j_b[p2];
+}
+A1_1 = 0.0;
+w1v_1 = 1.0 / B1_1;
+w1v_2 = P13_tmp[0];
+v1v_0 = P13_tmp[1];
+Ja1_2 = P13_tmp[2];
+for (p2 = 0; p2 < 3; p2++) {
+    A1_1 += P23[p2] * w3v[p2];
+    Em_2 = Em[3 * p2];
+    P21_2 = w1v_2 * Em_2;
+    v2v_0 = P23[0] * Em_2;
+    Em_2 = Em[3 * p2 + 1];
+    P21_1 = v1v_0 * Em_2 + P21_2;
+    v2v_0 += P23[1] * Em_2;
+    Em_2 = Em[3 * p2 + 2];
+    P21_2 = Ja1_2 * Em_2 + P21_1;
+    Jm3_tmp_0[p2] = P23[2] * Em_2 + v2v_0;
+    Ja3_tmp[p2] = P21_2;
+    Ja3[p2] = w1v_1 * P21_2;
+}
+rtb_Product1_1 = 1.0 / A1_1;
+Ja1_2 = 0.0;
+v2v_0 = 0.0;
+Em_4 = 0.0;
+v1v_0 = w3v[0];
+v3v_0 = w3v[1];
+w2v_1 = w3v[2];
+for (p2 = 0; p2 < 3; p2++) {
+    Jm1_tmp_1 = rtb_Product1_1 * Jm3_tmp_0[p2];
+    Jm3[p2] = Jm1_tmp_1;
+    P21_1 = rtb_Delay[p2];
+    Ja1_2 += Ja1[p2] * P21_1;
+    v2v_0 += Ja2[p2] * P21_1;
+    Ja3_1 = Ja3[p2];
+    Em_4 += Ja3_1 * P21_1;
+    w1v_2 = 0.0 * Ja3_1;
+    Jw13[3 * p2] = w1v_2;
+    Jw23[3 * p2] = v1v_0 * Jm1_tmp_1 + w1v_2;
+    w1v_2 = -0.0 * Ja3_1;
+    p3 = 3 * p2 + 1;
+    Jw13[p3] = w1v_2;
+    Jw23[p3] = v3v_0 * Jm1_tmp_1 + w1v_2;
+    p3 = 3 * p2 + 2;
+    Jw13[p3] = -Ja3_1;
+    Jw23[p3] = w2v_1 * Jm1_tmp_1 - Ja3_1;
+    Wp[p2] = (Em[p2 + 3] * 0.0 + Em[p2] * 0.17453292519943295) + Em[p2 + 6] * 0.0;
+}
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["h_b", "w1v", "tmp_5"], 0, 7, 6))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["i_b", "w2v", "tmp_6"], 0, 7, 7))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["j_b", "w3v", "tmp_7"], 0, 7, 8))>;
+tmp_8[0] = 0.0;
+tmp_8[3] = -Wp[2];
+tmp_8[6] = Wp[1];
+tmp_8[1] = Wp[2];
+tmp_8[4] = 0.0;
+tmp_8[7] = -Wp[0];
+tmp_8[2] = -Wp[1];
+tmp_8[5] = Wp[0];
+tmp_8[8] = 0.0;
+v1v_0 = v1v[1];
+P21_2 = v1v[0];
+w1v_2 = v1v[2];
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d48}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&tmp_5[p2]);
+    _mm_storeu_pd(&dw1v[p2], _mm_mul_pd(_mm_set1_pd(Ja1_2), tmp_16));
+    tmp_16 = _mm_loadu_pd(&tmp_6[p2]);
+    _mm_storeu_pd(&dw2v[p2], _mm_mul_pd(_mm_set1_pd(v2v_0), tmp_16));
+    tmp_16 = _mm_loadu_pd(&tmp_7[p2]);
+    _mm_storeu_pd(&dw3v[p2], _mm_mul_pd(_mm_set1_pd(Em_4), tmp_16));
+    tmp_16 = _mm_loadu_pd(&tmp_8[p2 + 3]);
+    tmp_17 = _mm_loadu_pd(&tmp_8[p2]);
+    tmp_18 = _mm_loadu_pd(&tmp_8[p2 + 6]);
+    _mm_storeu_pd(&dv1v[p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, _mm_set1_pd(v1v_0)), _mm_mul_pd(tmp_17, _mm_set1_pd(P21_2))), _mm_mul_pd(tmp_18, _mm_set1_pd(w1v_2))));
+}
+/* {S!d50}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 2; p2 < 3; p2++) {
+    dw1v[p2] = Ja1_2 * tmp_5[p2];
+    dw2v[p2] = v2v_0 * tmp_6[p2];
+    dw3v[p2] = Em_4 * tmp_7[p2];
+    dv1v[p2] = (tmp_8[p2 + 3] * v1v_0 + tmp_8[p2] * P21_2) + tmp_8[p2 + 6] * w1v_2;
+}
+tmp_9[0] = 0.0;
+tmp_9[3] = -Wp[2];
+tmp_9[6] = Wp[1];
+tmp_9[1] = Wp[2];
+tmp_9[4] = 0.0;
+tmp_9[7] = -Wp[0];
+tmp_9[2] = -Wp[1];
+tmp_9[5] = Wp[0];
+tmp_9[8] = 0.0;
+v2v_0 = v2v[1];
+P21_2 = v2v[0];
+w1v_2 = v2v[2];
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d52}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&tmp_9[p2 + 3]);
+    tmp_17 = _mm_loadu_pd(&tmp_9[p2]);
+    tmp_18 = _mm_loadu_pd(&tmp_9[p2 + 6]);
+    _mm_storeu_pd(&dv2v[p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, _mm_set1_pd(v2v_0)), _mm_mul_pd(tmp_17, _mm_set1_pd(P21_2))), _mm_mul_pd(tmp_18, _mm_set1_pd(w1v_2))));
+}
+/* {S!d54}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 2; p2 < 3; p2++) {
+    dv2v[p2] = (tmp_9[p2 + 3] * v2v_0 + tmp_9[p2] * P21_2) + tmp_9[p2 + 6] * w1v_2;
+}
+Jw11_2[0] = 0.0;
+Jw11_2[3] = -Wp[2];
+Jw11_2[6] = Wp[1];
+Jw11_2[1] = Wp[2];
+Jw11_2[4] = 0.0;
+Jw11_2[7] = -Wp[0];
+Jw11_2[2] = -Wp[1];
+Jw11_2[5] = Wp[0];
+Jw11_2[8] = 0.0;
+v3v_0 = v3v[1];
+P21_2 = v3v[0];
+w1v_2 = v3v[2];
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d56}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&Jw11_2[p2 + 3]);
+    tmp_17 = _mm_loadu_pd(&Jw11_2[p2]);
+    tmp_18 = _mm_loadu_pd(&Jw11_2[p2 + 6]);
+    _mm_storeu_pd(&dv3v[p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, _mm_set1_pd(v3v_0)), _mm_mul_pd(tmp_17, _mm_set1_pd(P21_2))), _mm_mul_pd(tmp_18, _mm_set1_pd(w1v_2))));
+}
+/* {S!d58}MATLAB Function: '<S1>/RegGeneratoe' incorporates:
+ *  MATLAB Function: '<S1>/SPM_Inverse_Dynamic'
+ */
+for (p2 = 2; p2 < 3; p2++) {
+    dv3v[p2] = (Jw11_2[p2 + 3] * v3v_0 + Jw11_2[p2] * P21_2) + Jw11_2[p2 + 6] * w1v_2;
+}
+dEm[0] = 0.0;
+dEm[3] = -0.17453292519943295 * rtb_Product1;
+dEm_tmp = -0.17453292519943295 * rtb_Product2 - 0.0 * rtb_Product1;
+dEm[6] = dEm_tmp;
+dEm[1] = 0.0;
+dEm[4] = -0.17453292519943295 * rtb_Product2;
+dEm_tmp_0 = 0.17453292519943295 * rtb_Product1 - 0.0 * rtb_Product2;
+dEm[7] = dEm_tmp_0;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["dw1v", "v1v", "tmp_a"], 0, 7, 9))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["w1v", "dv1v", "tmp_b"], 0, 7, 10))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["h_b", "dv1v", "dP21"], 0, 7, 11))>;
+dEm[2] = 0.0;
+Ja1_2 = tmp_a[0] + tmp_b[0];
+dP11[0] = Ja1_2;
+dh11 = Ja1_2 * 0.0;
+dEm[5] = 0.0;
+Ja1_2 = tmp_a[1] + tmp_b[1];
+dP11[1] = Ja1_2;
+dh11 += Ja1_2 * 0.0;
+dEm[8] = 0.0;
+Ja1_2 = tmp_a[2] + tmp_b[2];
+dh11 -= Ja1_2;
+absx11 = ((dP21[0] * w1v[0] + dP21[1] * w1v[1]) + dP21[2] * w1v[2]) + ((P21[0] * dw1v[0] + P21[1] * dw1v[1]) + P21[2] * dw1v[2]);
+h11 = %<(SLibCGCallSubFcn("rt_powd_snf", ["h11", "-2.0"], 0, 7, 12))>;
+absx31 = %<(SLibCGCallSubFcn("rt_powd_snf", ["h21", "-2.0"], 0, 7, 13))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["dw2v", "v2v", "tmp_a"], 0, 7, 14))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["w2v", "dv2v", "tmp_b"], 0, 7, 15))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["i_b", "dv2v", "dP22"], 0, 7, 16))>;
+h21 = 0.0;
+w1v_2 = dP11[1];
+v1v_0 = dP11[0];
+v2v_0 = P11_tmp[1];
+v3v_0 = P11_tmp[0];
+w2v_1 = P11_tmp[2];
+for (p2 = 0; p2 < 3; p2++) {
+    p3 = 3 * p2 + 1;
+    rtb_Product1_3 = 3 * p2 + 2;
+    dJa1[p2] = (((Em[3 * p2] * v1v_0 + Em[p3] * w1v_2) + Em[rtb_Product1_3] * Ja1_2) + ((dEm[3 * p2] * v3v_0 + dEm[p3] * v2v_0) + dEm[rtb_Product1_3] * w2v_1)) * A1_1_tmp - dP22_0[p2] * dh11 * h11;
+    P21_2 = tmp_a[p2] + tmp_b[p2];
+    dv1v[p2] = P21_2;
+    h21 += P21_2 * i_b[p2];
+}
+b_b = ((dP22[0] * w2v[0] + dP22[1] * w2v[1]) + dP22[2] * w2v[2]) + ((P22[0] * dw2v[0] + P22[1] * dw2v[1]) + P22[2] * dw2v[2]);
+h12 = %<(SLibCGCallSubFcn("rt_powd_snf", ["h12", "-2.0"], 0, 7, 17))>;
+P21_2 = dv1v[1];
+h11 = dv1v[0];
+A1_1_tmp = dv1v[2];
+v2v_0 = P12_tmp[1];
+v3v_0 = P12_tmp[0];
+w2v_1 = P12_tmp[2];
+q_a = %<(SLibCGCallSubFcn("rt_powd_snf", ["h22", "-2.0"], 0, 7, 18))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["dw3v", "v3v", "tmp_a"], 0, 7, 19))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["w3v", "dv3v", "tmp_b"], 0, 7, 20))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["j_b", "dv3v", "dP23"], 0, 7, 21))>;
+dv1v_1 = tmp_a[0] + tmp_b[0];
+dv1v[0] = dv1v_1;
+h22 = dv1v_1 * 0.0;
+dv1v_1 = tmp_a[1] + tmp_b[1];
+dv1v[1] = dv1v_1;
+h22 += dv1v_1 * -0.0;
+dv1v_1 = tmp_a[2] + tmp_b[2];
+h22 -= dv1v_1;
+rtb_Product1_2 = ((dP23[0] * w3v[0] + dP23[1] * w3v[1]) + dP23[2] * w3v[2]) + ((P23[0] * dw3v[0] + P23[1] * dw3v[1]) + P23[2] * dw3v[2]);
+B1_1 = %<(SLibCGCallSubFcn("rt_powd_snf", ["B1_1", "-2.0"], 0, 7, 22))>;
+Em_2 = dv1v[1];
+dh11 = dv1v[0];
+w1v_2 = P13_tmp[1];
+v1v_0 = P13_tmp[0];
+Ja1_2 = P13_tmp[2];
+for (p2 = 0; p2 < 3; p2++) {
+    p3 = 3 * p2 + 1;
+    rtb_Product1_3 = 3 * p2 + 2;
+    P21_1 = dEm[3 * p2];
+    dJa2[p2] = (((Em[3 * p2] * h11 + Em[p3] * P21_2) + Em[rtb_Product1_3] * A1_1_tmp) + ((dEm[p3] * v2v_0 + P21_1 * v3v_0) + dEm[rtb_Product1_3] * w2v_1)) * A1_1_tmp_1 - dP23_0[p2] * h21 * h12;
+    p3 = 3 * p2 + 1;
+    rtb_Product1_3 = 3 * p2 + 2;
+    dv3v[p2] = (((Em[3 * p2] * dh11 + Em[p3] * Em_2) + Em[rtb_Product1_3] * dv1v_1) + ((dEm[p3] * w1v_2 + P21_1 * v1v_0) + dEm[rtb_Product1_3] * Ja1_2)) * w1v_1 - Ja3_tmp[p2] * h22 * B1_1;
+}
+dv1v_1 = %<(SLibCGCallSubFcn("rt_powd_snf", ["A1_1", "-2.0"], 0, 7, 23))>;
+dv1v[0] = w1v[0];
+dv1v[1] = w1v[1];
+dv1v[2] = 0.0;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["dv1v", "h", "P11"], 0, 7, 24))>;
+for (p2 = 0; p2 < 9; p2++) {
+    DCM11_tmp[p2] = e[p2];
+}
+h12 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["P11"], 0, 7, 25))>;
+B1_1 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["dv1v"], 0, 7, 26))>;
+P11_0[0] = P11[0] / h12;
+P11_0[3] = w1v[0] / B1_1;
+P11_0[6] = 0.0;
+P11_0[1] = P11[1] / h12;
+P11_0[4] = w1v[1] / B1_1;
+P11_0[7] = 0.0;
+P11_0[2] = P11[2] / h12;
+P11_0[5] = 0.0 / B1_1;
+P11_0[8] = 1.0;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["v1v", "P11_tmp", "P11"], 0, 7, 27))>;
+h12 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["P11"], 0, 7, 28))>;
+B1_1 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["v1v"], 0, 7, 29))>;
+h22 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["P11_tmp"], 0, 7, 30))>;
+for (p2 = 0; p2 < 3; p2++) {
+    DCM11_tmp_0 = (int32_T)DCM11_tmp[3 * p2 + 1];
+    DCM11_tmp_1 = (int32_T)DCM11_tmp[3 * p2];
+    DCM11_tmp_2 = (int32_T)DCM11_tmp[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&P11_0[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&P11_0[p3]);
+        tmp_18 = _mm_loadu_pd(&P11_0[p3 + 6]);
+        _mm_storeu_pd(&DCM11[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(DCM11_tmp_0), tmp_16), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_1), tmp_17)), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_2), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        DCM11[p3 + 3 * p2] = (P11_0[p3 + 3] * (real_T)DCM11_tmp_0 + (real_T)DCM11_tmp_1 * P11_0[p3]) + P11_0[p3 + 6] * (real_T)DCM11_tmp_2;
+    }
+}
+for (p3 = 0; p3 <= 0; p3 += 2) {
+    /* {S!d60}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&P11[p3]);
+    _mm_storeu_pd(&P11_1[p3], _mm_div_pd(tmp_16, _mm_set1_pd(h12)));
+    tmp_16 = _mm_loadu_pd(&v1v[p3]);
+    _mm_storeu_pd(&P11_1[p3 + 3], _mm_div_pd(tmp_16, _mm_set1_pd(B1_1)));
+    tmp_16 = _mm_loadu_pd(&P11_tmp[p3]);
+    _mm_storeu_pd(&P11_1[p3 + 6], _mm_div_pd(tmp_16, _mm_set1_pd(h22)));
+}
+/* {S!d62}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p3 = 2; p3 < 3; p3++) {
+    P11_1[p3] = P11[p3] / h12;
+    P11_1[p3 + 3] = v1v[p3] / B1_1;
+    P11_1[p3 + 6] = P11_tmp[p3] / h22;
+}
+dv1v[0] = w2v[0];
+dv1v[1] = w2v[1];
+dv1v[2] = 0.0;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["dv1v", "h", "P11"], 0, 7, 31))>;
+h12 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["P11"], 0, 7, 32))>;
+B1_1 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["dv1v"], 0, 7, 33))>;
+for (p2 = 0; p2 < 3; p2++) {
+    DCM11_tmp_0 = (int32_T)DCM11_tmp[3 * p2 + 1];
+    DCM11_tmp_1 = (int32_T)DCM11_tmp[3 * p2];
+    DCM11_tmp_2 = (int32_T)DCM11_tmp[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&P11_1[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&P11_1[p3]);
+        tmp_18 = _mm_loadu_pd(&P11_1[p3 + 6]);
+        _mm_storeu_pd(&DCM21[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(DCM11_tmp_0), tmp_16), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_1), tmp_17)), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_2), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        DCM21[p3 + 3 * p2] = (P11_1[p3 + 3] * (real_T)DCM11_tmp_0 + (real_T)DCM11_tmp_1 * P11_1[p3]) + P11_1[p3 + 6] * (real_T)DCM11_tmp_2;
+    }
+}
+for (p3 = 0; p3 <= 0; p3 += 2) {
+    /* {S!d64}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&P11[p3]);
+    _mm_storeu_pd(&P11_2[p3], _mm_div_pd(tmp_16, _mm_set1_pd(h12)));
+    tmp_16 = _mm_loadu_pd(&dv1v[p3]);
+    _mm_storeu_pd(&P11_2[p3 + 3], _mm_div_pd(tmp_16, _mm_set1_pd(B1_1)));
+    tmp_16 = _mm_loadu_pd(&h[p3]);
+    _mm_storeu_pd(&P11_2[p3 + 6], tmp_16);
+}
+/* {S!d66}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p3 = 2; p3 < 3; p3++) {
+    P11_2[p3] = P11[p3] / h12;
+    P11_2[p3 + 3] = dv1v[p3] / B1_1;
+    P11_2[p3 + 6] = h[p3];
+}
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["v2v", "P12_tmp", "P11"], 0, 7, 34))>;
+h12 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["P11"], 0, 7, 35))>;
+B1_1 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["v2v"], 0, 7, 36))>;
+h22 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["P12_tmp"], 0, 7, 37))>;
+for (p2 = 0; p2 < 3; p2++) {
+    DCM11_tmp_0 = (int32_T)DCM11_tmp[3 * p2 + 1];
+    DCM11_tmp_1 = (int32_T)DCM11_tmp[3 * p2];
+    DCM11_tmp_2 = (int32_T)DCM11_tmp[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&P11_2[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&P11_2[p3]);
+        tmp_18 = _mm_loadu_pd(&P11_2[p3 + 6]);
+        _mm_storeu_pd(&DCM12[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(DCM11_tmp_0), tmp_16), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_1), tmp_17)), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_2), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        DCM12[p3 + 3 * p2] = (P11_2[p3 + 3] * (real_T)DCM11_tmp_0 + (real_T)DCM11_tmp_1 * P11_2[p3]) + P11_2[p3 + 6] * (real_T)DCM11_tmp_2;
+    }
+}
+for (p3 = 0; p3 <= 0; p3 += 2) {
+    /* {S!d68}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&P11[p3]);
+    _mm_storeu_pd(&P11_3[p3], _mm_div_pd(tmp_16, _mm_set1_pd(h12)));
+    tmp_16 = _mm_loadu_pd(&v2v[p3]);
+    _mm_storeu_pd(&P11_3[p3 + 3], _mm_div_pd(tmp_16, _mm_set1_pd(B1_1)));
+    tmp_16 = _mm_loadu_pd(&P12_tmp[p3]);
+    _mm_storeu_pd(&P11_3[p3 + 6], _mm_div_pd(tmp_16, _mm_set1_pd(h22)));
+}
+/* {S!d70}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p3 = 2; p3 < 3; p3++) {
+    P11_3[p3] = P11[p3] / h12;
+    P11_3[p3 + 3] = v2v[p3] / B1_1;
+    P11_3[p3 + 6] = P12_tmp[p3] / h22;
+}
+dv1v[0] = w3v[0];
+dv1v[1] = w3v[1];
+dv1v[2] = 0.0;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["dv1v", "h", "P11"], 0, 7, 38))>;
+h12 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["P11"], 0, 7, 39))>;
+B1_1 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["dv1v"], 0, 7, 40))>;
+for (p2 = 0; p2 < 3; p2++) {
+    DCM11_tmp_0 = (int32_T)DCM11_tmp[3 * p2 + 1];
+    DCM11_tmp_1 = (int32_T)DCM11_tmp[3 * p2];
+    DCM11_tmp_2 = (int32_T)DCM11_tmp[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&P11_3[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&P11_3[p3]);
+        tmp_18 = _mm_loadu_pd(&P11_3[p3 + 6]);
+        _mm_storeu_pd(&DCM22[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(DCM11_tmp_0), tmp_16), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_1), tmp_17)), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_2), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        DCM22[p3 + 3 * p2] = (P11_3[p3 + 3] * (real_T)DCM11_tmp_0 + (real_T)DCM11_tmp_1 * P11_3[p3]) + P11_3[p3 + 6] * (real_T)DCM11_tmp_2;
+    }
+}
+for (p3 = 0; p3 <= 0; p3 += 2) {
+    /* {S!d72}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&P11[p3]);
+    _mm_storeu_pd(&P11_4[p3], _mm_div_pd(tmp_16, _mm_set1_pd(h12)));
+    tmp_16 = _mm_loadu_pd(&dv1v[p3]);
+    _mm_storeu_pd(&P11_4[p3 + 3], _mm_div_pd(tmp_16, _mm_set1_pd(B1_1)));
+    tmp_16 = _mm_loadu_pd(&h[p3]);
+    _mm_storeu_pd(&P11_4[p3 + 6], tmp_16);
+}
+/* {S!d74}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p3 = 2; p3 < 3; p3++) {
+    P11_4[p3] = P11[p3] / h12;
+    P11_4[p3 + 3] = dv1v[p3] / B1_1;
+    P11_4[p3 + 6] = h[p3];
+}
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["v3v", "P13_tmp", "P11"], 0, 7, 41))>;
+h12 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["P11"], 0, 7, 42))>;
+B1_1 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["v3v"], 0, 7, 43))>;
+h22 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["P13_tmp"], 0, 7, 44))>;
+for (p2 = 0; p2 < 3; p2++) {
+    A1_1 = P11[p2] / h12;
+    h21 = v3v[p2] / B1_1;
+    Em_2 = P13_tmp[p2] / h22;
+    dh11 = P11_4[p2 + 3];
+    A1_1_tmp_1 = P11_4[p2];
+    Em_3 = P11_4[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_tmp = 3 * p3 + 1;
+        DCM11_tmp_0 = (int32_T)DCM11_tmp[DCM11_tmp_tmp];
+        DCM11_tmp_1 = (int32_T)DCM11_tmp[3 * p3];
+        DCM11_tmp_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_2 = (int32_T)DCM11_tmp[DCM11_tmp_tmp_0];
+        rtb_Product1_3 = 3 * p3 + p2;
+        DCM13[rtb_Product1_3] = ((real_T)DCM11_tmp_0 * dh11 + (real_T)DCM11_tmp_1 * A1_1_tmp_1) + (real_T)DCM11_tmp_2 * Em_3;
+        I11_Sf_tmp[p3 + 3 * p2] = DCM11[rtb_Product1_3];
+        DCM11_0[rtb_Product1_3] = (DCM11[p2 + 3] * k_b[DCM11_tmp_tmp] + k_b[3 * p3] * DCM11[p2]) + DCM11[p2 + 6] * k_b[DCM11_tmp_tmp_0];
+        DCM23[rtb_Product1_3] = ((real_T)DCM11_tmp_0 * h21 + (real_T)DCM11_tmp_1 * A1_1) + (real_T)DCM11_tmp_2 * Em_2;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = DCM11_0[p2 + 3];
+    B1_1 = DCM11_0[p2];
+    h22 = DCM11_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_1 = 3 * p3 + p2;
+        I21_Sf_tmp_0[p3 + 3 * p2] = DCM21[DCM11_tmp_1];
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM21_0[DCM11_tmp_1] = (DCM21[p2 + 3] * l_b[rtb_Product1_3] + l_b[3 * p3] * DCM21[p2]) + DCM21[p2 + 6] * l_b[DCM11_tmp_0];
+        I11_Sf[DCM11_tmp_1] = (I11_Sf_tmp[3 * p3] * B1_1 + I11_Sf_tmp[rtb_Product1_3] * h12) + I11_Sf_tmp[DCM11_tmp_0] * h22;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h11 = DCM21_0[p2 + 3];
+    A1_1_tmp = DCM21_0[p2];
+    P21_1 = DCM21_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + p2;
+        I12_Sf_tmp_0[p3 + 3 * p2] = DCM12[rtb_Product1_3];
+        DCM11_tmp_0 = 3 * p3 + 1;
+        DCM11_tmp_1 = 3 * p3 + 2;
+        DCM12_0[rtb_Product1_3] = (DCM12[p2 + 3] * m_b[DCM11_tmp_0] + m_b[3 * p3] * DCM12[p2]) + DCM12[p2 + 6] * m_b[DCM11_tmp_1];
+        I21_Sf[rtb_Product1_3] = (I21_Sf_tmp_0[3 * p3] * A1_1_tmp + I21_Sf_tmp_0[DCM11_tmp_0] * h11) + I21_Sf_tmp_0[DCM11_tmp_1] * P21_1;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    B1_1 = DCM12_0[p2 + 3];
+    h22 = DCM12_0[p2];
+    h11 = DCM12_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + p2;
+        I22_Sf_tmp_0[p3 + 3 * p2] = DCM22[rtb_Product1_3];
+        DCM11_tmp_0 = 3 * p3 + 1;
+        DCM11_tmp_1 = 3 * p3 + 2;
+        DCM22_0[rtb_Product1_3] = (DCM22[p2 + 3] * n_b[DCM11_tmp_0] + n_b[3 * p3] * DCM22[p2]) + DCM22[p2 + 6] * n_b[DCM11_tmp_1];
+        I12_Sf[rtb_Product1_3] = (I12_Sf_tmp_0[3 * p3] * h22 + I12_Sf_tmp_0[DCM11_tmp_0] * B1_1) + I12_Sf_tmp_0[DCM11_tmp_1] * h11;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = DCM22_0[p2 + 3];
+    A1_1_tmp = DCM22_0[p2];
+    P21_1 = DCM22_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_0 = 3 * p3 + p2;
+        I13_Sf_tmp_0[p3 + 3 * p2] = DCM13[DCM11_tmp_0];
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_1 = 3 * p3 + 2;
+        DCM13_0[DCM11_tmp_0] = (DCM13[p2 + 3] * o_b[rtb_Product1_3] + o_b[3 * p3] * DCM13[p2]) + DCM13[p2 + 6] * o_b[DCM11_tmp_1];
+        I22_Sf[DCM11_tmp_0] = (I22_Sf_tmp_0[3 * p3] * A1_1_tmp + I22_Sf_tmp_0[rtb_Product1_3] * h12) + I22_Sf_tmp_0[DCM11_tmp_1] * P21_1;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h22 = DCM13_0[p2 + 3];
+    h11 = DCM13_0[p2];
+    A1_1_tmp = DCM13_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + p2;
+        I23_Sf_tmp_0[p3 + 3 * p2] = DCM23[rtb_Product1_3];
+        DCM11_tmp_0 = 3 * p3 + 1;
+        DCM11_tmp_1 = 3 * p3 + 2;
+        DCM23_0[rtb_Product1_3] = (DCM23[p2 + 3] * p_b[DCM11_tmp_0] + p_b[3 * p3] * DCM23[p2]) + DCM23[p2 + 6] * p_b[DCM11_tmp_1];
+        I13_Sf[rtb_Product1_3] = (I13_Sf_tmp_0[3 * p3] * h11 + I13_Sf_tmp_0[DCM11_tmp_0] * h22) + I13_Sf_tmp_0[DCM11_tmp_1] * A1_1_tmp;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = DCM23_0[p2 + 3];
+    B1_1 = DCM23_0[p2];
+    P21_1 = DCM23_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Ip_Sf_tmp_0[p3 + 3 * p2] = Qm[DCM11_tmp_1];
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        Qm_0[DCM11_tmp_1] = (Qm[p2 + 3] * q_b[rtb_Product1_3] + q_b[3 * p3] * Qm[p2]) + Qm[p2 + 6] * q_b[DCM11_tmp_0];
+        I23_Sf[DCM11_tmp_1] = (I23_Sf_tmp_0[3 * p3] * B1_1 + I23_Sf_tmp_0[rtb_Product1_3] * h12) + I23_Sf_tmp_0[DCM11_tmp_0] * P21_1;
+    }
+}
+/* {S!d76}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+dh11 = 0.0;
+tmp_c[0] = cos(rtb_qr[0]);
+tmp_c[3] = -sin(rtb_qr[0]);
+tmp_c[6] = 0.0;
+tmp_c[1] = sin(rtb_qr[0]);
+tmp_c[4] = cos(rtb_qr[0]);
+tmp_c[7] = 0.0;
+c[0] = 1;
+c[3] = 0;
+c[6] = 0;
+for (p2 = 0; p2 < 3; p2++) {
+    /* {S!d78}MATLAB Function: '<S1>/RegGeneratoe' */
+    h11 = Qm_0[p2 + 3];
+    A1_1_tmp = Qm_0[p2];
+    w1v_1 = Qm_0[p2 + 6];
+    P21_2 = 0.0;
+    A1_1 = 0.0;
+    Ja1_2 = 0.0;
+    h12 = 0.0;
+    h21 = 0.0;
+    Em_2 = 0.0;
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_0 = 3 * p3 + p2;
+        Ip_Sf[DCM11_tmp_0] = (Ip_Sf_tmp_0[3 * p3 + 1] * h11 + Ip_Sf_tmp_0[3 * p3] * A1_1_tmp) + Ip_Sf_tmp_0[3 * p3 + 2] * w1v_1;
+        P21_1 = rtb_Delay[p3];
+        P21_2 += Jw11[DCM11_tmp_0] * P21_1;
+        A1_1 += Jw21[DCM11_tmp_0] * P21_1;
+        Ja1_2 += Jw12[DCM11_tmp_0] * P21_1;
+        h12 += Jw22[DCM11_tmp_0] * P21_1;
+        h21 += Jw13[DCM11_tmp_0] * P21_1;
+        Em_2 += Jw23[DCM11_tmp_0] * P21_1;
+    }
+    x[p2] = Em_2;
+    P12[p2] = h21;
+    dv2v[p2] = h12;
+    dP11[p2] = Ja1_2;
+    P11[p2] = A1_1;
+    dv1v[p2] = P21_2;
+    /* {S!d80}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_c[3 * p2 + 2] = d[p2];
+    c[3 * p2 + 1] = e_0[p2];
+}
+/* {S!d82}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+c[2] = 0;
+c[5] = 0;
+c[8] = 1;
+for (p2 = 0; p2 < 3; p2++) {
+    rtAction = c[3 * p2 + 1];
+    c_0 = c[3 * p2];
+    c_1 = c[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&tmp_c[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&tmp_c[p3]);
+        tmp_18 = _mm_loadu_pd(&tmp_c[p3 + 6]);
+        _mm_storeu_pd(&tmp_d[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(rtAction), tmp_16), _mm_mul_pd(_mm_set1_pd(c_0), tmp_17)), _mm_mul_pd(_mm_set1_pd(c_1), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        tmp_d[p3 + 3 * p2] = (tmp_c[p3 + 3] * (real_T)rtAction + (real_T)c_0 * tmp_c[p3]) + tmp_c[p3 + 6] * (real_T)c_1;
+    }
+}
+for (p3 = 0; p3 < 3; p3++) {
+    c[3 * p3] = g_0[p3];
+}
+c[1] = 0;
+c[4] = 1;
+c[7] = 0;
+c[2] = 0;
+c[5] = 0;
+c[8] = 1;
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = tmp_d[p2 + 3];
+    B1_1 = tmp_d[p2];
+    h22 = tmp_d[p2 + 6];
+    v1v_0 = 0.0;
+    v2v_0 = 0.0;
+    v3v_0 = 0.0;
+    for (p3 = 0; p3 < 3; p3++) {
+        h11 = ((real_T)c[3 * p3 + 1] * h12 + (real_T)c[3 * p3] * B1_1) + (real_T)c[3 * p3 + 2] * h22;
+        Qm_0[p2 + 3 * p3] = h11;
+        v1v_0 += h11 * e_b[p3];
+        v2v_0 += h11 * f_b[p3];
+        v3v_0 += h11 * g_b[p3];
+    }
+    v3v[p2] = v3v_0;
+    v2v[p2] = v2v_0;
+    v1v[p2] = v1v_0;
+}
+A1_1 = ((0.0 * v1v[0] + v1v[1]) * 0.90630778703664994 + 0.42261826174069944 * v1v[2]) + 0.50000000000000011;
+B1_1 = (v1v[0] - 0.0 * v1v[1]) * 0.90630778703664994;
+A1_1 = atan((-B1_1 - sqrt(B1_1 * B1_1 - (((0.0 * v1v[0] + v1v[1]) * -0.90630778703664994 + 0.42261826174069944 * v1v[2]) + 0.50000000000000011) * A1_1)) / A1_1) * 2.0;
+B1_1 = sin(A1_1);
+A1_1 = cos(A1_1);
+w1v_0[0] = 0.90630778703664994 * A1_1 * 0.0 - 0.90630778703664994 * B1_1;
+w1v_0[1] = 0.90630778703664994 * A1_1 + 0.0 * B1_1;
+w1v_0[2] = 0.0 * A1_1 - 0.42261826174069944;
+A1_1 = ((-0.86602540378443849 * v2v[0] + -0.50000000000000044 * v2v[1]) * 0.90630778703664994 + 0.42261826174069944 * v2v[2]) + 0.50000000000000011;
+B1_1 = (-0.50000000000000044 * v2v[0] - -0.86602540378443849 * v2v[1]) * 0.90630778703664994;
+A1_1 = atan((-B1_1 - sqrt(B1_1 * B1_1 - (((-0.86602540378443849 * v2v[0] + -0.50000000000000044 * v2v[1]) * -0.90630778703664994 + 0.42261826174069944 * v2v[2]) + 0.50000000000000011) * A1_1)) / A1_1) * 2.0;
+B1_1 = sin(A1_1);
+A1_1 = cos(A1_1);
+w2v_0[0] = 0.90630778703664994 * A1_1 * -0.86602540378443849 - -0.45315389351832536 * B1_1;
+w2v_0[1] = 0.90630778703664994 * A1_1 * -0.50000000000000044 + -0.78488556722139569 * B1_1;
+w2v_0[2] = 0.0 * A1_1 - 0.42261826174069944;
+A1_1 = ((0.86602540378443871 * v3v[0] + -0.49999999999999978 * v3v[1]) * 0.90630778703664994 + 0.42261826174069944 * v3v[2]) + 0.50000000000000011;
+B1_1 = (-0.49999999999999978 * v3v[0] - 0.86602540378443871 * v3v[1]) * 0.90630778703664994;
+A1_1 = atan((-B1_1 - sqrt(B1_1 * B1_1 - (((0.86602540378443871 * v3v[0] + -0.49999999999999978 * v3v[1]) * -0.90630778703664994 + 0.42261826174069944 * v3v[2]) + 0.50000000000000011) * A1_1)) / A1_1) * 2.0;
+B1_1 = sin(A1_1);
+A1_1 = cos(A1_1);
+w3v_0[0] = 0.90630778703664994 * A1_1 * 0.86602540378443871 - -0.45315389351832475 * B1_1;
+w3v_0[1] = 0.90630778703664994 * A1_1 * -0.49999999999999978 + 0.7848855672213958 * B1_1;
+w3v_0[2] = 0.0 * A1_1 - 0.42261826174069944;
+Em_0[0] = 0.0;
+Em_0[3] = -rtb_Product2;
+Em_0[6] = rtb_Product1;
+Em_0[1] = 0.0;
+Em_0[4] = rtb_Product1;
+Em_0[7] = rtb_Product2;
+Em_0[2] = 1.0;
+Em_0[5] = 0.0;
+Em_0[8] = -0.0;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["w1v_0", "v1v", "P11_tmp"], 0, 7, 45))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["h_b", "v1v", "P21_0"], 0, 7, 46))>;
+h11 = (P11_tmp[0] * 0.0 + P11_tmp[1] * 0.0) - P11_tmp[2];
+h21 = (P21_0[0] * w1v_0[0] + P21_0[1] * w1v_0[1]) + P21_0[2] * w1v_0[2];
+A1_1_tmp = 1.0 / h11;
+v2v_0 = P11_tmp[1];
+v3v_0 = P11_tmp[0];
+w2v_1 = P11_tmp[2];
+A1_1_tmp_1 = 1.0 / h21;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["w2v_0", "v2v", "P12_tmp"], 0, 7, 47))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["i_b", "v2v", "P22_0"], 0, 7, 48))>;
+h12 = 0.0;
+h22 = 0.0;
+B1_1 = P21_0[1];
+P21_1 = P21_0[0];
+P21_2 = P21_0[2];
+w1v_1 = w1v_0[0];
+w1v_2 = w1v_0[1];
+v1v_0 = w1v_0[2];
+for (p2 = 0; p2 < 3; p2++) {
+    Ja1_2 = (Em_0[3 * p2 + 1] * v2v_0 + Em_0[3 * p2] * v3v_0) + Em_0[3 * p2 + 2] * w2v_1;
+    dP22_0[p2] = Ja1_2;
+    Ja1_0[p2] = A1_1_tmp * Ja1_2;
+    Ja1_2 = Ja1_0[p2];
+    A1_1 = 0.0 * Ja1_2;
+    Jw11_0[3 * p2] = A1_1;
+    rtb_Product1_3 = 3 * p2 + 1;
+    Jw11_0[rtb_Product1_3] = A1_1;
+    Em_2 = Em_0[rtb_Product1_3];
+    Em_3 = Em_0[3 * p2];
+    p3 = 3 * p2 + 2;
+    Em_4 = Em_0[p3];
+    Jm1_tmp_1 = (Em_2 * B1_1 + Em_3 * P21_1) + Em_4 * P21_2;
+    Jw11_0[p3] = -Ja1_2;
+    Jm1_tmp[p2] = Jm1_tmp_1;
+    Jm1_tmp_1 *= A1_1_tmp_1;
+    Jm1_0[p2] = Jm1_tmp_1;
+    h12 += P12_tmp[p2] * i_b[p2];
+    h22 += P22_0[p2] * w2v_0[p2];
+    Jw21_0[3 * p2] = w1v_1 * Jm1_tmp_1 + A1_1;
+    Jw21_0[rtb_Product1_3] = w1v_2 * Jm1_tmp_1 + A1_1;
+    Jw21_0[p3] = v1v_0 * Jm1_tmp_1 + -Ja1_2;
+    dP23_0[p2] = (Em_2 * P12_tmp[1] + Em_3 * P12_tmp[0]) + Em_4 * P12_tmp[2];
+}
+P21_1 = 1.0 / h12;
+Ja2_0[0] = P21_1 * dP23_0[0];
+Ja2_0[1] = P21_1 * dP23_0[1];
+Ja2_0[2] = P21_1 * dP23_0[2];
+Em_3 = 1.0 / h22;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["w3v_0", "v3v", "P13_tmp"], 0, 7, 49))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["j_b", "v3v", "P23_0"], 0, 7, 50))>;
+B1_1 = 0.0;
+P21_2 = P22_0[1];
+w1v_1 = P22_0[0];
+w1v_2 = P22_0[2];
+v1v_0 = w2v_0[0];
+v3v_0 = w2v_0[1];
+w2v_1 = w2v_0[2];
+for (p2 = 0; p2 < 3; p2++) {
+    v2v_0 = Ja2_0[p2];
+    A1_1 = -0.0 * v2v_0;
+    Jw12_0[3 * p2] = A1_1;
+    p3 = 3 * p2 + 1;
+    Jw12_0[p3] = A1_1;
+    rtb_Product1_3 = 3 * p2 + 2;
+    Em_2 = (Em_0[3 * p2] * w1v_1 + Em_0[p3] * P21_2) + Em_0[rtb_Product1_3] * w1v_2;
+    Jw12_0[rtb_Product1_3] = -v2v_0;
+    Jm2_tmp[p2] = Em_2;
+    Jm1_tmp_1 = Em_3 * Em_2;
+    Jm2_0[p2] = Jm1_tmp_1;
+    Jw22_0[3 * p2] = v1v_0 * Jm1_tmp_1 + A1_1;
+    Jw22_0[p3] = v3v_0 * Jm1_tmp_1 + A1_1;
+    Jw22_0[rtb_Product1_3] = w2v_1 * Jm1_tmp_1 + -v2v_0;
+    B1_1 += P13_tmp[p2] * j_b[p2];
+}
+A1_1 = 0.0;
+w1v_1 = 1.0 / B1_1;
+w1v_2 = P13_tmp[0];
+v1v_0 = P13_tmp[1];
+Ja1_2 = P13_tmp[2];
+for (p2 = 0; p2 < 3; p2++) {
+    A1_1 += P23_0[p2] * w3v_0[p2];
+    Em_2 = Em_0[3 * p2];
+    P21_2 = w1v_2 * Em_2;
+    v2v_0 = P23_0[0] * Em_2;
+    Em_2 = Em_0[3 * p2 + 1];
+    P21_2 += v1v_0 * Em_2;
+    v2v_0 += P23_0[1] * Em_2;
+    Em_2 = Em_0[3 * p2 + 2];
+    P21_2 += Ja1_2 * Em_2;
+    Jm3_tmp[p2] = P23_0[2] * Em_2 + v2v_0;
+    Ja3_tmp[p2] = P21_2;
+    Ja3_0[p2] = w1v_1 * P21_2;
+}
+Em_2 = 1.0 / A1_1;
+dv1v_0[0] = 0.17453292519943295;
+dv1v_0[1] = 0.0;
+dv1v_0[2] = 0.0;
+Ja1_2 = 0.0;
+v2v_0 = 0.0;
+Em_4 = 0.0;
+v1v_0 = w3v_0[0];
+v3v_0 = w3v_0[1];
+w2v_1 = w3v_0[2];
+for (p2 = 0; p2 < 3; p2++) {
+    Jm1_tmp_1 = Em_2 * Jm3_tmp[p2];
+    Jm3_0[p2] = Jm1_tmp_1;
+    P21_2 = dv1v_0[p2];
+    Ja1_2 += Ja1_0[p2] * P21_2;
+    v2v_0 += Ja2_0[p2] * P21_2;
+    Ja3_1 = Ja3_0[p2];
+    Em_4 += Ja3_1 * P21_2;
+    w1v_2 = 0.0 * Ja3_1;
+    Jw13_0[3 * p2] = w1v_2;
+    Jw23_0[3 * p2] = v1v_0 * Jm1_tmp_1 + w1v_2;
+    w1v_2 = -0.0 * Ja3_1;
+    p3 = 3 * p2 + 1;
+    Jw13_0[p3] = w1v_2;
+    Jw23_0[p3] = v3v_0 * Jm1_tmp_1 + w1v_2;
+    p3 = 3 * p2 + 2;
+    Jw13_0[p3] = -Ja3_1;
+    Jw23_0[p3] = w2v_1 * Jm1_tmp_1 - Ja3_1;
+    Wp_0[p2] = (Em_0[p2 + 3] * 0.0 + Em_0[p2] * 0.17453292519943295) + Em_0[p2 + 6] * 0.0;
+}
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["h_b", "w1v_0", "tmp_a"], 0, 7, 51))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["i_b", "w2v_0", "tmp_b"], 0, 7, 52))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["j_b", "w3v_0", "tmp_e"], 0, 7, 53))>;
+tmp_f[0] = 0.0;
+tmp_f[3] = -Wp_0[2];
+tmp_f[6] = Wp_0[1];
+tmp_f[1] = Wp_0[2];
+tmp_f[4] = 0.0;
+tmp_f[7] = -Wp_0[0];
+tmp_f[2] = -Wp_0[1];
+tmp_f[5] = Wp_0[0];
+tmp_f[8] = 0.0;
+v1v_0 = v1v[1];
+P21_2 = v1v[0];
+w1v_2 = v1v[2];
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d84}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&tmp_a[p2]);
+    _mm_storeu_pd(&dw1v_0[p2], _mm_mul_pd(_mm_set1_pd(Ja1_2), tmp_16));
+    tmp_16 = _mm_loadu_pd(&tmp_b[p2]);
+    _mm_storeu_pd(&dw2v_0[p2], _mm_mul_pd(_mm_set1_pd(v2v_0), tmp_16));
+    tmp_16 = _mm_loadu_pd(&tmp_e[p2]);
+    _mm_storeu_pd(&dw3v_0[p2], _mm_mul_pd(_mm_set1_pd(Em_4), tmp_16));
+    tmp_16 = _mm_loadu_pd(&tmp_f[p2 + 3]);
+    tmp_17 = _mm_loadu_pd(&tmp_f[p2]);
+    tmp_18 = _mm_loadu_pd(&tmp_f[p2 + 6]);
+    _mm_storeu_pd(&dv1v_0[p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, _mm_set1_pd(v1v_0)), _mm_mul_pd(tmp_17, _mm_set1_pd(P21_2))), _mm_mul_pd(tmp_18, _mm_set1_pd(w1v_2))));
+}
+/* {S!d86}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 2; p2 < 3; p2++) {
+    dw1v_0[p2] = Ja1_2 * tmp_a[p2];
+    dw2v_0[p2] = v2v_0 * tmp_b[p2];
+    dw3v_0[p2] = Em_4 * tmp_e[p2];
+    dv1v_0[p2] = (tmp_f[p2 + 3] * v1v_0 + tmp_f[p2] * P21_2) + tmp_f[p2 + 6] * w1v_2;
+}
+tmp_g[0] = 0.0;
+tmp_g[3] = -Wp_0[2];
+tmp_g[6] = Wp_0[1];
+tmp_g[1] = Wp_0[2];
+tmp_g[4] = 0.0;
+tmp_g[7] = -Wp_0[0];
+tmp_g[2] = -Wp_0[1];
+tmp_g[5] = Wp_0[0];
+tmp_g[8] = 0.0;
+v2v_0 = v2v[1];
+P21_2 = v2v[0];
+w1v_2 = v2v[2];
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d88}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&tmp_g[p2 + 3]);
+    tmp_17 = _mm_loadu_pd(&tmp_g[p2]);
+    tmp_18 = _mm_loadu_pd(&tmp_g[p2 + 6]);
+    _mm_storeu_pd(&dv2v_0[p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, _mm_set1_pd(v2v_0)), _mm_mul_pd(tmp_17, _mm_set1_pd(P21_2))), _mm_mul_pd(tmp_18, _mm_set1_pd(w1v_2))));
+}
+/* {S!d90}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 2; p2 < 3; p2++) {
+    dv2v_0[p2] = (tmp_g[p2 + 3] * v2v_0 + tmp_g[p2] * P21_2) + tmp_g[p2 + 6] * w1v_2;
+}
+tmp_h[0] = 0.0;
+tmp_h[3] = -Wp_0[2];
+tmp_h[6] = Wp_0[1];
+tmp_h[1] = Wp_0[2];
+tmp_h[4] = 0.0;
+tmp_h[7] = -Wp_0[0];
+tmp_h[2] = -Wp_0[1];
+tmp_h[5] = Wp_0[0];
+tmp_h[8] = 0.0;
+dEm_0[0] = 0.0;
+dEm_0[3] = -0.17453292519943295 * rtb_Product1;
+dEm_0[6] = dEm_tmp;
+dEm_0[1] = 0.0;
+dEm_0[4] = -0.17453292519943295 * rtb_Product2;
+dEm_0[7] = dEm_tmp_0;
+dEm_0[2] = 0.0;
+dEm_0[5] = 0.0;
+dEm_0[8] = -0.0;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["dw1v_0", "v1v", "tmp_i"], 0, 7, 54))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["w1v_0", "dv1v_0", "DCM11_1"], 0, 7, 55))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["h_b", "dv1v_0", "dP21_0"], 0, 7, 56))>;
+dEm_tmp_0 = 0.0;
+dEm_tmp = 0.0;
+v3v_0 = v3v[1];
+P21_2 = v3v[0];
+w1v_2 = v3v[2];
+for (p2 = 0; p2 < 3; p2++) {
+    dv3v_0[p2] = (tmp_h[p2 + 3] * v3v_0 + tmp_h[p2] * P21_2) + tmp_h[p2 + 6] * w1v_2;
+    Ja1_2 = tmp_i[p2] + DCM11_1[p2];
+    dP11_0[p2] = Ja1_2;
+    dh11 += Ja1_2 * h_b[p2];
+    dEm_tmp_0 += dP21_0[p2] * w1v_0[p2];
+    dEm_tmp += P21_0[p2] * dw1v_0[p2];
+}
+rtb_Product2 = dEm_tmp_0 + dEm_tmp;
+h11 = %<(SLibCGCallSubFcn("rt_powd_snf", ["h11", "-2.0"], 0, 7, 57))>;
+Ja1_2 = dP11_0[1];
+w1v_2 = dP11_0[0];
+v1v_0 = dP11_0[2];
+v2v_0 = P11_tmp[1];
+v3v_0 = P11_tmp[0];
+w2v_1 = P11_tmp[2];
+for (p2 = 0; p2 < 3; p2++) {
+    p3 = 3 * p2 + 1;
+    rtb_Product1_3 = 3 * p2 + 2;
+    dJa1_0[p2] = (((Em_0[3 * p2] * w1v_2 + Em_0[p3] * Ja1_2) + Em_0[rtb_Product1_3] * v1v_0) + ((dEm_0[3 * p2] * v3v_0 + dEm_0[p3] * v2v_0) + dEm_0[rtb_Product1_3] * w2v_1)) * A1_1_tmp - dP22_0[p2] * dh11 * h11;
+}
+dh11 = %<(SLibCGCallSubFcn("rt_powd_snf", ["h21", "-2.0"], 0, 7, 58))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["dw2v_0", "v2v", "tmp_i"], 0, 7, 59))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["w2v_0", "dv2v_0", "DCM11_1"], 0, 7, 60))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["i_b", "dv2v_0", "dP22_0"], 0, 7, 61))>;
+P21_2 = tmp_i[0] + DCM11_1[0];
+dv1v_0[0] = P21_2;
+h21 = P21_2 * -0.0;
+P21_2 = tmp_i[1] + DCM11_1[1];
+dv1v_0[1] = P21_2;
+h21 += P21_2 * -0.0;
+P21_2 = tmp_i[2] + DCM11_1[2];
+h21 -= P21_2;
+dEm_tmp_0 = ((dP22_0[0] * w2v_0[0] + dP22_0[1] * w2v_0[1]) + dP22_0[2] * w2v_0[2]) + ((P22_0[0] * dw2v_0[0] + P22_0[1] * dw2v_0[1]) + P22_0[2] * dw2v_0[2]);
+h12 = %<(SLibCGCallSubFcn("rt_powd_snf", ["h12", "-2.0"], 0, 7, 62))>;
+h11 = dv1v_0[1];
+A1_1_tmp = dv1v_0[0];
+v2v_0 = P12_tmp[1];
+v3v_0 = P12_tmp[0];
+w2v_1 = P12_tmp[2];
+for (p2 = 0; p2 < 3; p2++) {
+    p3 = 3 * p2 + 1;
+    rtb_Product1_3 = 3 * p2 + 2;
+    dJa2_0[p2] = (((Em_0[3 * p2] * A1_1_tmp + Em_0[p3] * h11) + Em_0[rtb_Product1_3] * P21_2) + ((dEm_0[3 * p2] * v3v_0 + dEm_0[p3] * v2v_0) + dEm_0[rtb_Product1_3] * w2v_1)) * P21_1 - dP23_0[p2] * h21 * h12;
+}
+h21 = %<(SLibCGCallSubFcn("rt_powd_snf", ["h22", "-2.0"], 0, 7, 63))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["dw3v_0", "v3v", "tmp_i"], 0, 7, 64))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["w3v_0", "dv3v_0", "DCM11_1"], 0, 7, 65))>;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["j_b", "dv3v_0", "dP23_0"], 0, 7, 66))>;
+P21_2 = tmp_i[0] + DCM11_1[0];
+dv1v_0[0] = P21_2;
+h22 = P21_2 * 0.0;
+P21_2 = tmp_i[1] + DCM11_1[1];
+dv1v_0[1] = P21_2;
+h22 += P21_2 * -0.0;
+P21_2 = tmp_i[2] + DCM11_1[2];
+h22 -= P21_2;
+dEm_tmp = ((dP23_0[0] * w3v_0[0] + dP23_0[1] * w3v_0[1]) + dP23_0[2] * w3v_0[2]) + ((P23_0[0] * dw3v_0[0] + P23_0[1] * dw3v_0[1]) + P23_0[2] * dw3v_0[2]);
+B1_1 = %<(SLibCGCallSubFcn("rt_powd_snf", ["B1_1", "-2.0"], 0, 7, 67))>;
+h11 = dv1v_0[1];
+A1_1_tmp = dv1v_0[0];
+w1v_2 = P13_tmp[1];
+v1v_0 = P13_tmp[0];
+Ja1_2 = P13_tmp[2];
+for (p2 = 0; p2 < 3; p2++) {
+    p3 = 3 * p2 + 1;
+    rtb_Product1_3 = 3 * p2 + 2;
+    dv3v_0[p2] = (((Em_0[3 * p2] * A1_1_tmp + Em_0[p3] * h11) + Em_0[rtb_Product1_3] * P21_2) + ((dEm_0[3 * p2] * v1v_0 + dEm_0[p3] * w1v_2) + dEm_0[rtb_Product1_3] * Ja1_2)) * w1v_1 - Ja3_tmp[p2] * h22 * B1_1;
+}
+A1_1 = %<(SLibCGCallSubFcn("rt_powd_snf", ["A1_1", "-2.0"], 0, 7, 68))>;
+dv1v_0[0] = w1v_0[0];
+dv1v_0[1] = w1v_0[1];
+dv1v_0[2] = 0.0;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["dv1v_0", "g", "dP11_0"], 0, 7, 69))>;
+for (p2 = 0; p2 < 9; p2++) {
+    DCM11_tmp[p2] = e[p2];
+}
+h12 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["dP11_0"], 0, 7, 70))>;
+B1_1 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["dv1v_0"], 0, 7, 71))>;
+dP11_1[0] = dP11_0[0] / h12;
+dP11_1[3] = w1v_0[0] / B1_1;
+dP11_1[6] = 0.0;
+dP11_1[1] = dP11_0[1] / h12;
+dP11_1[4] = w1v_0[1] / B1_1;
+dP11_1[7] = 0.0;
+dP11_1[2] = dP11_0[2] / h12;
+dP11_1[5] = 0.0 / B1_1;
+dP11_1[8] = 1.0;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["v1v", "P11_tmp", "dP11_0"], 0, 7, 72))>;
+h12 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["dP11_0"], 0, 7, 73))>;
+B1_1 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["v1v"], 0, 7, 74))>;
+h22 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["P11_tmp"], 0, 7, 75))>;
+for (p2 = 0; p2 < 3; p2++) {
+    DCM11_tmp_0 = (int32_T)DCM11_tmp[3 * p2 + 1];
+    DCM11_tmp_1 = (int32_T)DCM11_tmp[3 * p2];
+    DCM11_tmp_2 = (int32_T)DCM11_tmp[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&dP11_1[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&dP11_1[p3]);
+        tmp_18 = _mm_loadu_pd(&dP11_1[p3 + 6]);
+        _mm_storeu_pd(&DCM11_0[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(DCM11_tmp_0), tmp_16), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_1), tmp_17)), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_2), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        DCM11_0[p3 + 3 * p2] = (dP11_1[p3 + 3] * (real_T)DCM11_tmp_0 + (real_T)DCM11_tmp_1 * dP11_1[p3]) + dP11_1[p3 + 6] * (real_T)DCM11_tmp_2;
+    }
+}
+for (p3 = 0; p3 <= 0; p3 += 2) {
+    /* {S!d92}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&dP11_0[p3]);
+    _mm_storeu_pd(&dP11_2[p3], _mm_div_pd(tmp_16, _mm_set1_pd(h12)));
+    tmp_16 = _mm_loadu_pd(&v1v[p3]);
+    _mm_storeu_pd(&dP11_2[p3 + 3], _mm_div_pd(tmp_16, _mm_set1_pd(B1_1)));
+    tmp_16 = _mm_loadu_pd(&P11_tmp[p3]);
+    _mm_storeu_pd(&dP11_2[p3 + 6], _mm_div_pd(tmp_16, _mm_set1_pd(h22)));
+}
+/* {S!d94}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p3 = 2; p3 < 3; p3++) {
+    dP11_2[p3] = dP11_0[p3] / h12;
+    dP11_2[p3 + 3] = v1v[p3] / B1_1;
+    dP11_2[p3 + 6] = P11_tmp[p3] / h22;
+}
+dv1v_0[0] = w2v_0[0];
+dv1v_0[1] = w2v_0[1];
+dv1v_0[2] = 0.0;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["dv1v_0", "g", "dP11_0"], 0, 7, 76))>;
+h12 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["dP11_0"], 0, 7, 77))>;
+B1_1 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["dv1v_0"], 0, 7, 78))>;
+for (p2 = 0; p2 < 3; p2++) {
+    DCM11_tmp_0 = (int32_T)DCM11_tmp[3 * p2 + 1];
+    DCM11_tmp_1 = (int32_T)DCM11_tmp[3 * p2];
+    DCM11_tmp_2 = (int32_T)DCM11_tmp[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&dP11_2[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&dP11_2[p3]);
+        tmp_18 = _mm_loadu_pd(&dP11_2[p3 + 6]);
+        _mm_storeu_pd(&DCM21_0[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(DCM11_tmp_0), tmp_16), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_1), tmp_17)), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_2), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        DCM21_0[p3 + 3 * p2] = (dP11_2[p3 + 3] * (real_T)DCM11_tmp_0 + (real_T)DCM11_tmp_1 * dP11_2[p3]) + dP11_2[p3 + 6] * (real_T)DCM11_tmp_2;
+    }
+}
+for (p3 = 0; p3 <= 0; p3 += 2) {
+    /* {S!d96}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&dP11_0[p3]);
+    _mm_storeu_pd(&dP11_3[p3], _mm_div_pd(tmp_16, _mm_set1_pd(h12)));
+    tmp_16 = _mm_loadu_pd(&dv1v_0[p3]);
+    _mm_storeu_pd(&dP11_3[p3 + 3], _mm_div_pd(tmp_16, _mm_set1_pd(B1_1)));
+    tmp_16 = _mm_loadu_pd(&g[p3]);
+    _mm_storeu_pd(&dP11_3[p3 + 6], tmp_16);
+}
+/* {S!d98}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p3 = 2; p3 < 3; p3++) {
+    dP11_3[p3] = dP11_0[p3] / h12;
+    dP11_3[p3 + 3] = dv1v_0[p3] / B1_1;
+    dP11_3[p3 + 6] = g[p3];
+}
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["v2v", "P12_tmp", "dP11_0"], 0, 7, 79))>;
+h12 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["dP11_0"], 0, 7, 80))>;
+B1_1 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["v2v"], 0, 7, 81))>;
+h22 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["P12_tmp"], 0, 7, 82))>;
+for (p2 = 0; p2 < 3; p2++) {
+    DCM11_tmp_0 = (int32_T)DCM11_tmp[3 * p2 + 1];
+    DCM11_tmp_1 = (int32_T)DCM11_tmp[3 * p2];
+    DCM11_tmp_2 = (int32_T)DCM11_tmp[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&dP11_3[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&dP11_3[p3]);
+        tmp_18 = _mm_loadu_pd(&dP11_3[p3 + 6]);
+        _mm_storeu_pd(&DCM12_0[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(DCM11_tmp_0), tmp_16), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_1), tmp_17)), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_2), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        DCM12_0[p3 + 3 * p2] = (dP11_3[p3 + 3] * (real_T)DCM11_tmp_0 + (real_T)DCM11_tmp_1 * dP11_3[p3]) + dP11_3[p3 + 6] * (real_T)DCM11_tmp_2;
+    }
+}
+for (p3 = 0; p3 <= 0; p3 += 2) {
+    /* {S!d100}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&dP11_0[p3]);
+    _mm_storeu_pd(&dP11_4[p3], _mm_div_pd(tmp_16, _mm_set1_pd(h12)));
+    tmp_16 = _mm_loadu_pd(&v2v[p3]);
+    _mm_storeu_pd(&dP11_4[p3 + 3], _mm_div_pd(tmp_16, _mm_set1_pd(B1_1)));
+    tmp_16 = _mm_loadu_pd(&P12_tmp[p3]);
+    _mm_storeu_pd(&dP11_4[p3 + 6], _mm_div_pd(tmp_16, _mm_set1_pd(h22)));
+}
+/* {S!d102}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p3 = 2; p3 < 3; p3++) {
+    dP11_4[p3] = dP11_0[p3] / h12;
+    dP11_4[p3 + 3] = v2v[p3] / B1_1;
+    dP11_4[p3 + 6] = P12_tmp[p3] / h22;
+}
+dv1v_0[0] = w3v_0[0];
+dv1v_0[1] = w3v_0[1];
+dv1v_0[2] = 0.0;
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["dv1v_0", "g", "dP11_0"], 0, 7, 83))>;
+h12 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["dP11_0"], 0, 7, 84))>;
+B1_1 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["dv1v_0"], 0, 7, 85))>;
+for (p2 = 0; p2 < 3; p2++) {
+    DCM11_tmp_0 = (int32_T)DCM11_tmp[3 * p2 + 1];
+    DCM11_tmp_1 = (int32_T)DCM11_tmp[3 * p2];
+    DCM11_tmp_2 = (int32_T)DCM11_tmp[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&dP11_4[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&dP11_4[p3]);
+        tmp_18 = _mm_loadu_pd(&dP11_4[p3 + 6]);
+        _mm_storeu_pd(&DCM22_0[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(DCM11_tmp_0), tmp_16), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_1), tmp_17)), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_2), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        DCM22_0[p3 + 3 * p2] = (dP11_4[p3 + 3] * (real_T)DCM11_tmp_0 + (real_T)DCM11_tmp_1 * dP11_4[p3]) + dP11_4[p3 + 6] * (real_T)DCM11_tmp_2;
+    }
+}
+for (p3 = 0; p3 <= 0; p3 += 2) {
+    /* {S!d104}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&dP11_0[p3]);
+    _mm_storeu_pd(&dP11_5[p3], _mm_div_pd(tmp_16, _mm_set1_pd(h12)));
+    tmp_16 = _mm_loadu_pd(&dv1v_0[p3]);
+    _mm_storeu_pd(&dP11_5[p3 + 3], _mm_div_pd(tmp_16, _mm_set1_pd(B1_1)));
+    tmp_16 = _mm_loadu_pd(&g[p3]);
+    _mm_storeu_pd(&dP11_5[p3 + 6], tmp_16);
+}
+/* {S!d106}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p3 = 2; p3 < 3; p3++) {
+    dP11_5[p3] = dP11_0[p3] / h12;
+    dP11_5[p3 + 3] = dv1v_0[p3] / B1_1;
+    dP11_5[p3 + 6] = g[p3];
+}
+%<(SLibCGCallSubFcn("DynamicValidation_cross", ["v3v", "P13_tmp", "dP11_0"], 0, 7, 86))>;
+h12 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["dP11_0"], 0, 7, 87))>;
+B1_1 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["v3v"], 0, 7, 88))>;
+h22 = %<(SLibCGCallSubFcn("DynamicValidation_norm", ["P13_tmp"], 0, 7, 89))>;
+for (p2 = 0; p2 < 3; p2++) {
+    DCM11_tmp_0 = (int32_T)DCM11_tmp[3 * p2 + 1];
+    DCM11_tmp_1 = (int32_T)DCM11_tmp[3 * p2];
+    DCM11_tmp_2 = (int32_T)DCM11_tmp[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&dP11_5[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&dP11_5[p3]);
+        tmp_18 = _mm_loadu_pd(&dP11_5[p3 + 6]);
+        _mm_storeu_pd(&DCM13_0[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(DCM11_tmp_0), tmp_16), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_1), tmp_17)), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_2), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        DCM13_0[p3 + 3 * p2] = (dP11_5[p3 + 3] * (real_T)DCM11_tmp_0 + (real_T)DCM11_tmp_1 * dP11_5[p3]) + dP11_5[p3 + 6] * (real_T)DCM11_tmp_2;
+    }
+}
+for (p3 = 0; p3 <= 0; p3 += 2) {
+    /* {S!d108}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&dP11_0[p3]);
+    _mm_storeu_pd(&dP11_6[p3], _mm_div_pd(tmp_16, _mm_set1_pd(h12)));
+    tmp_16 = _mm_loadu_pd(&v3v[p3]);
+    _mm_storeu_pd(&dP11_6[p3 + 3], _mm_div_pd(tmp_16, _mm_set1_pd(B1_1)));
+    tmp_16 = _mm_loadu_pd(&P13_tmp[p3]);
+    _mm_storeu_pd(&dP11_6[p3 + 6], _mm_div_pd(tmp_16, _mm_set1_pd(h22)));
+}
+/* {S!d110}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p3 = 2; p3 < 3; p3++) {
+    dP11_6[p3] = dP11_0[p3] / h12;
+    dP11_6[p3 + 3] = v3v[p3] / B1_1;
+    dP11_6[p3 + 6] = P13_tmp[p3] / h22;
+}
+for (p2 = 0; p2 < 3; p2++) {
+    DCM11_tmp_0 = (int32_T)DCM11_tmp[3 * p2 + 1];
+    DCM11_tmp_1 = (int32_T)DCM11_tmp[3 * p2];
+    DCM11_tmp_2 = (int32_T)DCM11_tmp[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&dP11_6[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&dP11_6[p3]);
+        tmp_18 = _mm_loadu_pd(&dP11_6[p3 + 6]);
+        _mm_storeu_pd(&DCM23_0[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(DCM11_tmp_0), tmp_16), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_1), tmp_17)), _mm_mul_pd(_mm_set1_pd(DCM11_tmp_2), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        DCM23_0[p3 + 3 * p2] = (dP11_6[p3 + 3] * (real_T)DCM11_tmp_0 + (real_T)DCM11_tmp_1 * dP11_6[p3]) + dP11_6[p3 + 6] * (real_T)DCM11_tmp_2;
+    }
+}
+for (p3 = 0; p3 < 3; p3++) {
+    rtb_Product1 = k_b[3 * p3 + 1];
+    h12 = k_b[3 * p3];
+    B1_1 = k_b[3 * p3 + 2];
+    for (p2 = 0; p2 < 3; p2++) {
+        DCM11_tmp_tmp = 3 * p3 + p2;
+        DCM11_tmp[p3 + 3 * p2] = DCM11_0[DCM11_tmp_tmp];
+        Ip_Sf_0[DCM11_tmp_tmp] = (DCM11_0[p2 + 3] * rtb_Product1 + h12 * DCM11_0[p2]) + DCM11_0[p2 + 6] * B1_1;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = Ip_Sf_0[p2 + 3];
+    B1_1 = Ip_Sf_0[p2];
+    h22 = Ip_Sf_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_1 = 3 * p3 + p2;
+        I21_Sf_tmp[p3 + 3 * p2] = DCM21_0[DCM11_tmp_1];
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM21_1[DCM11_tmp_1] = (DCM21_0[p2 + 3] * l_b[rtb_Product1_3] + l_b[3 * p3] * DCM21_0[p2]) + DCM21_0[p2 + 6] * l_b[DCM11_tmp_0];
+        I11_Sf_0[DCM11_tmp_1] = (DCM11_tmp[3 * p3] * B1_1 + DCM11_tmp[rtb_Product1_3] * h12) + DCM11_tmp[DCM11_tmp_0] * h22;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h11 = DCM21_1[p2 + 3];
+    A1_1_tmp = DCM21_1[p2];
+    P21_1 = DCM21_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + p2;
+        I12_Sf_tmp[p3 + 3 * p2] = DCM12_0[rtb_Product1_3];
+        DCM11_tmp_0 = 3 * p3 + 1;
+        DCM11_tmp_1 = 3 * p3 + 2;
+        DCM12_1[rtb_Product1_3] = (DCM12_0[p2 + 3] * m_b[DCM11_tmp_0] + m_b[3 * p3] * DCM12_0[p2]) + DCM12_0[p2 + 6] * m_b[DCM11_tmp_1];
+        I21_Sf_0[rtb_Product1_3] = (I21_Sf_tmp[3 * p3] * A1_1_tmp + I21_Sf_tmp[DCM11_tmp_0] * h11) + I21_Sf_tmp[DCM11_tmp_1] * P21_1;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    B1_1 = DCM12_1[p2 + 3];
+    h22 = DCM12_1[p2];
+    h11 = DCM12_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + p2;
+        I22_Sf_tmp[p3 + 3 * p2] = DCM22_0[rtb_Product1_3];
+        DCM11_tmp_0 = 3 * p3 + 1;
+        DCM11_tmp_1 = 3 * p3 + 2;
+        DCM21_1[rtb_Product1_3] = (DCM22_0[p2 + 3] * n_b[DCM11_tmp_0] + n_b[3 * p3] * DCM22_0[p2]) + DCM22_0[p2 + 6] * n_b[DCM11_tmp_1];
+        I12_Sf_0[rtb_Product1_3] = (I12_Sf_tmp[3 * p3] * h22 + I12_Sf_tmp[DCM11_tmp_0] * B1_1) + I12_Sf_tmp[DCM11_tmp_1] * h11;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = DCM21_1[p2 + 3];
+    A1_1_tmp = DCM21_1[p2];
+    P21_1 = DCM21_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_0 = 3 * p3 + p2;
+        I13_Sf_tmp[p3 + 3 * p2] = DCM13_0[DCM11_tmp_0];
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_1 = 3 * p3 + 2;
+        DCM13_1[DCM11_tmp_0] = (DCM13_0[p2 + 3] * o_b[rtb_Product1_3] + o_b[3 * p3] * DCM13_0[p2]) + DCM13_0[p2 + 6] * o_b[DCM11_tmp_1];
+        I22_Sf_0[DCM11_tmp_0] = (I22_Sf_tmp[3 * p3] * A1_1_tmp + I22_Sf_tmp[rtb_Product1_3] * h12) + I22_Sf_tmp[DCM11_tmp_1] * P21_1;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h22 = DCM13_1[p2 + 3];
+    h11 = DCM13_1[p2];
+    A1_1_tmp = DCM13_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + p2;
+        I23_Sf_tmp[p3 + 3 * p2] = DCM23_0[rtb_Product1_3];
+        DCM11_tmp_0 = 3 * p3 + 1;
+        DCM11_tmp_1 = 3 * p3 + 2;
+        DCM12_1[rtb_Product1_3] = (DCM23_0[p2 + 3] * p_b[DCM11_tmp_0] + p_b[3 * p3] * DCM23_0[p2]) + DCM23_0[p2 + 6] * p_b[DCM11_tmp_1];
+        I13_Sf_0[rtb_Product1_3] = (I13_Sf_tmp[3 * p3] * h11 + I13_Sf_tmp[DCM11_tmp_0] * h22) + I13_Sf_tmp[DCM11_tmp_1] * A1_1_tmp;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = DCM12_1[p2 + 3];
+    B1_1 = DCM12_1[p2];
+    P21_1 = DCM12_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Ip_Sf_tmp[p3 + 3 * p2] = Qm_0[DCM11_tmp_1];
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM21_1[DCM11_tmp_1] = (Qm_0[p2 + 3] * q_b[rtb_Product1_3] + q_b[3 * p3] * Qm_0[p2]) + Qm_0[p2 + 6] * q_b[DCM11_tmp_0];
+        I23_Sf_0[DCM11_tmp_1] = (I23_Sf_tmp[3 * p3] * B1_1 + I23_Sf_tmp[rtb_Product1_3] * h12) + I23_Sf_tmp[DCM11_tmp_0] * P21_1;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h11 = DCM21_1[p2 + 3];
+    A1_1_tmp = DCM21_1[p2];
+    w1v_1 = DCM21_1[p2 + 6];
+    P21_2 = 0.0;
+    Ja1_2 = 0.0;
+    v1v_0 = 0.0;
+    h12 = 0.0;
+    v2v_0 = 0.0;
+    v3v_0 = 0.0;
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_0 = 3 * p3 + p2;
+        Ip_Sf_0[DCM11_tmp_0] = (Ip_Sf_tmp[3 * p3 + 1] * h11 + Ip_Sf_tmp[3 * p3] * A1_1_tmp) + Ip_Sf_tmp[3 * p3 + 2] * w1v_1;
+        Jm1_tmp_1 = Jw11_0[DCM11_tmp_0];
+        P21_1 = rtb_Delay[p3];
+        P21_2 += Jm1_tmp_1 * P21_1;
+        rtb_Product1 = Jw21_0[DCM11_tmp_0];
+        Ja1_2 += rtb_Product1 * P21_1;
+        B1_1 = Jw12_0[DCM11_tmp_0];
+        v1v_0 += B1_1 * P21_1;
+        w2v_1 = Jw22_0[DCM11_tmp_0];
+        h12 += w2v_1 * P21_1;
+        w1v_2 = Jw13_0[DCM11_tmp_0];
+        v2v_0 += w1v_2 * P21_1;
+        h22 = Jw23_0[DCM11_tmp_0];
+        v3v_0 += h22 * P21_1;
+        rtb_Product1_3 = 3 * p2 + p3;
+        DCM12_1[rtb_Product1_3] = Jm1_tmp_1;
+        Gain4_tmp[rtb_Product1_3] = h_b[p3] * dJa1_0[p2];
+        DCM13_1[rtb_Product1_3] = rtb_Product1;
+        Gain4_tmp_0[rtb_Product1_3] = B1_1;
+        Gain4_tmp_1[rtb_Product1_3] = i_b[p3] * dJa2_0[p2];
+        Gain4_tmp_2[rtb_Product1_3] = w2v_1;
+        Gain4_tmp_3[rtb_Product1_3] = w1v_2;
+        Gain4_tmp_4[rtb_Product1_3] = j_b[p3] * dv3v_0[p2];
+        Gain4_tmp_5[rtb_Product1_3] = h22;
+        Gain4_tmp_tmp[rtb_Product1_3] = Em_0[DCM11_tmp_0];
+    }
+    v3v[p2] = v3v_0;
+    v2v[p2] = v2v_0;
+    dv2v_0[p2] = h12;
+    v1v[p2] = v1v_0;
+    dP11_0[p2] = Ja1_2;
+    dv1v_0[p2] = P21_2;
+}
+for (p2 = 0; p2 < 3; p2++) {
+    rtb_Product1 = Ip_Sf_0[3 * p2 + 1];
+    h12 = Ip_Sf_0[3 * p2];
+    B1_1 = Ip_Sf_0[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&Gain4_tmp_tmp[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&Gain4_tmp_tmp[p3]);
+        tmp_18 = _mm_loadu_pd(&Gain4_tmp_tmp[p3 + 6]);
+        _mm_storeu_pd(&Gain4_tmp_6[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(rtb_Product1), tmp_16), _mm_mul_pd(_mm_set1_pd(h12), tmp_17)), _mm_mul_pd(_mm_set1_pd(B1_1), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        Gain4_tmp_6[p3 + 3 * p2] = (Gain4_tmp_tmp[p3 + 3] * rtb_Product1 + h12 * Gain4_tmp_tmp[p3]) + Gain4_tmp_tmp[p3 + 6] * B1_1;
+    }
+}
+for (p3 = 0; p3 < 3; p3++) {
+    Ja1_1[p3] = Ja1_0[p3];
+    Ja1_1[p3 + 3] = Ja2_0[p3];
+    Ja1_1[p3 + 6] = Ja3_0[p3];
+}
+%<(SLibCGCallSubFcn("DynamicValidation_mpower", ["Ja1_1", "tmp_h"], 0, 7, 90))>;
+tmp_j[0] = 0.0;
+tmp_j[3] = -dv1v_0[2];
+tmp_j[6] = dv1v_0[1];
+tmp_j[1] = dv1v_0[2];
+tmp_j[4] = 0.0;
+tmp_j[7] = -dv1v_0[0];
+tmp_j[2] = -dv1v_0[1];
+tmp_j[5] = dv1v_0[0];
+tmp_j[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    rtb_Product1 = DCM13_1[p2 + 3];
+    h11 = DCM13_1[p2];
+    A1_1_tmp = DCM13_1[p2 + 6];
+    P21_1 = DCM12_1[p2 + 3];
+    P21_2 = DCM12_1[p2];
+    w1v_1 = DCM12_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Gain4_tmp_7[DCM11_tmp_1] = (I21_Sf_0[3 * p3] * h11 + I21_Sf_0[rtb_Product1_3] * rtb_Product1) + I21_Sf_0[DCM11_tmp_0] * A1_1_tmp;
+        Ja1_1[DCM11_tmp_1] = (I11_Sf_0[3 * p3] * P21_2 + I11_Sf_0[rtb_Product1_3] * P21_1) + I11_Sf_0[DCM11_tmp_0] * w1v_1;
+    }
+    rtb_Product1 = Gain4_tmp_7[p2 + 3];
+    h11 = Gain4_tmp_7[p2];
+    A1_1_tmp = Gain4_tmp_7[p2 + 6];
+    P21_1 = Ja1_1[p2 + 3];
+    P21_2 = Ja1_1[p2];
+    w1v_1 = Ja1_1[p2 + 6];
+    w1v_2 = Gain4_tmp_2[p2 + 3];
+    v1v_0 = Gain4_tmp_2[p2];
+    Ja1_2 = Gain4_tmp_2[p2 + 6];
+    h12 = Gain4_tmp_0[p2 + 3];
+    B1_1 = Gain4_tmp_0[p2];
+    h22 = Gain4_tmp_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Gain4_tmp_9[DCM11_tmp_1] = (Jw21_0[3 * p3] * h11 + Jw21_0[rtb_Product1_3] * rtb_Product1) + Jw21_0[DCM11_tmp_0] * A1_1_tmp;
+        Gain4_tmp_8[DCM11_tmp_1] = (Jw11_0[3 * p3] * P21_2 + Jw11_0[rtb_Product1_3] * P21_1) + Jw11_0[DCM11_tmp_0] * w1v_1;
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Gain4_tmp_b[DCM11_tmp_1] = (I22_Sf_0[3 * p3] * v1v_0 + I22_Sf_0[rtb_Product1_3] * w1v_2) + I22_Sf_0[DCM11_tmp_0] * Ja1_2;
+        Gain4_tmp_a[DCM11_tmp_1] = (I12_Sf_0[3 * p3] * B1_1 + I12_Sf_0[rtb_Product1_3] * h12) + I12_Sf_0[DCM11_tmp_0] * h22;
+    }
+    rtb_Product1 = Gain4_tmp_b[p2 + 3];
+    h11 = Gain4_tmp_b[p2];
+    A1_1_tmp = Gain4_tmp_b[p2 + 6];
+    P21_1 = Gain4_tmp_a[p2 + 3];
+    P21_2 = Gain4_tmp_a[p2];
+    w1v_1 = Gain4_tmp_a[p2 + 6];
+    w1v_2 = Gain4_tmp_5[p2 + 3];
+    v1v_0 = Gain4_tmp_5[p2];
+    Ja1_2 = Gain4_tmp_5[p2 + 6];
+    h12 = Gain4_tmp_3[p2 + 3];
+    B1_1 = Gain4_tmp_3[p2];
+    h22 = Gain4_tmp_3[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Gain4_tmp_d[DCM11_tmp_1] = (Jw22_0[3 * p3] * h11 + Jw22_0[rtb_Product1_3] * rtb_Product1) + Jw22_0[DCM11_tmp_0] * A1_1_tmp;
+        Gain4_tmp_c[DCM11_tmp_1] = (Jw12_0[3 * p3] * P21_2 + Jw12_0[rtb_Product1_3] * P21_1) + Jw12_0[DCM11_tmp_0] * w1v_1;
+        Gain4_tmp_f[DCM11_tmp_1] = (I23_Sf_0[3 * p3] * v1v_0 + I23_Sf_0[rtb_Product1_3] * w1v_2) + I23_Sf_0[DCM11_tmp_0] * Ja1_2;
+        Gain4_tmp_e[DCM11_tmp_1] = (I13_Sf_0[3 * p3] * B1_1 + I13_Sf_0[rtb_Product1_3] * h12) + I13_Sf_0[DCM11_tmp_0] * h22;
+    }
+    rtb_Product1 = Gain4_tmp_e[p2 + 3];
+    h11 = Gain4_tmp_e[p2];
+    A1_1_tmp = Gain4_tmp_e[p2 + 6];
+    P21_1 = Gain4_tmp_f[p2 + 3];
+    P21_2 = Gain4_tmp_f[p2];
+    w1v_1 = Gain4_tmp_f[p2 + 6];
+    w1v_2 = Gain4_tmp_6[p2 + 3];
+    v1v_0 = Gain4_tmp_6[p2];
+    Ja1_2 = Gain4_tmp_6[p2 + 6];
+    h12 = tmp_j[p2 + 3];
+    B1_1 = tmp_j[p2];
+    h22 = tmp_j[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Gain4_tmp_g[DCM11_tmp_1] = ((((Jw13_0[3 * p3] * h11 + Jw13_0[rtb_Product1_3] * rtb_Product1) + Jw13_0[DCM11_tmp_0] * A1_1_tmp) + ((Jw23_0[3 * p3] * P21_2 + Jw23_0[rtb_Product1_3] * P21_1) + Jw23_0[DCM11_tmp_0] * w1v_1)) + ((Gain4_tmp_8[DCM11_tmp_1] + Gain4_tmp_9[DCM11_tmp_1]) + (Gain4_tmp_c[DCM11_tmp_1] + Gain4_tmp_d[DCM11_tmp_1]))) + ((Em_0[3 * p3] * v1v_0 + Em_0[rtb_Product1_3] * w1v_2) + Em_0[DCM11_tmp_0] * Ja1_2);
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        I11_Sf_1[DCM11_tmp_1] = (I11_Sf_0[p2 + 3] * Gain4_tmp[rtb_Product1_3] + Gain4_tmp[3 * p3] * I11_Sf_0[p2]) + I11_Sf_0[p2 + 6] * Gain4_tmp[DCM11_tmp_0];
+        tmp_k[DCM11_tmp_1] = (I11_Sf_0[3 * p3] * B1_1 + I11_Sf_0[rtb_Product1_3] * h12) + I11_Sf_0[DCM11_tmp_0] * h22;
+    }
+    h12 = tmp_k[p2 + 3];
+    B1_1 = tmp_k[p2];
+    h22 = tmp_k[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        tmp_l[p2 + 3 * p3] = (Jw11_0[3 * p3 + 1] * h12 + Jw11_0[3 * p3] * B1_1) + Jw11_0[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d112}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&I11_Sf_1[p2]);
+    tmp_17 = _mm_loadu_pd(&tmp_l[p2]);
+    _mm_storeu_pd(&I11_Sf_0[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d114}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 8; p2 < 9; p2++) {
+    I11_Sf_0[p2] = I11_Sf_1[p2] + tmp_l[p2];
+}
+h12 = dw1v_0[0];
+h22 = dw1v_0[1];
+h11 = dw1v_0[2];
+A1_1_tmp = dP21_0[1];
+Ja1_2 = dP21_0[0];
+v2v_0 = dP21_0[2];
+B1_1 = P21_0[1];
+P21_1 = P21_0[0];
+P21_2 = P21_0[2];
+w1v_1 = w1v_0[0];
+w1v_2 = w1v_0[1];
+v1v_0 = w1v_0[2];
+for (p2 = 0; p2 < 3; p2++) {
+    Jm1_tmp_1 = Jm1_0[p2];
+    Ja1_1[3 * p2] = Gain4_tmp[3 * p2] + h12 * Jm1_tmp_1;
+    rtb_Product1_3 = 3 * p2 + 1;
+    Ja1_1[rtb_Product1_3] = h22 * Jm1_tmp_1 + Gain4_tmp[rtb_Product1_3];
+    DCM11_tmp_0 = 3 * p2 + 2;
+    Ja1_1[DCM11_tmp_0] = h11 * Jm1_tmp_1 + Gain4_tmp[DCM11_tmp_0];
+    rtb_Product1 = (((Em_0[3 * p2] * Ja1_2 + Em_0[rtb_Product1_3] * A1_1_tmp) + Em_0[DCM11_tmp_0] * v2v_0) + ((dEm_0[3 * p2] * P21_1 + dEm_0[rtb_Product1_3] * B1_1) + dEm_0[DCM11_tmp_0] * P21_2)) * A1_1_tmp_1 - Jm1_tmp[p2] * rtb_Product2 * dh11;
+    Jw11_0[3 * p2] = w1v_1 * rtb_Product1;
+    Jw11_0[rtb_Product1_3] = w1v_2 * rtb_Product1;
+    Jw11_0[DCM11_tmp_0] = v1v_0 * rtb_Product1;
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d116}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&Ja1_1[p2]);
+    tmp_17 = _mm_loadu_pd(&Jw11_0[p2]);
+    _mm_storeu_pd(&Gain4_tmp[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d118}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 8; p2 < 9; p2++) {
+    Gain4_tmp[p2] = Ja1_1[p2] + Jw11_0[p2];
+}
+tmp_j[0] = 0.0;
+tmp_j[3] = -dP11_0[2];
+tmp_j[6] = dP11_0[1];
+tmp_j[1] = dP11_0[2];
+tmp_j[4] = 0.0;
+tmp_j[7] = -dP11_0[0];
+tmp_j[2] = -dP11_0[1];
+tmp_j[5] = dP11_0[0];
+tmp_j[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = tmp_j[p2 + 3];
+    B1_1 = tmp_j[p2];
+    h22 = tmp_j[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        I21_Sf_1[DCM11_tmp_1] = (I21_Sf_0[p2 + 3] * Gain4_tmp[rtb_Product1_3] + Gain4_tmp[3 * p3] * I21_Sf_0[p2]) + I21_Sf_0[p2 + 6] * Gain4_tmp[DCM11_tmp_0];
+        tmp_k[DCM11_tmp_1] = (I21_Sf_0[3 * p3] * B1_1 + I21_Sf_0[rtb_Product1_3] * h12) + I21_Sf_0[DCM11_tmp_0] * h22;
+    }
+    h12 = tmp_k[p2 + 3];
+    B1_1 = tmp_k[p2];
+    h22 = tmp_k[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        tmp_m[p2 + 3 * p3] = (Jw21_0[3 * p3 + 1] * h12 + Jw21_0[3 * p3] * B1_1) + Jw21_0[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d120}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&I21_Sf_1[p2]);
+    tmp_17 = _mm_loadu_pd(&tmp_m[p2]);
+    _mm_storeu_pd(&I21_Sf_0[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d122}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 8; p2 < 9; p2++) {
+    I21_Sf_0[p2] = I21_Sf_1[p2] + tmp_m[p2];
+}
+tmp_j[0] = 0.0;
+tmp_j[3] = -v1v[2];
+tmp_j[6] = v1v[1];
+tmp_j[1] = v1v[2];
+tmp_j[4] = 0.0;
+tmp_j[7] = -v1v[0];
+tmp_j[2] = -v1v[1];
+tmp_j[5] = v1v[0];
+tmp_j[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = tmp_j[p2 + 3];
+    B1_1 = tmp_j[p2];
+    h22 = tmp_j[p2 + 6];
+    rtb_Product1 = DCM13_1[p2 + 3];
+    h11 = DCM13_1[p2];
+    A1_1_tmp = DCM13_1[p2 + 6];
+    P21_1 = DCM12_1[p2 + 3];
+    P21_2 = DCM12_1[p2];
+    w1v_1 = DCM12_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Jw21_0[DCM11_tmp_1] = (I12_Sf_0[p2 + 3] * Gain4_tmp_1[rtb_Product1_3] + Gain4_tmp_1[3 * p3] * I12_Sf_0[p2]) + I12_Sf_0[p2 + 6] * Gain4_tmp_1[DCM11_tmp_0];
+        tmp_k[DCM11_tmp_1] = (I12_Sf_0[3 * p3] * B1_1 + I12_Sf_0[rtb_Product1_3] * h12) + I12_Sf_0[DCM11_tmp_0] * h22;
+        Gain4_tmp_8[DCM11_tmp_1] = (I21_Sf_0[3 * p3] * h11 + I21_Sf_0[rtb_Product1_3] * rtb_Product1) + I21_Sf_0[DCM11_tmp_0] * A1_1_tmp;
+        Gain4_tmp_7[DCM11_tmp_1] = (I11_Sf_0[3 * p3] * P21_2 + I11_Sf_0[rtb_Product1_3] * P21_1) + I11_Sf_0[DCM11_tmp_0] * w1v_1;
+    }
+    h12 = tmp_k[p2 + 3];
+    B1_1 = tmp_k[p2];
+    h22 = tmp_k[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        tmp_n[p2 + 3 * p3] = (Jw12_0[3 * p3 + 1] * h12 + Jw12_0[3 * p3] * B1_1) + Jw12_0[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d124}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&Jw21_0[p2]);
+    tmp_17 = _mm_loadu_pd(&tmp_n[p2]);
+    _mm_storeu_pd(&I12_Sf_0[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d126}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 8; p2 < 9; p2++) {
+    I12_Sf_0[p2] = Jw21_0[p2] + tmp_n[p2];
+}
+rtb_Product2 = dw2v_0[0];
+dh11 = dw2v_0[1];
+A1_1_tmp_1 = dw2v_0[2];
+Ja1_2 = dP22_0[1];
+rtb_Product1 = dP22_0[0];
+B1_1 = dP22_0[2];
+P21_2 = P22_0[1];
+w1v_1 = P22_0[0];
+w1v_2 = P22_0[2];
+v1v_0 = w2v_0[0];
+v3v_0 = w2v_0[1];
+w2v_1 = w2v_0[2];
+for (p2 = 0; p2 < 3; p2++) {
+    Jm1_tmp_1 = Jm2_0[p2];
+    Gain4_tmp_9[3 * p2] = Gain4_tmp_1[3 * p2] + rtb_Product2 * Jm1_tmp_1;
+    rtb_Product1_3 = 3 * p2 + 1;
+    Gain4_tmp_9[rtb_Product1_3] = dh11 * Jm1_tmp_1 + Gain4_tmp_1[rtb_Product1_3];
+    DCM11_tmp_0 = 3 * p2 + 2;
+    Gain4_tmp_9[DCM11_tmp_0] = A1_1_tmp_1 * Jm1_tmp_1 + Gain4_tmp_1[DCM11_tmp_0];
+    h12 = (((Em_0[3 * p2] * rtb_Product1 + Em_0[rtb_Product1_3] * Ja1_2) + Em_0[DCM11_tmp_0] * B1_1) + ((dEm_0[3 * p2] * w1v_1 + dEm_0[rtb_Product1_3] * P21_2) + dEm_0[DCM11_tmp_0] * w1v_2)) * Em_3 - Jm2_tmp[p2] * dEm_tmp_0 * h21;
+    Jw12_0[3 * p2] = v1v_0 * h12;
+    Jw12_0[rtb_Product1_3] = v3v_0 * h12;
+    Jw12_0[DCM11_tmp_0] = w2v_1 * h12;
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d128}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&Gain4_tmp_9[p2]);
+    tmp_17 = _mm_loadu_pd(&Jw12_0[p2]);
+    _mm_storeu_pd(&Gain4_tmp_1[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d130}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 8; p2 < 9; p2++) {
+    Gain4_tmp_1[p2] = Gain4_tmp_9[p2] + Jw12_0[p2];
+}
+tmp_j[0] = 0.0;
+tmp_j[3] = -dv2v_0[2];
+tmp_j[6] = dv2v_0[1];
+tmp_j[1] = dv2v_0[2];
+tmp_j[4] = 0.0;
+tmp_j[7] = -dv2v_0[0];
+tmp_j[2] = -dv2v_0[1];
+tmp_j[5] = dv2v_0[0];
+tmp_j[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = tmp_j[p2 + 3];
+    B1_1 = tmp_j[p2];
+    h22 = tmp_j[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        I22_Sf_1[DCM11_tmp_1] = (I22_Sf_0[p2 + 3] * Gain4_tmp_1[rtb_Product1_3] + Gain4_tmp_1[3 * p3] * I22_Sf_0[p2]) + I22_Sf_0[p2 + 6] * Gain4_tmp_1[DCM11_tmp_0];
+        tmp_k[DCM11_tmp_1] = (I22_Sf_0[3 * p3] * B1_1 + I22_Sf_0[rtb_Product1_3] * h12) + I22_Sf_0[DCM11_tmp_0] * h22;
+    }
+    h12 = tmp_k[p2 + 3];
+    B1_1 = tmp_k[p2];
+    h22 = tmp_k[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        tmp_o[p2 + 3 * p3] = (Jw22_0[3 * p3 + 1] * h12 + Jw22_0[3 * p3] * B1_1) + Jw22_0[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d132}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&I22_Sf_1[p2]);
+    tmp_17 = _mm_loadu_pd(&tmp_o[p2]);
+    _mm_storeu_pd(&I22_Sf_0[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d134}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 8; p2 < 9; p2++) {
+    I22_Sf_0[p2] = I22_Sf_1[p2] + tmp_o[p2];
+}
+tmp_j[0] = 0.0;
+tmp_j[3] = -v2v[2];
+tmp_j[6] = v2v[1];
+tmp_j[1] = v2v[2];
+tmp_j[4] = 0.0;
+tmp_j[7] = -v2v[0];
+tmp_j[2] = -v2v[1];
+tmp_j[5] = v2v[0];
+tmp_j[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = tmp_j[p2 + 3];
+    B1_1 = tmp_j[p2];
+    h22 = tmp_j[p2 + 6];
+    rtb_Product1 = Gain4_tmp_2[p2 + 3];
+    h11 = Gain4_tmp_2[p2];
+    A1_1_tmp = Gain4_tmp_2[p2 + 6];
+    P21_1 = Gain4_tmp_0[p2 + 3];
+    P21_2 = Gain4_tmp_0[p2];
+    w1v_1 = Gain4_tmp_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Jw22_0[DCM11_tmp_1] = (I13_Sf_0[p2 + 3] * Gain4_tmp_4[rtb_Product1_3] + Gain4_tmp_4[3 * p3] * I13_Sf_0[p2]) + I13_Sf_0[p2 + 6] * Gain4_tmp_4[DCM11_tmp_0];
+        tmp_k[DCM11_tmp_1] = (I13_Sf_0[3 * p3] * B1_1 + I13_Sf_0[rtb_Product1_3] * h12) + I13_Sf_0[DCM11_tmp_0] * h22;
+        Gain4_tmp_b[DCM11_tmp_1] = (I22_Sf_0[3 * p3] * h11 + I22_Sf_0[rtb_Product1_3] * rtb_Product1) + I22_Sf_0[DCM11_tmp_0] * A1_1_tmp;
+        Gain4_tmp_a[DCM11_tmp_1] = (I12_Sf_0[3 * p3] * P21_2 + I12_Sf_0[rtb_Product1_3] * P21_1) + I12_Sf_0[DCM11_tmp_0] * w1v_1;
+    }
+    h12 = tmp_k[p2 + 3];
+    B1_1 = tmp_k[p2];
+    h22 = tmp_k[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        tmp_p[p2 + 3 * p3] = (Jw13_0[3 * p3 + 1] * h12 + Jw13_0[3 * p3] * B1_1) + Jw13_0[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d136}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&Jw22_0[p2]);
+    tmp_17 = _mm_loadu_pd(&tmp_p[p2]);
+    _mm_storeu_pd(&I13_Sf_0[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d138}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 8; p2 < 9; p2++) {
+    I13_Sf_0[p2] = Jw22_0[p2] + tmp_p[p2];
+}
+rtb_Product2 = dw3v_0[0];
+h21 = dw3v_0[1];
+dh11 = dw3v_0[2];
+A1_1_tmp_1 = dP23_0[1];
+Em_3 = dP23_0[0];
+rtb_Product1 = dP23_0[2];
+dEm_tmp_0 = P23_0[1];
+h12 = P23_0[0];
+h22 = P23_0[2];
+v1v_0 = w3v_0[0];
+v3v_0 = w3v_0[1];
+w2v_1 = w3v_0[2];
+for (p2 = 0; p2 < 3; p2++) {
+    Jm1_tmp_1 = Jm3_0[p2];
+    Gain4_tmp_c[3 * p2] = Gain4_tmp_4[3 * p2] + rtb_Product2 * Jm1_tmp_1;
+    rtb_Product1_3 = 3 * p2 + 1;
+    Gain4_tmp_c[rtb_Product1_3] = h21 * Jm1_tmp_1 + Gain4_tmp_4[rtb_Product1_3];
+    DCM11_tmp_0 = 3 * p2 + 2;
+    Gain4_tmp_c[DCM11_tmp_0] = dh11 * Jm1_tmp_1 + Gain4_tmp_4[DCM11_tmp_0];
+    B1_1 = (((Em_0[3 * p2] * Em_3 + Em_0[rtb_Product1_3] * A1_1_tmp_1) + Em_0[DCM11_tmp_0] * rtb_Product1) + ((dEm_0[3 * p2] * h12 + dEm_0[rtb_Product1_3] * dEm_tmp_0) + dEm_0[DCM11_tmp_0] * h22)) * Em_2 - Jm3_tmp[p2] * dEm_tmp * A1_1;
+    w3v_1[3 * p2] = v1v_0 * B1_1;
+    w3v_1[rtb_Product1_3] = v3v_0 * B1_1;
+    w3v_1[DCM11_tmp_0] = w2v_1 * B1_1;
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d140}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&Gain4_tmp_c[p2]);
+    tmp_17 = _mm_loadu_pd(&w3v_1[p2]);
+    _mm_storeu_pd(&Gain4_tmp_4[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d142}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 8; p2 < 9; p2++) {
+    Gain4_tmp_4[p2] = Gain4_tmp_c[p2] + w3v_1[p2];
+}
+tmp_j[0] = 0.0;
+tmp_j[3] = -v3v[2];
+tmp_j[6] = v3v[1];
+tmp_j[1] = v3v[2];
+tmp_j[4] = 0.0;
+tmp_j[7] = -v3v[0];
+tmp_j[2] = -v3v[1];
+tmp_j[5] = v3v[0];
+tmp_j[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = tmp_j[p2 + 3];
+    B1_1 = tmp_j[p2];
+    h22 = tmp_j[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        I23_Sf_1[DCM11_tmp_1] = (I23_Sf_0[p2 + 3] * Gain4_tmp_4[rtb_Product1_3] + Gain4_tmp_4[3 * p3] * I23_Sf_0[p2]) + I23_Sf_0[p2 + 6] * Gain4_tmp_4[DCM11_tmp_0];
+        tmp_k[DCM11_tmp_1] = (I23_Sf_0[3 * p3] * B1_1 + I23_Sf_0[rtb_Product1_3] * h12) + I23_Sf_0[DCM11_tmp_0] * h22;
+    }
+    h12 = tmp_k[p2 + 3];
+    B1_1 = tmp_k[p2];
+    h22 = tmp_k[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        tmp_q[p2 + 3 * p3] = (Jw23_0[3 * p3 + 1] * h12 + Jw23_0[3 * p3] * B1_1) + Jw23_0[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d144}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&I23_Sf_1[p2]);
+    tmp_17 = _mm_loadu_pd(&tmp_q[p2]);
+    _mm_storeu_pd(&I23_Sf_0[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d146}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 8; p2 < 9; p2++) {
+    I23_Sf_0[p2] = I23_Sf_1[p2] + tmp_q[p2];
+}
+tmp_j[0] = 0.0;
+tmp_j[3] = -Wp_0[2];
+tmp_j[6] = Wp_0[1];
+tmp_j[1] = Wp_0[2];
+tmp_j[4] = 0.0;
+tmp_j[7] = -Wp_0[0];
+tmp_j[2] = -Wp_0[1];
+tmp_j[5] = Wp_0[0];
+tmp_j[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    DCM11_tmp_0 = 3 * p2 + 1;
+    rtb_Product1 = Ip_Sf_0[DCM11_tmp_0];
+    h12 = Ip_Sf_0[3 * p2];
+    p3 = 3 * p2 + 2;
+    B1_1 = Ip_Sf_0[p3];
+    rtb_Product2 = I23_Sf_0[DCM11_tmp_0];
+    A1_1 = I23_Sf_0[3 * p2];
+    h21 = I23_Sf_0[p3];
+    Em_2 = I13_Sf_0[DCM11_tmp_0];
+    dh11 = I13_Sf_0[3 * p2];
+    A1_1_tmp_1 = I13_Sf_0[p3];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&tmp_j[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&tmp_j[p3]);
+        tmp_18 = _mm_loadu_pd(&tmp_j[p3 + 6]);
+        rtb_Product1_3 = 3 * p2 + p3;
+        _mm_storeu_pd(&tmp_k[rtb_Product1_3], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(rtb_Product1), tmp_16), _mm_mul_pd(_mm_set1_pd(h12), tmp_17)), _mm_mul_pd(_mm_set1_pd(B1_1), tmp_18)));
+        tmp_16 = _mm_loadu_pd(&Gain4_tmp_5[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&Gain4_tmp_5[p3]);
+        tmp_18 = _mm_loadu_pd(&Gain4_tmp_5[p3 + 6]);
+        _mm_storeu_pd(&Gain4_tmp_e[rtb_Product1_3], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(rtb_Product2), tmp_16), _mm_mul_pd(_mm_set1_pd(A1_1), tmp_17)), _mm_mul_pd(_mm_set1_pd(h21), tmp_18)));
+        tmp_16 = _mm_loadu_pd(&Gain4_tmp_3[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&Gain4_tmp_3[p3]);
+        tmp_18 = _mm_loadu_pd(&Gain4_tmp_3[p3 + 6]);
+        _mm_storeu_pd(&Gain4_tmp_d[rtb_Product1_3], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(Em_2), tmp_16), _mm_mul_pd(_mm_set1_pd(dh11), tmp_17)), _mm_mul_pd(_mm_set1_pd(A1_1_tmp_1), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p2 + p3;
+        tmp_k[rtb_Product1_3] = (tmp_j[p3 + 3] * rtb_Product1 + h12 * tmp_j[p3]) + tmp_j[p3 + 6] * B1_1;
+        Gain4_tmp_e[rtb_Product1_3] = (Gain4_tmp_5[p3 + 3] * rtb_Product2 + A1_1 * Gain4_tmp_5[p3]) + Gain4_tmp_5[p3 + 6] * h21;
+        Gain4_tmp_d[rtb_Product1_3] = (Gain4_tmp_3[p3 + 3] * Em_2 + dh11 * Gain4_tmp_3[p3]) + Gain4_tmp_3[p3 + 6] * A1_1_tmp_1;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    rtb_Product1 = Gain4_tmp_6[p2 + 3];
+    h11 = Gain4_tmp_6[p2];
+    A1_1_tmp = Gain4_tmp_6[p2 + 6];
+    rtb_Product2 = Gain4_tmp_tmp[p2 + 3];
+    A1_1 = Gain4_tmp_tmp[p2];
+    h21 = Gain4_tmp_tmp[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Gain4_tmp_f[DCM11_tmp_1] = (dEm_0[3 * p3] * h11 + dEm_0[rtb_Product1_3] * rtb_Product1) + dEm_0[DCM11_tmp_0] * A1_1_tmp;
+        DCM21_1[DCM11_tmp_1] = (tmp_k[3 * p3] * A1_1 + tmp_k[rtb_Product1_3] * rtb_Product2) + tmp_k[DCM11_tmp_0] * h21;
+    }
+    rtb_Product2 = DCM21_1[p2 + 3];
+    A1_1 = DCM21_1[p2];
+    h21 = DCM21_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        Jw23_0[p2 + 3 * p3] = (Em_0[3 * p3 + 1] * rtb_Product2 + Em_0[3 * p3] * A1_1) + Em_0[3 * p3 + 2] * h21;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d148}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&Gain4_tmp_7[p2]);
+    tmp_17 = _mm_loadu_pd(&Gain4_tmp_8[p2]);
+    tmp_18 = _mm_loadu_pd(&Gain4_tmp_a[p2]);
+    tmp_11 = _mm_loadu_pd(&Gain4_tmp_b[p2]);
+    tmp_12 = _mm_loadu_pd(&Gain4_tmp_d[p2]);
+    tmp_13 = _mm_loadu_pd(&Gain4_tmp_e[p2]);
+    tmp_14 = _mm_loadu_pd(&Gain4_tmp_f[p2]);
+    tmp_15 = _mm_loadu_pd(&Jw23_0[p2]);
+    _mm_storeu_pd(&Em_0[p2], _mm_add_pd(_mm_add_pd(_mm_add_pd(_mm_add_pd(tmp_16, tmp_17), _mm_add_pd(tmp_18, tmp_11)), _mm_add_pd(tmp_12, tmp_13)), _mm_add_pd(tmp_14, tmp_15)));
+}
+/* {S!d150}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 8; p2 < 9; p2++) {
+    Em_0[p2] = (((Gain4_tmp_7[p2] + Gain4_tmp_8[p2]) + (Gain4_tmp_a[p2] + Gain4_tmp_b[p2])) + (Gain4_tmp_d[p2] + Gain4_tmp_e[p2])) + (Gain4_tmp_f[p2] + Jw23_0[p2]);
+}
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d152}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&Em_0[p2 + 3]);
+    tmp_17 = _mm_set1_pd(0.0);
+    tmp_18 = _mm_loadu_pd(&Em_0[p2]);
+    tmp_11 = _mm_loadu_pd(&Em_0[p2 + 6]);
+    _mm_storeu_pd(&dP22_0[p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, tmp_17), _mm_mul_pd(tmp_18, _mm_set1_pd(0.17453292519943295))), _mm_mul_pd(tmp_11, tmp_17)));
+    tmp_16 = _mm_loadu_pd(&Gain4_tmp_g[p2 + 3]);
+    tmp_18 = _mm_loadu_pd(&Gain4_tmp_g[p2]);
+    tmp_11 = _mm_loadu_pd(&Gain4_tmp_g[p2 + 6]);
+    _mm_storeu_pd(&w1v_0[p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, tmp_17), _mm_mul_pd(tmp_18, tmp_17)), _mm_mul_pd(tmp_11, tmp_17)));
+}
+/* {S!d154}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' incorporates:
+ *  MATLAB Function: '<S1>/RegGeneratoe'
+ */
+for (p2 = 2; p2 < 3; p2++) {
+    dP22_0[p2] = (Em_0[p2 + 3] * 0.0 + Em_0[p2] * 0.17453292519943295) + Em_0[p2 + 6] * 0.0;
+    w1v_0[p2] = (Gain4_tmp_g[p2 + 3] * 0.0 + Gain4_tmp_g[p2] * 0.0) + Gain4_tmp_g[p2 + 6] * 0.0;
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = DCM11_0[p2 + 3];
+    B1_1 = DCM11_0[p2];
+    h22 = DCM11_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        Ip_Sf_0[p2 + 3 * p3] = (r_b[3 * p3 + 1] * h12 + r_b[3 * p3] * B1_1) + r_b[3 * p3 + 2] * h22;
+    }
+    h12 = 0.0;
+    B1_1 = Ip_Sf_0[p2 + 3];
+    h22 = Ip_Sf_0[p2];
+    rtb_Product2 = Ip_Sf_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        h12 += ((DCM11_tmp[3 * p3 + 1] * B1_1 + DCM11_tmp[3 * p3] * h22) + DCM11_tmp[3 * p3 + 2] * rtb_Product2) * s_b[p3];
+    }
+    DCM11_1[p2] = h12;
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h11 = DCM21_0[p2 + 3];
+    A1_1_tmp = DCM21_0[p2];
+    P21_1 = DCM21_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM21_1[p2 + 3 * p3] = (t_b[3 * p3 + 1] * h11 + t_b[3 * p3] * A1_1_tmp) + t_b[3 * p3 + 2] * P21_1;
+    }
+    h11 = 0.0;
+    A1_1_tmp = DCM21_1[p2 + 3];
+    P21_1 = DCM21_1[p2];
+    rtb_Product2 = DCM21_1[p2 + 6];
+    h12 = 0.0;
+    for (p3 = 0; p3 < 3; p3++) {
+        h11 += ((I21_Sf_tmp[3 * p3 + 1] * A1_1_tmp + I21_Sf_tmp[3 * p3] * P21_1) + I21_Sf_tmp[3 * p3 + 2] * rtb_Product2) * s_b[p3];
+        h12 += DCM12_1[3 * p3 + p2] * -0.00838027712158635 * DCM11_1[p3];
+    }
+    tmp_i[p2] = h12;
+    dP23_0[p2] = h11;
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = 0.0;
+    B1_1 = DCM12_0[p2 + 3];
+    h22 = DCM12_0[p2];
+    h11 = DCM12_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + p2;
+        h12 += DCM13_1[rtb_Product1_3] * -0.00671322338197224 * dP23_0[p3];
+        DCM12_1[rtb_Product1_3] = (u_b[3 * p3 + 1] * B1_1 + u_b[3 * p3] * h22) + u_b[3 * p3 + 2] * h11;
+    }
+    DCM11_1[p2] = h12;
+    h12 = DCM22_0[p2 + 3];
+    A1_1_tmp = DCM22_0[p2];
+    P21_1 = DCM22_0[p2 + 6];
+    B1_1 = 0.0;
+    h22 = DCM12_1[p2 + 3];
+    h11 = DCM12_1[p2];
+    rtb_Product2 = DCM12_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_0 = 3 * p3 + 1;
+        DCM11_tmp_1 = 3 * p3 + 2;
+        DCM21_1[p2 + 3 * p3] = (v_b[3 * p3] * A1_1_tmp + v_b[DCM11_tmp_0] * h12) + v_b[DCM11_tmp_1] * P21_1;
+        B1_1 += ((I12_Sf_tmp[3 * p3] * h11 + I12_Sf_tmp[DCM11_tmp_0] * h22) + I12_Sf_tmp[DCM11_tmp_1] * rtb_Product2) * s_b[p3];
+    }
+    Ja1_0[p2] = B1_1;
+    h12 = 0.0;
+    A1_1_tmp = DCM21_1[p2 + 3];
+    P21_1 = DCM21_1[p2];
+    rtb_Product2 = DCM21_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        h12 += ((I22_Sf_tmp[3 * p3 + 1] * A1_1_tmp + I22_Sf_tmp[3 * p3] * P21_1) + I22_Sf_tmp[3 * p3 + 2] * rtb_Product2) * s_b[p3];
+    }
+    Jm1_tmp[p2] = h12;
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = 0.0;
+    B1_1 = 0.0;
+    h22 = DCM13_0[p2 + 3];
+    h11 = DCM13_0[p2];
+    A1_1_tmp = DCM13_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + p2;
+        h12 += Gain4_tmp_0[rtb_Product1_3] * -0.00902521759129636 * Ja1_0[p3];
+        B1_1 += Gain4_tmp_2[rtb_Product1_3] * -0.00671327365781553 * Jm1_tmp[p3];
+        DCM13_1[rtb_Product1_3] = (w_b[3 * p3 + 1] * h22 + w_b[3 * p3] * h11) + w_b[3 * p3 + 2] * A1_1_tmp;
+    }
+    Ja3_tmp[p2] = B1_1;
+    dP23_0[p2] = h12;
+    h12 = DCM23_0[p2 + 3];
+    B1_1 = DCM23_0[p2];
+    P21_1 = DCM23_0[p2 + 6];
+    h22 = 0.0;
+    h11 = DCM13_1[p2 + 3];
+    A1_1_tmp = DCM13_1[p2];
+    rtb_Product2 = DCM13_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_0 = 3 * p3 + 1;
+        DCM11_tmp_1 = 3 * p3 + 2;
+        DCM12_1[p2 + 3 * p3] = (x_b[3 * p3] * B1_1 + x_b[DCM11_tmp_0] * h12) + x_b[DCM11_tmp_1] * P21_1;
+        h22 += ((I13_Sf_tmp[3 * p3] * A1_1_tmp + I13_Sf_tmp[DCM11_tmp_0] * h11) + I13_Sf_tmp[DCM11_tmp_1] * rtb_Product2) * s_b[p3];
+    }
+    w3v_0[p2] = h22;
+    h12 = 0.0;
+    B1_1 = DCM12_1[p2 + 3];
+    P21_1 = DCM12_1[p2];
+    rtb_Product2 = DCM12_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        h12 += ((I23_Sf_tmp[3 * p3 + 1] * B1_1 + I23_Sf_tmp[3 * p3] * P21_1) + I23_Sf_tmp[3 * p3 + 2] * rtb_Product2) * s_b[p3];
+    }
+    P21_0[p2] = h12;
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = 0.0;
+    B1_1 = 0.0;
+    h11 = Qm_0[p2 + 3];
+    A1_1_tmp = Qm_0[p2];
+    w1v_1 = Qm_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + p2;
+        h12 += Gain4_tmp_3[rtb_Product1_3] * -0.00935728764600804 * w3v_0[p3];
+        B1_1 += Gain4_tmp_5[rtb_Product1_3] * -0.00671323366453039 * P21_0[p3];
+        DCM21_1[rtb_Product1_3] = (y_b[3 * p3 + 1] * h11 + y_b[3 * p3] * A1_1_tmp) + y_b[3 * p3 + 2] * w1v_1;
+    }
+    Jm1_tmp[p2] = B1_1;
+    Ja1_0[p2] = h12;
+    h11 = DCM21_1[p2 + 3];
+    A1_1_tmp = DCM21_1[p2];
+    w1v_1 = DCM21_1[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp[p2 + 3 * p3] = (Ip_Sf_tmp[3 * p3 + 1] * h11 + Ip_Sf_tmp[3 * p3] * A1_1_tmp) + Ip_Sf_tmp[3 * p3 + 2] * w1v_1;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d156}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&DCM11_tmp[p2]);
+    _mm_storeu_pd(&Qm_0[p2], _mm_mul_pd(_mm_set1_pd(0.0438998768456049), tmp_16));
+    tmp_16 = _mm_loadu_pd(&Gain4_tmp_tmp[p2]);
+    _mm_storeu_pd(&DCM21_1[p2], _mm_mul_pd(tmp_16, _mm_set1_pd(-1.0)));
+}
+/* {S!d158}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 8; p2 < 9; p2++) {
+    Qm_0[p2] = 0.0438998768456049 * DCM11_tmp[p2];
+    DCM21_1[p2] = -Gain4_tmp_tmp[p2];
+}
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d160}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&Qm_0[p2 + 3]);
+    tmp_17 = _mm_set1_pd(0.0);
+    tmp_18 = _mm_loadu_pd(&Qm_0[p2]);
+    tmp_11 = _mm_loadu_pd(&Qm_0[p2 + 6]);
+    _mm_storeu_pd(&w3v_0[p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, tmp_17), _mm_mul_pd(tmp_18, tmp_17)), _mm_mul_pd(tmp_11, _mm_set1_pd(-9.80665))));
+}
+/* {S!d162}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 2; p2 < 3; p2++) {
+    w3v_0[p2] = (Qm_0[p2 + 3] * 0.0 + Qm_0[p2] * 0.0) + Qm_0[p2 + 6] * -9.80665;
+}
+h12 = w3v_0[1];
+B1_1 = w3v_0[0];
+h22 = w3v_0[2];
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d164}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+    tmp_16 = _mm_loadu_pd(&DCM21_1[p2 + 3]);
+    tmp_17 = _mm_loadu_pd(&DCM21_1[p2]);
+    tmp_18 = _mm_loadu_pd(&DCM21_1[p2 + 6]);
+    tmp_11 = _mm_loadu_pd(&tmp_i[p2]);
+    tmp_12 = _mm_loadu_pd(&DCM11_1[p2]);
+    tmp_13 = _mm_loadu_pd(&dP23_0[p2]);
+    tmp_14 = _mm_loadu_pd(&Ja3_tmp[p2]);
+    tmp_15 = _mm_loadu_pd(&Ja1_0[p2]);
+    tmp_y = _mm_loadu_pd(&Jm1_tmp[p2]);
+    tmp_z = _mm_loadu_pd(&w1v_0[p2]);
+    tmp_10 = _mm_loadu_pd(&dP22_0[p2]);
+    _mm_storeu_pd(&P21_0[p2], _mm_add_pd(_mm_add_pd(_mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, _mm_set1_pd(h12)), _mm_mul_pd(tmp_17, _mm_set1_pd(B1_1))), _mm_mul_pd(tmp_18, _mm_set1_pd(h22))), _mm_add_pd(_mm_add_pd(_mm_add_pd(tmp_11, tmp_12), _mm_add_pd(tmp_13, tmp_14)), _mm_add_pd(tmp_15, tmp_y))), _mm_add_pd(tmp_z, tmp_10)));
+}
+/* {S!d166}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' */
+for (p2 = 2; p2 < 3; p2++) {
+    P21_0[p2] = (((DCM21_1[p2 + 3] * h12 + DCM21_1[p2] * B1_1) + DCM21_1[p2 + 6] * h22) + (((tmp_i[p2] + DCM11_1[p2]) + (dP23_0[p2] + Ja3_tmp[p2])) + (Ja1_0[p2] + Jm1_tmp[p2]))) + (w1v_0[p2] + dP22_0[p2]);
+}
+rtb_Product1 = P21_0[1];
+h11 = P21_0[0];
+A1_1_tmp = P21_0[2];
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d168}MATLAB Function: '<S1>/SPM_Inverse_Dynamic' incorporates:
+ *  Gain: '<S1>/Gain4'
+ */
+    tmp_16 = _mm_loadu_pd(&tmp_h[p2 + 3]);
+    tmp_17 = _mm_loadu_pd(&tmp_h[p2]);
+    tmp_18 = _mm_loadu_pd(&tmp_h[p2 + 6]);
+    tmp_16 = _mm_mul_pd(_mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, _mm_set1_pd(rtb_Product1)), _mm_mul_pd(tmp_17, _mm_set1_pd(h11))), _mm_mul_pd(tmp_18, _mm_set1_pd(A1_1_tmp))), _mm_set1_pd(DynamicValidation_P.Gain4_Gain));
+    /* {S!d170}Gain: '<S1>/Gain4' incorporates:
+ *  MATLAB Function: '<S1>/SPM_Inverse_Dynamic'
+ */
+    _mm_storeu_pd(&DynamicValidation_B.Gain4[p2], tmp_16);
+    /* {S!d172}Gain: '<S1>/Gain' incorporates:
+ *  MATLAB Function: '<S1>/SPM_Inverse_Dynamic'
+ */
+    _mm_storeu_pd(&DynamicValidation_B.Gain[p2], _mm_mul_pd(_mm_set1_pd(DynamicValidation_P.Gain_Gain), tmp_16));
+}
+for (p2 = 2; p2 < 3; p2++) {
+    /* {S!d174}Gain: '<S1>/Gain4' incorporates:
+ *  MATLAB Function: '<S1>/SPM_Inverse_Dynamic'
+ */
+    rtb_Product2 = ((tmp_h[p2 + 3] * rtb_Product1 + tmp_h[p2] * h11) + tmp_h[p2 + 6] * A1_1_tmp) * DynamicValidation_P.Gain4_Gain;
+    DynamicValidation_B.Gain4[p2] = rtb_Product2;
+    /* {S!d176}Gain: '<S1>/Gain' incorporates:
+ *  Gain: '<S1>/Gain4'
+ */
+    DynamicValidation_B.Gain[p2] = DynamicValidation_P.Gain_Gain * rtb_Product2;
+}
+if (%<(SLibCGIRIsSampleHit(1, 6))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS6B3)
+    /* {S!d178}Scope: '<S1>/Scope1' */
+%<tlcOutputsFcnOfS6B3>\
+%endif
+}
+/* {S!d180}Gain: '<S1>/Gain5' incorporates:
+ *  MATLAB Function: '<S1>/SPM_Inverse_Dynamic'
+ */
+DynamicValidation_B.Gain5[0] = DynamicValidation_P.Gain5_Gain * -1.140243740887195;
+DynamicValidation_B.Gain5[1] = DynamicValidation_P.Gain5_Gain * -1.140243740887195;
+DynamicValidation_B.Gain5[2] = DynamicValidation_P.Gain5_Gain * -1.140243740887195;
+/* {S!d182}SimscapeInputBlock: '<S68>/INPUT_1_1_1' */
+if (DynamicValidation_DW.INPUT_1_1_1_FirstOutput == 0.0) {
+    DynamicValidation_DW.INPUT_1_1_1_FirstOutput = 1.0;
+    DynamicValidation_X.DynamicValidationDynamic_Model_[0] = DynamicValidation_B.Gain5[0];
+    DynamicValidation_X.DynamicValidationDynamic_Model_[1] = 0.0;
+}
+DynamicValidation_B.INPUT_1_1_1[0] = DynamicValidation_X.DynamicValidationDynamic_Model_[0];
+DynamicValidation_B.INPUT_1_1_1[1] = DynamicValidation_X.DynamicValidationDynamic_Model_[1];
+DynamicValidation_B.INPUT_1_1_1[2] = ((DynamicValidation_B.Gain5[0] - DynamicValidation_X.DynamicValidationDynamic_Model_[0]) * 1000.0 - 2.0 * DynamicValidation_X.DynamicValidationDynamic_Model_[1]) * 1000.0;
+DynamicValidation_B.INPUT_1_1_1[3] = 0.0;
+/* {E!d182}End of SimscapeInputBlock: '<S68>/INPUT_1_1_1' */
+
+/* {S!d184}SimscapeInputBlock: '<S68>/INPUT_2_1_1' */
+if (DynamicValidation_DW.INPUT_2_1_1_FirstOutput == 0.0) {
+    DynamicValidation_DW.INPUT_2_1_1_FirstOutput = 1.0;
+    DynamicValidation_X.DynamicValidationDynamic_Mode_i[0] = DynamicValidation_B.Gain5[1];
+    DynamicValidation_X.DynamicValidationDynamic_Mode_i[1] = 0.0;
+}
+DynamicValidation_B.INPUT_2_1_1[0] = DynamicValidation_X.DynamicValidationDynamic_Mode_i[0];
+DynamicValidation_B.INPUT_2_1_1[1] = DynamicValidation_X.DynamicValidationDynamic_Mode_i[1];
+DynamicValidation_B.INPUT_2_1_1[2] = ((DynamicValidation_B.Gain5[1] - DynamicValidation_X.DynamicValidationDynamic_Mode_i[0]) * 1000.0 - 2.0 * DynamicValidation_X.DynamicValidationDynamic_Mode_i[1]) * 1000.0;
+DynamicValidation_B.INPUT_2_1_1[3] = 0.0;
+/* {E!d184}End of SimscapeInputBlock: '<S68>/INPUT_2_1_1' */
+
+/* {S!d186}SimscapeInputBlock: '<S68>/INPUT_3_1_1' */
+if (DynamicValidation_DW.INPUT_3_1_1_FirstOutput == 0.0) {
+    DynamicValidation_DW.INPUT_3_1_1_FirstOutput = 1.0;
+    DynamicValidation_X.DynamicValidationDynamic_Mod_ip[0] = DynamicValidation_B.Gain5[2];
+    DynamicValidation_X.DynamicValidationDynamic_Mod_ip[1] = 0.0;
+}
+DynamicValidation_B.INPUT_3_1_1[0] = DynamicValidation_X.DynamicValidationDynamic_Mod_ip[0];
+DynamicValidation_B.INPUT_3_1_1[1] = DynamicValidation_X.DynamicValidationDynamic_Mod_ip[1];
+DynamicValidation_B.INPUT_3_1_1[2] = ((DynamicValidation_B.Gain5[2] - DynamicValidation_X.DynamicValidationDynamic_Mod_ip[0]) * 1000.0 - 2.0 * DynamicValidation_X.DynamicValidationDynamic_Mod_ip[1]) * 1000.0;
+DynamicValidation_B.INPUT_3_1_1[3] = 0.0;
+/* {E!d186}End of SimscapeInputBlock: '<S68>/INPUT_3_1_1' */
+
+/* {S!d188}SimscapeExecutionBlock: '<S68>/STATE_1' incorporates:
+ *  SimscapeExecutionBlock: '<S68>/OUTPUT_1_0'
+ */
+simulationData = (NeslSimulationData *)DynamicValidation_DW.STATE_1_SimData;
+time = rtb_Product3;
+simulationData->mData->mTime.mN = 1;
+simulationData->mData->mTime.mX = &time;
+simulationData->mData->mContStates.mN = 12;
+simulationData->mData->mContStates.mX = &DynamicValidation_X.DynamicValidationDynamic_Mode_e[0];
+simulationData->mData->mDiscStates.mN = 0;
+simulationData->mData->mDiscStates.mX = &DynamicValidation_DW.STATE_1_Discrete;
+simulationData->mData->mModeVector.mN = 0;
+simulationData->mData->mModeVector.mX = &DynamicValidation_DW.STATE_1_Modes;
+first_output = %<(SLibCG_SE(SLibCGIRGetSolverFoundZcEvents()))>;
+simulationData->mData->mFoundZcEvents = first_output;
+first_output = %<(SLibCG_SE(LibIsMajorTimeStep()))>;
+simulationData->mData->mIsMajorTimeStep = first_output;
+tmp = %<(SLibCG_SE(SLibCGIRGetSolverAssertCheck()))>;
+simulationData->mData->mIsSolverAssertCheck = tmp;
+simulationData->mData->mIsSolverCheckingCIC = false;
+tmp = %<(SLibCG_SE(RTMIsSolverComputingJacobian()))>;
+simulationData->mData->mIsComputingJacobian = tmp;
+simulationData->mData->mIsEvaluatingF0 = false;
+simulationData->mData->mIsSolverRequestingReset = false;
+tmp = %<(SLibCG_SE(RTMGetIsModeUpdateTimeStep()))>;
+simulationData->mData->mIsModeUpdateTimeStep = tmp;
+tmp_1[0] = 0;
+tmp_0[0] = DynamicValidation_B.INPUT_1_1_1[0];
+tmp_0[1] = DynamicValidation_B.INPUT_1_1_1[1];
+tmp_0[2] = DynamicValidation_B.INPUT_1_1_1[2];
+tmp_0[3] = DynamicValidation_B.INPUT_1_1_1[3];
+tmp_1[1] = 4;
+tmp_0[4] = DynamicValidation_B.INPUT_2_1_1[0];
+tmp_0[5] = DynamicValidation_B.INPUT_2_1_1[1];
+tmp_0[6] = DynamicValidation_B.INPUT_2_1_1[2];
+tmp_0[7] = DynamicValidation_B.INPUT_2_1_1[3];
+tmp_1[2] = 8;
+tmp_0[8] = DynamicValidation_B.INPUT_3_1_1[0];
+tmp_0[9] = DynamicValidation_B.INPUT_3_1_1[1];
+tmp_0[10] = DynamicValidation_B.INPUT_3_1_1[2];
+tmp_0[11] = DynamicValidation_B.INPUT_3_1_1[3];
+tmp_1[3] = 12;
+simulationData->mData->mInputValues.mN = 12;
+simulationData->mData->mInputValues.mX = &tmp_0[0];
+simulationData->mData->mInputOffsets.mN = 4;
+simulationData->mData->mInputOffsets.mX = &tmp_1[0];
+simulationData->mData->mOutputs.mN = 12;
+simulationData->mData->mOutputs.mX = &DynamicValidation_B.STATE_1[0];
+simulationData->mData->mTolerances.mN = 0;
+simulationData->mData->mTolerances.mX = NULL;
+simulationData->mData->mCstateHasChanged = false;
+rtb_Product2 = %<(SLibCG_SE(LibGetTaskTime(0)))>;
+time_0 = rtb_Product2;
+simulationData->mData->mTime.mN = 1;
+simulationData->mData->mTime.mX = &time_0;
+simulationData->mData->mSampleHits.mN = 0;
+simulationData->mData->mSampleHits.mX = NULL;
+simulationData->mData->mIsFundamentalSampleHit = false;
+diagnosticManager = (NeuDiagnosticManager *)DynamicValidation_DW.STATE_1_DiagMgr;
+diagnosticTree = neu_diagnostic_manager_get_initial_tree(diagnosticManager);
+p2 = ne_simulator_method((NeslSimulator *)DynamicValidation_DW.STATE_1_Simulator, NESL_SIM_OUTPUTS, simulationData, diagnosticManager);
+if (p2 != 0) {
+    tmp_2 = error_buffer_is_empty(%<(LibGetRTModelErrorStatus())>);
+    if (tmp_2) {
+        msg = rtw_diagnostics_msg(diagnosticTree);
+        %<(LibSetRTModelErrorStatus("msg"))>;
+    }
+}
+/* {S!d190}SimscapeExecutionBlock: '<S68>/OUTPUT_1_0' */
+simulationData = (NeslSimulationData *)DynamicValidation_DW.OUTPUT_1_0_SimData;
+time_1 = rtb_Product3;
+simulationData->mData->mTime.mN = 1;
+simulationData->mData->mTime.mX = &time_1;
+simulationData->mData->mContStates.mN = 0;
+simulationData->mData->mContStates.mX = NULL;
+simulationData->mData->mDiscStates.mN = 0;
+simulationData->mData->mDiscStates.mX = &DynamicValidation_DW.OUTPUT_1_0_Discrete;
+simulationData->mData->mModeVector.mN = 0;
+simulationData->mData->mModeVector.mX = &DynamicValidation_DW.OUTPUT_1_0_Modes;
+tmp_2 = %<(SLibCG_SE(SLibCGIRGetSolverFoundZcEvents()))>;
+simulationData->mData->mFoundZcEvents = tmp_2;
+simulationData->mData->mIsMajorTimeStep = first_output;
+first_output = %<(SLibCG_SE(SLibCGIRGetSolverAssertCheck()))>;
+simulationData->mData->mIsSolverAssertCheck = first_output;
+simulationData->mData->mIsSolverCheckingCIC = false;
+simulationData->mData->mIsComputingJacobian = false;
+simulationData->mData->mIsEvaluatingF0 = false;
+simulationData->mData->mIsSolverRequestingReset = false;
+simulationData->mData->mIsModeUpdateTimeStep = tmp;
+tmp_4[0] = 0;
+tmp_3[0] = DynamicValidation_B.INPUT_1_1_1[0];
+tmp_3[1] = DynamicValidation_B.INPUT_1_1_1[1];
+tmp_3[2] = DynamicValidation_B.INPUT_1_1_1[2];
+tmp_3[3] = DynamicValidation_B.INPUT_1_1_1[3];
+tmp_4[1] = 4;
+tmp_3[4] = DynamicValidation_B.INPUT_2_1_1[0];
+tmp_3[5] = DynamicValidation_B.INPUT_2_1_1[1];
+tmp_3[6] = DynamicValidation_B.INPUT_2_1_1[2];
+tmp_3[7] = DynamicValidation_B.INPUT_2_1_1[3];
+tmp_4[2] = 8;
+tmp_3[8] = DynamicValidation_B.INPUT_3_1_1[0];
+tmp_3[9] = DynamicValidation_B.INPUT_3_1_1[1];
+tmp_3[10] = DynamicValidation_B.INPUT_3_1_1[2];
+tmp_3[11] = DynamicValidation_B.INPUT_3_1_1[3];
+tmp_4[3] = 12;
+memcpy(&tmp_3[12], &DynamicValidation_B.STATE_1[0], 12U * sizeof(real_T));
+tmp_4[4] = 24;
+simulationData->mData->mInputValues.mN = 24;
+simulationData->mData->mInputValues.mX = &tmp_3[0];
+simulationData->mData->mInputOffsets.mN = 5;
+simulationData->mData->mInputOffsets.mX = &tmp_4[0];
+simulationData->mData->mOutputs.mN = 17;
+simulationData->mData->mOutputs.mX = &rtb_OUTPUT_1_0[0];
+simulationData->mData->mTolerances.mN = 0;
+simulationData->mData->mTolerances.mX = NULL;
+simulationData->mData->mCstateHasChanged = false;
+time_2 = rtb_Product2;
+simulationData->mData->mTime.mN = 1;
+simulationData->mData->mTime.mX = &time_2;
+simulationData->mData->mSampleHits.mN = 0;
+simulationData->mData->mSampleHits.mX = NULL;
+simulationData->mData->mIsFundamentalSampleHit = false;
+diagnosticManager = (NeuDiagnosticManager *)DynamicValidation_DW.OUTPUT_1_0_DiagMgr;
+diagnosticTree_0 = neu_diagnostic_manager_get_initial_tree(diagnosticManager);
+p2 = ne_simulator_method((NeslSimulator *)DynamicValidation_DW.OUTPUT_1_0_Simulator, NESL_SIM_OUTPUTS, simulationData, diagnosticManager);
+if (p2 != 0) {
+    first_output = error_buffer_is_empty(%<(LibGetRTModelErrorStatus())>);
+    if (first_output) {
+        msg_0 = rtw_diagnostics_msg(diagnosticTree_0);
+        %<(LibSetRTModelErrorStatus("msg_0"))>;
+    }
+}
+/* {S!d192}Product: '<S67>/Product' */
+rtb_Product3 = rtb_OUTPUT_1_0[10] * rtb_OUTPUT_1_0[10];
+/* {S!d194}Product: '<S67>/Product1' */
+rtb_Product2 = rtb_OUTPUT_1_0[11] * rtb_OUTPUT_1_0[11];
+/* {S!d196}Product: '<S67>/Product2' */
+rtb_Product1 = rtb_OUTPUT_1_0[12] * rtb_OUTPUT_1_0[12];
+/* {S!d198}Product: '<S67>/Product3' */
+A1_1 = rtb_OUTPUT_1_0[13] * rtb_OUTPUT_1_0[13];
+/* {S!d200}Sqrt: '<S66>/sqrt' incorporates:
+ *  Sum: '<S67>/Sum'
+ */
+rtb_Product3 = sqrt(((rtb_Product3 + rtb_Product2) + rtb_Product1) + A1_1);
+/* {S!d202}Product: '<S61>/Product' */
+A1_1 = rtb_OUTPUT_1_0[10] / rtb_Product3;
+/* {S!d204}Product: '<S61>/Product1' */
+rtb_Product1 = rtb_OUTPUT_1_0[11] / rtb_Product3;
+/* {S!d206}Product: '<S61>/Product2' */
+rtb_Product2 = rtb_OUTPUT_1_0[12] / rtb_Product3;
+/* {S!d208}Product: '<S61>/Product3' */
+rtb_Product3 = rtb_OUTPUT_1_0[13] / rtb_Product3;
+/* {S!d210}Fcn: '<S53>/fcn2' incorporates:
+ *  Fcn: '<S53>/fcn5'
+ */
+h21 = A1_1 * A1_1;
+Em_2 = rtb_Product1 * rtb_Product1;
+dh11 = rtb_Product2 * rtb_Product2;
+A1_1_tmp_1 = rtb_Product3 * rtb_Product3;
+/* {S!d212}Trigonometry: '<S60>/Trigonometric Function1' incorporates:
+ *  Fcn: '<S53>/fcn1'
+ *  Fcn: '<S53>/fcn2'
+ */
+w1v_0[0] = %<(SLibCGCallSubFcn("rt_atan2d_snf", ["(rtb_Product1 * rtb_Product2 + A1_1 * rtb_Product3) * 2.0", "((h21 + Em_2) - dh11) - A1_1_tmp_1"], 0, 7, 91))>;
+/* {S!d214}Fcn: '<S53>/fcn3' */
+B1_1 = (rtb_Product1 * rtb_Product3 - A1_1 * rtb_Product2) * -2.0;
+/* {S!d222}If: '<S62>/If' */
+if (%<(RTMGetIsModeUpdateTimeStep())>) {
+    if (B1_1 > 1.0) {
+        rtAction = 0;
+    } else if (B1_1 < -1.0) {
+        rtAction = 1;
+    } else {
+        rtAction = 2;
+    }
+    DynamicValidation_DW.If_ActiveSubsystem = rtAction;
+} else {
+    rtAction = DynamicValidation_DW.If_ActiveSubsystem;
+}
+switch (rtAction) {
+  case 0:
+    /* {S!d35}Outputs for IfAction SubSystem: '<S62>/If Action Subsystem' incorporates:
+ *  ActionPort: '<S63>/Action Port'
+ */
+    if (%<(SLibCGIRIsSampleHit(1, 1))>) {
+        /* {S!d218}Merge: '<S62>/Merge' incorporates:
+ *  Constant: '<S63>/Constant'
+ */
+        DynamicValidation_B.Merge = DynamicValidation_P.Constant_Value;
+    }
+    /* {E!d35}End of Outputs for SubSystem: '<S62>/If Action Subsystem' */
+    break;
+  case 1:
+    /* {S!d37}Outputs for IfAction SubSystem: '<S62>/If Action Subsystem1' incorporates:
+ *  ActionPort: '<S64>/Action Port'
+ */
+    if (%<(SLibCGIRIsSampleHit(1, 2))>) {
+        /* {S!d220}Merge: '<S62>/Merge' incorporates:
+ *  Constant: '<S64>/Constant'
+ */
+        DynamicValidation_B.Merge = DynamicValidation_P.Constant_Value_g;
+    }
+    /* {E!d37}End of Outputs for SubSystem: '<S62>/If Action Subsystem1' */
+    break;
+  default:
+    /* {S!d33}Outputs for IfAction SubSystem: '<S62>/If Action Subsystem2' incorporates:
+ *  ActionPort: '<S65>/Action Port'
+ */
+    /* {S!d216}Merge: '<S62>/Merge' incorporates:
+ *  SignalConversion generated from: '<S65>/In'
+ */
+    DynamicValidation_B.Merge = B1_1;
+    /* {E!d33}End of Outputs for SubSystem: '<S62>/If Action Subsystem2' */
+    break;
+}
+/* {E!d222}End of If: '<S62>/If' */
+
+/* {S!d224}Trigonometry: '<S60>/trigFcn' */
+if (DynamicValidation_B.Merge > 1.0) {
+    h12 = 1.0;
+} else if (DynamicValidation_B.Merge < -1.0) {
+    h12 = -1.0;
+} else {
+    h12 = DynamicValidation_B.Merge;
+}
+w1v_0[1] = asin(h12);
+/* {E!d224}End of Trigonometry: '<S60>/trigFcn' */
+
+/* {S!d226}Trigonometry: '<S60>/Trigonometric Function3' incorporates:
+ *  Fcn: '<S53>/fcn4'
+ *  Fcn: '<S53>/fcn5'
+ */
+w1v_0[2] = %<(SLibCGCallSubFcn("rt_atan2d_snf", ["(rtb_Product2 * rtb_Product3 + A1_1 * rtb_Product1) * 2.0", "((h21 - Em_2) - dh11) + A1_1_tmp_1"], 0, 7, 92))>;
+/* {S!d228}Gain: '<S3>/Gain' */
+DynamicValidation_B.Gain_e[0] = DynamicValidation_P.Gain_Gain_h * w1v_0[0];
+DynamicValidation_B.Gain_e[1] = DynamicValidation_P.Gain_Gain_h * w1v_0[1];
+DynamicValidation_B.Gain_e[2] = DynamicValidation_P.Gain_Gain_h * w1v_0[2];
+if (%<(SLibCGIRIsSampleHit(1, 6))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS6B7)
+    /* {S!d230}Scope: '<S1>/Scope2' */
+%<tlcOutputsFcnOfS6B7>\
+%endif
+}
+/* {S!d232}Sum: '<S1>/Sum2' incorporates:
+ *  Gain: '<S1>/Gain4'
+ */
+w2v_0[0] = rtb_OUTPUT_1_0[2] - DynamicValidation_B.Gain4[0];
+w2v_0[1] = rtb_OUTPUT_1_0[5] - DynamicValidation_B.Gain4[1];
+w2v_0[2] = rtb_OUTPUT_1_0[8] - DynamicValidation_B.Gain4[2];
+/* {S!d234}Gain: '<S1>/Gain1' incorporates:
+ *  Sum: '<S1>/Sum2'
+ */
+DynamicValidation_B.Gain1[0] = DynamicValidation_P.Gain1_Gain * w2v_0[0];
+DynamicValidation_B.Gain1[1] = DynamicValidation_P.Gain1_Gain * w2v_0[1];
+DynamicValidation_B.Gain1[2] = DynamicValidation_P.Gain1_Gain * w2v_0[2];
+if (%<(SLibCGIRIsSampleHit(1, 6))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS6B8)
+    /* {S!d236}Scope: '<S1>/Scope3' */
+%<tlcOutputsFcnOfS6B8>\
+%endif
+}
+/* {S!d238}Gain: '<S5>/Gain' incorporates:
+ *  Sum: '<S1>/Sum1'
+ */
+DynamicValidation_B.Gain_c[0] = (rtb_qr[0] - w1v_0[0]) * DynamicValidation_P.Gain_Gain_k;
+DynamicValidation_B.Gain_c[1] = (0.0 - w1v_0[1]) * DynamicValidation_P.Gain_Gain_k;
+DynamicValidation_B.Gain_c[2] = (0.0 - w1v_0[2]) * DynamicValidation_P.Gain_Gain_k;
+if (%<(SLibCGIRIsSampleHit(1, 6))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS6B9)
+    /* {S!d240}Scope: '<S1>/Scope4' */
+%<tlcOutputsFcnOfS6B9>\
+%endif
+}
+/* {S!d242}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 0; p2 < 3; p2++) {
+    Qm_0[3 * p2] = Jw11[p2];
+    rtb_Product3 = dJa1[p2];
+    Em_0[3 * p2] = 0.0 * rtb_Product3;
+    Jw11_0[3 * p2] = Jw21[p2];
+    Jw21_0[3 * p2] = Jw12[p2];
+    rtb_Product2 = dJa2[p2];
+    Jw12_0[3 * p2] = -0.0 * rtb_Product2;
+    Jw22_0[3 * p2] = Jw22[p2];
+    Jw13_0[3 * p2] = Jw13[p2];
+    A1_1 = dv3v[p2];
+    Jw23_0[3 * p2] = 0.0 * A1_1;
+    dEm_0[3 * p2] = Jw23[p2];
+    DCM11_0[3 * p2] = Em[p2];
+    rtb_Product1_3 = 3 * p2 + 1;
+    Qm_0[rtb_Product1_3] = Jw11[p2 + 3];
+    Em_0[rtb_Product1_3] = 0.0 * rtb_Product3;
+    Jw11_0[rtb_Product1_3] = Jw21[p2 + 3];
+    Jw21_0[rtb_Product1_3] = Jw12[p2 + 3];
+    Jw12_0[rtb_Product1_3] = -0.0 * rtb_Product2;
+    Jw22_0[rtb_Product1_3] = Jw22[p2 + 3];
+    Jw13_0[rtb_Product1_3] = Jw13[p2 + 3];
+    Jw23_0[rtb_Product1_3] = -0.0 * A1_1;
+    dEm_0[rtb_Product1_3] = Jw23[p2 + 3];
+    DCM11_0[rtb_Product1_3] = Em[p2 + 3];
+    rtb_Product1_3 = 3 * p2 + 2;
+    Qm_0[rtb_Product1_3] = Jw11[p2 + 6];
+    Em_0[rtb_Product1_3] = -rtb_Product3;
+    Jw11_0[rtb_Product1_3] = Jw21[p2 + 6];
+    Jw21_0[rtb_Product1_3] = Jw12[p2 + 6];
+    Jw12_0[rtb_Product1_3] = -rtb_Product2;
+    Jw22_0[rtb_Product1_3] = Jw22[p2 + 6];
+    Jw13_0[rtb_Product1_3] = Jw13[p2 + 6];
+    Jw23_0[rtb_Product1_3] = -A1_1;
+    dEm_0[rtb_Product1_3] = Jw23[p2 + 6];
+    DCM11_0[rtb_Product1_3] = Em[p2 + 6];
+}
+for (p2 = 0; p2 < 3; p2++) {
+    rtb_Product1 = Ip_Sf[3 * p2 + 1];
+    h12 = Ip_Sf[3 * p2];
+    B1_1 = Ip_Sf[3 * p2 + 2];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&DCM11_0[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&DCM11_0[p3]);
+        tmp_18 = _mm_loadu_pd(&DCM11_0[p3 + 6]);
+        _mm_storeu_pd(&DCM21_0[p3 + 3 * p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(rtb_Product1), tmp_16), _mm_mul_pd(_mm_set1_pd(h12), tmp_17)), _mm_mul_pd(_mm_set1_pd(B1_1), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        DCM21_0[p3 + 3 * p2] = (DCM11_0[p3 + 3] * rtb_Product1 + h12 * DCM11_0[p3]) + DCM11_0[p3 + 6] * B1_1;
+    }
+}
+for (p3 = 0; p3 < 3; p3++) {
+    Ja1_1[p3] = Ja1[p3];
+    Ja1_1[p3 + 3] = Ja2[p3];
+    Ja1_1[p3 + 6] = Ja3[p3];
+}
+%<(SLibCGCallSubFcn("DynamicValidation_mpower", ["Ja1_1", "tmp_r"], 0, 7, 93))>;
+tmp_8[0] = 0.0;
+tmp_8[3] = -dv1v[2];
+tmp_8[6] = dv1v[1];
+tmp_8[1] = dv1v[2];
+tmp_8[4] = 0.0;
+tmp_8[7] = -dv1v[0];
+tmp_8[2] = -dv1v[1];
+tmp_8[5] = dv1v[0];
+tmp_8[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    Jm1_tmp_1 = Jw11_0[p2 + 3];
+    Em_2 = Jw11_0[p2];
+    dh11 = Jw11_0[p2 + 6];
+    h11 = Qm_0[p2 + 3];
+    A1_1_tmp = Qm_0[p2];
+    w1v_1 = Qm_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Jw11_1[DCM11_tmp_1] = (I21_Sf[3 * p3] * Em_2 + I21_Sf[rtb_Product1_3] * Jm1_tmp_1) + I21_Sf[DCM11_tmp_0] * dh11;
+        DCM21_1[DCM11_tmp_1] = (I11_Sf[3 * p3] * A1_1_tmp + I11_Sf[rtb_Product1_3] * h11) + I11_Sf[DCM11_tmp_0] * w1v_1;
+    }
+    Jm1_tmp_1 = Jw11_1[p2 + 3];
+    Em_2 = Jw11_1[p2];
+    dh11 = Jw11_1[p2 + 6];
+    h11 = DCM21_1[p2 + 3];
+    A1_1_tmp = DCM21_1[p2];
+    w1v_1 = DCM21_1[p2 + 6];
+    w2v_1 = Jw22_0[p2 + 3];
+    rtb_Product3 = Jw22_0[p2];
+    rtb_Product2 = Jw22_0[p2 + 6];
+    rtb_Product1 = Jw21_0[p2 + 3];
+    A1_1 = Jw21_0[p2];
+    h21 = Jw21_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_tmp = 3 * p3 + 2;
+        DCM11_tmp_tmp_0 = 3 * p3 + p2;
+        Jw11_2[DCM11_tmp_tmp_0] = (Jw21[3 * p3] * Em_2 + Jw21[rtb_Product1_3] * Jm1_tmp_1) + Jw21[DCM11_tmp_tmp] * dh11;
+        DCM11_tmp[DCM11_tmp_tmp_0] = (Jw11[3 * p3] * A1_1_tmp + Jw11[rtb_Product1_3] * h11) + Jw11[DCM11_tmp_tmp] * w1v_1;
+        rtb_Product1_3 = 3 * p3 + 1;
+        Jw22_1[DCM11_tmp_tmp_0] = (I22_Sf[3 * p3] * rtb_Product3 + I22_Sf[rtb_Product1_3] * w2v_1) + I22_Sf[DCM11_tmp_tmp] * rtb_Product2;
+        Jw21_1[DCM11_tmp_tmp_0] = (I12_Sf[3 * p3] * A1_1 + I12_Sf[rtb_Product1_3] * rtb_Product1) + I12_Sf[DCM11_tmp_tmp] * h21;
+    }
+    w2v_1 = Jw22_1[p2 + 3];
+    rtb_Product3 = Jw22_1[p2];
+    rtb_Product2 = Jw22_1[p2 + 6];
+    rtb_Product1 = Jw21_1[p2 + 3];
+    A1_1 = Jw21_1[p2];
+    h21 = Jw21_1[p2 + 6];
+    Em_2 = dEm_0[p2 + 3];
+    dh11 = dEm_0[p2];
+    A1_1_tmp_1 = dEm_0[p2 + 6];
+    w1v_2 = Jw13_0[p2 + 3];
+    Em_3 = Jw13_0[p2];
+    dEm_tmp = Jw13_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        P11_1[DCM11_tmp_1] = (Jw22[3 * p3] * rtb_Product3 + Jw22[rtb_Product1_3] * w2v_1) + Jw22[DCM11_tmp_0] * rtb_Product2;
+        P11_0[DCM11_tmp_1] = (Jw12[3 * p3] * A1_1 + Jw12[rtb_Product1_3] * rtb_Product1) + Jw12[DCM11_tmp_0] * h21;
+        dEm_1[DCM11_tmp_1] = (I23_Sf[3 * p3] * dh11 + I23_Sf[rtb_Product1_3] * Em_2) + I23_Sf[DCM11_tmp_0] * A1_1_tmp_1;
+        Jw13_1[DCM11_tmp_1] = (I13_Sf[3 * p3] * Em_3 + I13_Sf[rtb_Product1_3] * w1v_2) + I13_Sf[DCM11_tmp_0] * dEm_tmp;
+    }
+    w1v_2 = Jw13_1[p2 + 3];
+    Em_3 = Jw13_1[p2];
+    dEm_tmp = Jw13_1[p2 + 6];
+    Em_2 = dEm_1[p2 + 3];
+    dh11 = dEm_1[p2];
+    A1_1_tmp_1 = dEm_1[p2 + 6];
+    h11 = DCM21_0[p2 + 3];
+    A1_1_tmp = DCM21_0[p2];
+    P21_1 = DCM21_0[p2 + 6];
+    h12 = tmp_8[p2 + 3];
+    B1_1 = tmp_8[p2];
+    h22 = tmp_8[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Qm_1[DCM11_tmp_1] = ((((Jw13[3 * p3] * Em_3 + Jw13[rtb_Product1_3] * w1v_2) + Jw13[DCM11_tmp_0] * dEm_tmp) + ((Jw23[3 * p3] * dh11 + Jw23[rtb_Product1_3] * Em_2) + Jw23[DCM11_tmp_0] * A1_1_tmp_1)) + ((DCM11_tmp[DCM11_tmp_1] + Jw11_2[DCM11_tmp_1]) + (P11_0[DCM11_tmp_1] + P11_1[DCM11_tmp_1]))) + ((Em[3 * p3] * A1_1_tmp + Em[rtb_Product1_3] * h11) + Em[DCM11_tmp_0] * P21_1);
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        I11_Sf_2[DCM11_tmp_1] = (I11_Sf[p2 + 3] * Em_0[rtb_Product1_3] + Em_0[3 * p3] * I11_Sf[p2]) + I11_Sf[p2 + 6] * Em_0[DCM11_tmp_0];
+        tmp_9[DCM11_tmp_1] = (I11_Sf[3 * p3] * B1_1 + I11_Sf[rtb_Product1_3] * h12) + I11_Sf[DCM11_tmp_0] * h22;
+    }
+    h12 = tmp_9[p2 + 3];
+    B1_1 = tmp_9[p2];
+    h22 = tmp_9[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        Em_1[p2 + 3 * p3] = (Jw11[3 * p3 + 1] * h12 + Jw11[3 * p3] * B1_1) + Jw11[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d244}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&I11_Sf_2[p2]);
+    tmp_17 = _mm_loadu_pd(&Em_1[p2]);
+    _mm_storeu_pd(&Jw21_1[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d246}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 8; p2 < 9; p2++) {
+    Jw21_1[p2] = I11_Sf_2[p2] + Em_1[p2];
+}
+h12 = dw1v[0];
+h22 = dw1v[1];
+h11 = dw1v[2];
+A1_1_tmp = dP21[1];
+Ja1_2 = dP21[0];
+v2v_0 = dP21[2];
+B1_1 = P21[1];
+P21_1 = P21[0];
+P21_2 = P21[2];
+w1v_1 = w1v[0];
+w1v_2 = w1v[1];
+v1v_0 = w1v[2];
+for (p2 = 0; p2 < 3; p2++) {
+    Jm1_tmp_1 = Jm1[p2];
+    Em_1[3 * p2] = Em_0[3 * p2] + h12 * Jm1_tmp_1;
+    p3 = 3 * p2 + 1;
+    Em_1[p3] = h22 * Jm1_tmp_1 + Em_0[p3];
+    rtb_Product1_3 = 3 * p2 + 2;
+    Em_1[rtb_Product1_3] = h11 * Jm1_tmp_1 + Em_0[rtb_Product1_3];
+    rtb_Product3 = (((Em[3 * p2] * Ja1_2 + Em[p3] * A1_1_tmp) + Em[rtb_Product1_3] * v2v_0) + ((dEm[3 * p2] * P21_1 + dEm[p3] * B1_1) + dEm[rtb_Product1_3] * P21_2)) * A1_1_tmp_0 - Jm1_tmp_0[p2] * absx11 * absx31;
+    I11_Sf_2[3 * p2] = w1v_1 * rtb_Product3;
+    I11_Sf_2[p3] = w1v_2 * rtb_Product3;
+    I11_Sf_2[rtb_Product1_3] = v1v_0 * rtb_Product3;
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d248}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&Em_1[p2]);
+    tmp_17 = _mm_loadu_pd(&I11_Sf_2[p2]);
+    _mm_storeu_pd(&Jw11_1[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d250}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 8; p2 < 9; p2++) {
+    Jw11_1[p2] = Em_1[p2] + I11_Sf_2[p2];
+}
+tmp_8[0] = 0.0;
+tmp_8[3] = -P11[2];
+tmp_8[6] = P11[1];
+tmp_8[1] = P11[2];
+tmp_8[4] = 0.0;
+tmp_8[7] = -P11[0];
+tmp_8[2] = -P11[1];
+tmp_8[5] = P11[0];
+tmp_8[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = tmp_8[p2 + 3];
+    B1_1 = tmp_8[p2];
+    h22 = tmp_8[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        I11_Sf_2[DCM11_tmp_1] = (I21_Sf[p2 + 3] * Jw11_1[rtb_Product1_3] + Jw11_1[3 * p3] * I21_Sf[p2]) + I21_Sf[p2 + 6] * Jw11_1[DCM11_tmp_0];
+        tmp_9[DCM11_tmp_1] = (I21_Sf[3 * p3] * B1_1 + I21_Sf[rtb_Product1_3] * h12) + I21_Sf[DCM11_tmp_0] * h22;
+    }
+    h12 = tmp_9[p2 + 3];
+    B1_1 = tmp_9[p2];
+    h22 = tmp_9[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        Em_1[p2 + 3 * p3] = (Jw21[3 * p3 + 1] * h12 + Jw21[3 * p3] * B1_1) + Jw21[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d252}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&I11_Sf_2[p2]);
+    tmp_17 = _mm_loadu_pd(&Em_1[p2]);
+    _mm_storeu_pd(&Jw22_1[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d254}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 8; p2 < 9; p2++) {
+    Jw22_1[p2] = I11_Sf_2[p2] + Em_1[p2];
+}
+tmp_8[0] = 0.0;
+tmp_8[3] = -dP11[2];
+tmp_8[6] = dP11[1];
+tmp_8[1] = dP11[2];
+tmp_8[4] = 0.0;
+tmp_8[7] = -dP11[0];
+tmp_8[2] = -dP11[1];
+tmp_8[5] = dP11[0];
+tmp_8[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = tmp_8[p2 + 3];
+    B1_1 = tmp_8[p2];
+    h22 = tmp_8[p2 + 6];
+    Jm1_tmp_1 = Jw11_0[p2 + 3];
+    Em_2 = Jw11_0[p2];
+    dh11 = Jw11_0[p2 + 6];
+    h11 = Qm_0[p2 + 3];
+    A1_1_tmp = Qm_0[p2];
+    w1v_1 = Qm_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        dEm_1[DCM11_tmp_1] = (I12_Sf[p2 + 3] * Jw12_0[rtb_Product1_3] + Jw12_0[3 * p3] * I12_Sf[p2]) + I12_Sf[p2 + 6] * Jw12_0[DCM11_tmp_0];
+        tmp_9[DCM11_tmp_1] = (I12_Sf[3 * p3] * B1_1 + I12_Sf[rtb_Product1_3] * h12) + I12_Sf[DCM11_tmp_0] * h22;
+        Jw11_1[DCM11_tmp_1] = (Jw22_1[3 * p3] * Em_2 + Jw22_1[rtb_Product1_3] * Jm1_tmp_1) + Jw22_1[DCM11_tmp_0] * dh11;
+        I11_Sf_2[DCM11_tmp_1] = (Jw21_1[3 * p3] * A1_1_tmp + Jw21_1[rtb_Product1_3] * h11) + Jw21_1[DCM11_tmp_0] * w1v_1;
+    }
+    h12 = tmp_9[p2 + 3];
+    B1_1 = tmp_9[p2];
+    h22 = tmp_9[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        Em_1[p2 + 3 * p3] = (Jw12[3 * p3 + 1] * h12 + Jw12[3 * p3] * B1_1) + Jw12[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d256}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&dEm_1[p2]);
+    tmp_17 = _mm_loadu_pd(&Em_1[p2]);
+    _mm_storeu_pd(&Jw13_1[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d258}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 8; p2 < 9; p2++) {
+    Jw13_1[p2] = dEm_1[p2] + Em_1[p2];
+}
+rtb_Product2 = dw2v[0];
+dh11 = dw2v[1];
+A1_1_tmp_1 = dw2v[2];
+Ja1_2 = dP22[1];
+rtb_Product1 = dP22[0];
+B1_1 = dP22[2];
+P21_2 = P22[1];
+w1v_1 = P22[0];
+w1v_2 = P22[2];
+v1v_0 = w2v[0];
+v3v_0 = w2v[1];
+w2v_1 = w2v[2];
+for (p2 = 0; p2 < 3; p2++) {
+    Jm1_tmp_1 = Jm2[p2];
+    Em_1[3 * p2] = Jw12_0[3 * p2] + rtb_Product2 * Jm1_tmp_1;
+    p3 = 3 * p2 + 1;
+    Em_1[p3] = dh11 * Jm1_tmp_1 + Jw12_0[p3];
+    rtb_Product1_3 = 3 * p2 + 2;
+    Em_1[rtb_Product1_3] = A1_1_tmp_1 * Jm1_tmp_1 + Jw12_0[rtb_Product1_3];
+    A1_1_tmp_0 = (((Em[3 * p2] * rtb_Product1 + Em[p3] * Ja1_2) + Em[rtb_Product1_3] * B1_1) + ((dEm[3 * p2] * w1v_1 + dEm[p3] * P21_2) + dEm[rtb_Product1_3] * w1v_2)) * rtb_Product1_0 - Jm2_tmp_0[p2] * b_b * q_a;
+    Jw22_1[3 * p2] = v1v_0 * A1_1_tmp_0;
+    Jw22_1[p3] = v3v_0 * A1_1_tmp_0;
+    Jw22_1[rtb_Product1_3] = w2v_1 * A1_1_tmp_0;
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d260}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&Em_1[p2]);
+    tmp_17 = _mm_loadu_pd(&Jw22_1[p2]);
+    _mm_storeu_pd(&Jw21_1[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d262}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 8; p2 < 9; p2++) {
+    Jw21_1[p2] = Em_1[p2] + Jw22_1[p2];
+}
+tmp_8[0] = 0.0;
+tmp_8[3] = -dv2v[2];
+tmp_8[6] = dv2v[1];
+tmp_8[1] = dv2v[2];
+tmp_8[4] = 0.0;
+tmp_8[7] = -dv2v[0];
+tmp_8[2] = -dv2v[1];
+tmp_8[5] = dv2v[0];
+tmp_8[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = tmp_8[p2 + 3];
+    B1_1 = tmp_8[p2];
+    h22 = tmp_8[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Jw22_1[DCM11_tmp_1] = (I22_Sf[p2 + 3] * Jw21_1[rtb_Product1_3] + Jw21_1[3 * p3] * I22_Sf[p2]) + I22_Sf[p2 + 6] * Jw21_1[DCM11_tmp_0];
+        tmp_9[DCM11_tmp_1] = (I22_Sf[3 * p3] * B1_1 + I22_Sf[rtb_Product1_3] * h12) + I22_Sf[DCM11_tmp_0] * h22;
+    }
+    h12 = tmp_9[p2 + 3];
+    B1_1 = tmp_9[p2];
+    h22 = tmp_9[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        Em_1[p2 + 3 * p3] = (Jw22[3 * p3 + 1] * h12 + Jw22[3 * p3] * B1_1) + Jw22[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d264}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&Jw22_1[p2]);
+    tmp_17 = _mm_loadu_pd(&Em_1[p2]);
+    _mm_storeu_pd(&dEm_1[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d266}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 8; p2 < 9; p2++) {
+    dEm_1[p2] = Jw22_1[p2] + Em_1[p2];
+}
+tmp_8[0] = 0.0;
+tmp_8[3] = -P12[2];
+tmp_8[6] = P12[1];
+tmp_8[1] = P12[2];
+tmp_8[4] = 0.0;
+tmp_8[7] = -P12[0];
+tmp_8[2] = -P12[1];
+tmp_8[5] = P12[0];
+tmp_8[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = tmp_8[p2 + 3];
+    B1_1 = tmp_8[p2];
+    h22 = tmp_8[p2 + 6];
+    w2v_1 = Jw22_0[p2 + 3];
+    rtb_Product3 = Jw22_0[p2];
+    rtb_Product2 = Jw22_0[p2 + 6];
+    rtb_Product1 = Jw21_0[p2 + 3];
+    A1_1 = Jw21_0[p2];
+    h21 = Jw21_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        I13_Sf_1[DCM11_tmp_1] = (I13_Sf[p2 + 3] * Jw23_0[rtb_Product1_3] + Jw23_0[3 * p3] * I13_Sf[p2]) + I13_Sf[p2 + 6] * Jw23_0[DCM11_tmp_0];
+        tmp_9[DCM11_tmp_1] = (I13_Sf[3 * p3] * B1_1 + I13_Sf[rtb_Product1_3] * h12) + I13_Sf[DCM11_tmp_0] * h22;
+        Jw22_1[DCM11_tmp_1] = (dEm_1[3 * p3] * rtb_Product3 + dEm_1[rtb_Product1_3] * w2v_1) + dEm_1[DCM11_tmp_0] * rtb_Product2;
+        Jw21_1[DCM11_tmp_1] = (Jw13_1[3 * p3] * A1_1 + Jw13_1[rtb_Product1_3] * rtb_Product1) + Jw13_1[DCM11_tmp_0] * h21;
+    }
+    h12 = tmp_9[p2 + 3];
+    B1_1 = tmp_9[p2];
+    h22 = tmp_9[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        Em_1[p2 + 3 * p3] = (Jw13[3 * p3 + 1] * h12 + Jw13[3 * p3] * B1_1) + Jw13[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d268}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&I13_Sf_1[p2]);
+    tmp_17 = _mm_loadu_pd(&Em_1[p2]);
+    _mm_storeu_pd(&I13_Sf_2[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d270}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 8; p2 < 9; p2++) {
+    I13_Sf_2[p2] = I13_Sf_1[p2] + Em_1[p2];
+}
+rtb_Product2 = dw3v[0];
+h21 = dw3v[1];
+dh11 = dw3v[2];
+A1_1_tmp_1 = dP23[1];
+Em_3 = dP23[0];
+rtb_Product1 = dP23[2];
+dEm_tmp_0 = P23[1];
+h12 = P23[0];
+h22 = P23[2];
+v1v_0 = w3v[0];
+v3v_0 = w3v[1];
+w2v_1 = w3v[2];
+for (p2 = 0; p2 < 3; p2++) {
+    Jm1_tmp_1 = Jm3[p2];
+    Em_1[3 * p2] = Jw23_0[3 * p2] + rtb_Product2 * Jm1_tmp_1;
+    p3 = 3 * p2 + 1;
+    Em_1[p3] = h21 * Jm1_tmp_1 + Jw23_0[p3];
+    rtb_Product1_3 = 3 * p2 + 2;
+    Em_1[rtb_Product1_3] = dh11 * Jm1_tmp_1 + Jw23_0[rtb_Product1_3];
+    rtb_Product1_0 = (((Em[3 * p2] * Em_3 + Em[p3] * A1_1_tmp_1) + Em[rtb_Product1_3] * rtb_Product1) + ((dEm[3 * p2] * h12 + dEm[p3] * dEm_tmp_0) + dEm[rtb_Product1_3] * h22)) * rtb_Product1_1 - Jm3_tmp_0[p2] * rtb_Product1_2 * dv1v_1;
+    dEm_1[3 * p2] = v1v_0 * rtb_Product1_0;
+    dEm_1[p3] = v3v_0 * rtb_Product1_0;
+    dEm_1[rtb_Product1_3] = w2v_1 * rtb_Product1_0;
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d272}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&Em_1[p2]);
+    tmp_17 = _mm_loadu_pd(&dEm_1[p2]);
+    _mm_storeu_pd(&Jw13_1[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d274}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 8; p2 < 9; p2++) {
+    Jw13_1[p2] = Em_1[p2] + dEm_1[p2];
+}
+tmp_8[0] = 0.0;
+tmp_8[3] = -x[2];
+tmp_8[6] = x[1];
+tmp_8[1] = x[2];
+tmp_8[4] = 0.0;
+tmp_8[7] = -x[0];
+tmp_8[2] = -x[1];
+tmp_8[5] = x[0];
+tmp_8[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = tmp_8[p2 + 3];
+    B1_1 = tmp_8[p2];
+    h22 = tmp_8[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        dEm_1[DCM11_tmp_1] = (I23_Sf[p2 + 3] * Jw13_1[rtb_Product1_3] + Jw13_1[3 * p3] * I23_Sf[p2]) + I23_Sf[p2 + 6] * Jw13_1[DCM11_tmp_0];
+        tmp_9[DCM11_tmp_1] = (I23_Sf[3 * p3] * B1_1 + I23_Sf[rtb_Product1_3] * h12) + I23_Sf[DCM11_tmp_0] * h22;
+    }
+    h12 = tmp_9[p2 + 3];
+    B1_1 = tmp_9[p2];
+    h22 = tmp_9[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        Em_1[p2 + 3 * p3] = (Jw23[3 * p3 + 1] * h12 + Jw23[3 * p3] * B1_1) + Jw23[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d276}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&dEm_1[p2]);
+    tmp_17 = _mm_loadu_pd(&Em_1[p2]);
+    _mm_storeu_pd(&I23_Sf_2[p2], _mm_add_pd(tmp_16, tmp_17));
+}
+/* {S!d278}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 8; p2 < 9; p2++) {
+    I23_Sf_2[p2] = dEm_1[p2] + Em_1[p2];
+}
+Em_1[0] = 0.0;
+Em_1[3] = -Wp[2];
+Em_1[6] = Wp[1];
+Em_1[1] = Wp[2];
+Em_1[4] = 0.0;
+Em_1[7] = -Wp[0];
+Em_1[2] = -Wp[1];
+Em_1[5] = Wp[0];
+Em_1[8] = 0.0;
+for (p2 = 0; p2 < 3; p2++) {
+    DCM11_tmp_0 = 3 * p2 + 1;
+    rtb_Product1 = Ip_Sf[DCM11_tmp_0];
+    h12 = Ip_Sf[3 * p2];
+    p3 = 3 * p2 + 2;
+    B1_1 = Ip_Sf[p3];
+    rtb_Product2 = I23_Sf_2[DCM11_tmp_0];
+    A1_1 = I23_Sf_2[3 * p2];
+    h21 = I23_Sf_2[p3];
+    Em_2 = I13_Sf_2[DCM11_tmp_0];
+    dh11 = I13_Sf_2[3 * p2];
+    A1_1_tmp_1 = I13_Sf_2[p3];
+    for (p3 = 0; p3 <= 0; p3 += 2) {
+        tmp_16 = _mm_loadu_pd(&Em_1[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&Em_1[p3]);
+        tmp_18 = _mm_loadu_pd(&Em_1[p3 + 6]);
+        rtb_Product1_3 = 3 * p2 + p3;
+        _mm_storeu_pd(&I13_Sf_1[rtb_Product1_3], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(rtb_Product1), tmp_16), _mm_mul_pd(_mm_set1_pd(h12), tmp_17)), _mm_mul_pd(_mm_set1_pd(B1_1), tmp_18)));
+        tmp_16 = _mm_loadu_pd(&dEm_0[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&dEm_0[p3]);
+        tmp_18 = _mm_loadu_pd(&dEm_0[p3 + 6]);
+        _mm_storeu_pd(&dEm_1[rtb_Product1_3], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(rtb_Product2), tmp_16), _mm_mul_pd(_mm_set1_pd(A1_1), tmp_17)), _mm_mul_pd(_mm_set1_pd(h21), tmp_18)));
+        tmp_16 = _mm_loadu_pd(&Jw13_0[p3 + 3]);
+        tmp_17 = _mm_loadu_pd(&Jw13_0[p3]);
+        tmp_18 = _mm_loadu_pd(&Jw13_0[p3 + 6]);
+        _mm_storeu_pd(&Jw13_1[rtb_Product1_3], _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(Em_2), tmp_16), _mm_mul_pd(_mm_set1_pd(dh11), tmp_17)), _mm_mul_pd(_mm_set1_pd(A1_1_tmp_1), tmp_18)));
+    }
+    for (p3 = 2; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p2 + p3;
+        I13_Sf_1[rtb_Product1_3] = (Em_1[p3 + 3] * rtb_Product1 + h12 * Em_1[p3]) + Em_1[p3 + 6] * B1_1;
+        dEm_1[rtb_Product1_3] = (dEm_0[p3 + 3] * rtb_Product2 + A1_1 * dEm_0[p3]) + dEm_0[p3 + 6] * h21;
+        Jw13_1[rtb_Product1_3] = (Jw13_0[p3 + 3] * Em_2 + dh11 * Jw13_0[p3]) + Jw13_0[p3 + 6] * A1_1_tmp_1;
+    }
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h11 = DCM21_0[p2 + 3];
+    A1_1_tmp = DCM21_0[p2];
+    P21_1 = DCM21_0[p2 + 6];
+    h12 = DCM11_0[p2 + 3];
+    B1_1 = DCM11_0[p2];
+    h22 = DCM11_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + 1;
+        DCM11_tmp_0 = 3 * p3 + 2;
+        DCM11_tmp_1 = 3 * p3 + p2;
+        Em_1[DCM11_tmp_1] = (dEm[3 * p3] * A1_1_tmp + dEm[rtb_Product1_3] * h11) + dEm[DCM11_tmp_0] * P21_1;
+        Ip_Sf_0[DCM11_tmp_1] = (I13_Sf_1[3 * p3] * B1_1 + I13_Sf_1[rtb_Product1_3] * h12) + I13_Sf_1[DCM11_tmp_0] * h22;
+    }
+    h12 = Ip_Sf_0[p2 + 3];
+    B1_1 = Ip_Sf_0[p2];
+    h22 = Ip_Sf_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        I13_Sf_2[p2 + 3 * p3] = (Em[3 * p3 + 1] * h12 + Em[3 * p3] * B1_1) + Em[3 * p3 + 2] * h22;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d280}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&I11_Sf_2[p2]);
+    tmp_17 = _mm_loadu_pd(&Jw11_1[p2]);
+    tmp_18 = _mm_loadu_pd(&Jw21_1[p2]);
+    tmp_11 = _mm_loadu_pd(&Jw22_1[p2]);
+    tmp_12 = _mm_loadu_pd(&Jw13_1[p2]);
+    tmp_13 = _mm_loadu_pd(&dEm_1[p2]);
+    tmp_14 = _mm_loadu_pd(&Em_1[p2]);
+    tmp_15 = _mm_loadu_pd(&I13_Sf_2[p2]);
+    _mm_storeu_pd(&I13_Sf_1[p2], _mm_add_pd(_mm_add_pd(_mm_add_pd(_mm_add_pd(tmp_16, tmp_17), _mm_add_pd(tmp_18, tmp_11)), _mm_add_pd(tmp_12, tmp_13)), _mm_add_pd(tmp_14, tmp_15)));
+}
+/* {S!d282}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 8; p2 < 9; p2++) {
+    I13_Sf_1[p2] = (((I11_Sf_2[p2] + Jw11_1[p2]) + (Jw21_1[p2] + Jw22_1[p2])) + (Jw13_1[p2] + dEm_1[p2])) + (Em_1[p2] + I13_Sf_2[p2]);
+}
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d284}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&I13_Sf_1[p2 + 3]);
+    tmp_17 = _mm_set1_pd(0.0);
+    tmp_18 = _mm_loadu_pd(&I13_Sf_1[p2]);
+    tmp_11 = _mm_loadu_pd(&I13_Sf_1[p2 + 6]);
+    _mm_storeu_pd(&Qm_3[p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, tmp_17), _mm_mul_pd(tmp_18, _mm_set1_pd(0.17453292519943295))), _mm_mul_pd(tmp_11, tmp_17)));
+    tmp_16 = _mm_loadu_pd(&Qm_1[p2 + 3]);
+    tmp_18 = _mm_loadu_pd(&Qm_1[p2]);
+    tmp_11 = _mm_loadu_pd(&Qm_1[p2 + 6]);
+    _mm_storeu_pd(&Qm_2[p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, tmp_17), _mm_mul_pd(tmp_18, tmp_17)), _mm_mul_pd(tmp_11, tmp_17)));
+}
+/* {S!d286}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 2; p2 < 3; p2++) {
+    Qm_3[p2] = (I13_Sf_1[p2 + 3] * 0.0 + I13_Sf_1[p2] * 0.17453292519943295) + I13_Sf_1[p2 + 6] * 0.0;
+    Qm_2[p2] = (Qm_1[p2 + 3] * 0.0 + Qm_1[p2] * 0.0) + Qm_1[p2 + 6] * 0.0;
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = DCM11[p2 + 3];
+    B1_1 = DCM11[p2];
+    h22 = DCM11[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        Ip_Sf_0[p2 + 3 * p3] = (r_b[3 * p3 + 1] * h12 + r_b[3 * p3] * B1_1) + r_b[3 * p3 + 2] * h22;
+    }
+    h12 = 0.0;
+    B1_1 = Ip_Sf_0[p2 + 3];
+    h22 = Ip_Sf_0[p2];
+    rtb_Product2 = Ip_Sf_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        h12 += ((I11_Sf_tmp[3 * p3 + 1] * B1_1 + I11_Sf_tmp[3 * p3] * h22) + I11_Sf_tmp[3 * p3 + 2] * rtb_Product2) * s_b[p3];
+    }
+    DCM11_1[p2] = h12;
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h11 = DCM21[p2 + 3];
+    A1_1_tmp = DCM21[p2];
+    P21_1 = DCM21[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM21_0[p2 + 3 * p3] = (t_b[3 * p3 + 1] * h11 + t_b[3 * p3] * A1_1_tmp) + t_b[3 * p3 + 2] * P21_1;
+    }
+    h11 = 0.0;
+    A1_1_tmp = DCM21_0[p2 + 3];
+    P21_1 = DCM21_0[p2];
+    rtb_Product2 = DCM21_0[p2 + 6];
+    h12 = 0.0;
+    for (p3 = 0; p3 < 3; p3++) {
+        h11 += ((I21_Sf_tmp_0[3 * p3 + 1] * A1_1_tmp + I21_Sf_tmp_0[3 * p3] * P21_1) + I21_Sf_tmp_0[3 * p3 + 2] * rtb_Product2) * s_b[p3];
+        h12 += Qm_0[3 * p3 + p2] * -0.00838027712158635 * DCM11_1[p3];
+    }
+    tmp_s[p2] = h12;
+    dP23_0[p2] = h11;
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = 0.0;
+    B1_1 = DCM12[p2 + 3];
+    h22 = DCM12[p2];
+    h11 = DCM12[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + p2;
+        h12 += Jw11_0[rtb_Product1_3] * -0.00671322338197224 * dP23_0[p3];
+        DCM12_0[rtb_Product1_3] = (u_b[3 * p3 + 1] * B1_1 + u_b[3 * p3] * h22) + u_b[3 * p3 + 2] * h11;
+    }
+    tmp_t[p2] = h12;
+    h12 = DCM22[p2 + 3];
+    A1_1_tmp = DCM22[p2];
+    P21_1 = DCM22[p2 + 6];
+    B1_1 = 0.0;
+    h22 = DCM12_0[p2 + 3];
+    h11 = DCM12_0[p2];
+    rtb_Product2 = DCM12_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_0 = 3 * p3 + 1;
+        DCM11_tmp_1 = 3 * p3 + 2;
+        DCM22_0[p2 + 3 * p3] = (v_b[3 * p3] * A1_1_tmp + v_b[DCM11_tmp_0] * h12) + v_b[DCM11_tmp_1] * P21_1;
+        B1_1 += ((I12_Sf_tmp_0[3 * p3] * h11 + I12_Sf_tmp_0[DCM11_tmp_0] * h22) + I12_Sf_tmp_0[DCM11_tmp_1] * rtb_Product2) * s_b[p3];
+    }
+    Ja1_0[p2] = B1_1;
+    h12 = 0.0;
+    A1_1_tmp = DCM22_0[p2 + 3];
+    P21_1 = DCM22_0[p2];
+    rtb_Product2 = DCM22_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        h12 += ((I22_Sf_tmp_0[3 * p3 + 1] * A1_1_tmp + I22_Sf_tmp_0[3 * p3] * P21_1) + I22_Sf_tmp_0[3 * p3 + 2] * rtb_Product2) * s_b[p3];
+    }
+    Jm1_tmp[p2] = h12;
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = 0.0;
+    B1_1 = 0.0;
+    h22 = DCM13[p2 + 3];
+    h11 = DCM13[p2];
+    A1_1_tmp = DCM13[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + p2;
+        h12 += Jw21_0[rtb_Product1_3] * -0.00902521759129636 * Ja1_0[p3];
+        B1_1 += Jw22_0[rtb_Product1_3] * -0.00671327365781553 * Jm1_tmp[p3];
+        DCM13_0[rtb_Product1_3] = (w_b[3 * p3 + 1] * h22 + w_b[3 * p3] * h11) + w_b[3 * p3 + 2] * A1_1_tmp;
+    }
+    tmp_v[p2] = B1_1;
+    tmp_u[p2] = h12;
+    h12 = DCM23[p2 + 3];
+    B1_1 = DCM23[p2];
+    P21_1 = DCM23[p2 + 6];
+    h22 = 0.0;
+    h11 = DCM13_0[p2 + 3];
+    A1_1_tmp = DCM13_0[p2];
+    rtb_Product2 = DCM13_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        DCM11_tmp_0 = 3 * p3 + 1;
+        DCM11_tmp_1 = 3 * p3 + 2;
+        DCM23_0[p2 + 3 * p3] = (x_b[3 * p3] * B1_1 + x_b[DCM11_tmp_0] * h12) + x_b[DCM11_tmp_1] * P21_1;
+        h22 += ((I13_Sf_tmp_0[3 * p3] * A1_1_tmp + I13_Sf_tmp_0[DCM11_tmp_0] * h11) + I13_Sf_tmp_0[DCM11_tmp_1] * rtb_Product2) * s_b[p3];
+    }
+    w3v_0[p2] = h22;
+    h12 = 0.0;
+    B1_1 = DCM23_0[p2 + 3];
+    P21_1 = DCM23_0[p2];
+    rtb_Product2 = DCM23_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        h12 += ((I23_Sf_tmp_0[3 * p3 + 1] * B1_1 + I23_Sf_tmp_0[3 * p3] * P21_1) + I23_Sf_tmp_0[3 * p3 + 2] * rtb_Product2) * s_b[p3];
+    }
+    P21_0[p2] = h12;
+}
+for (p2 = 0; p2 < 3; p2++) {
+    h12 = 0.0;
+    B1_1 = 0.0;
+    h11 = Qm[p2 + 3];
+    A1_1_tmp = Qm[p2];
+    w1v_1 = Qm[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        rtb_Product1_3 = 3 * p3 + p2;
+        h12 += Jw13_0[rtb_Product1_3] * -0.00935728764600804 * w3v_0[p3];
+        B1_1 += dEm_0[rtb_Product1_3] * -0.00671323366453039 * P21_0[p3];
+        Qm_0[rtb_Product1_3] = (y_b[3 * p3 + 1] * h11 + y_b[3 * p3] * A1_1_tmp) + y_b[3 * p3 + 2] * w1v_1;
+    }
+    tmp_x[p2] = B1_1;
+    tmp_w[p2] = h12;
+    h11 = Qm_0[p2 + 3];
+    A1_1_tmp = Qm_0[p2];
+    w1v_1 = Qm_0[p2 + 6];
+    for (p3 = 0; p3 < 3; p3++) {
+        Qm_1[p2 + 3 * p3] = (Ip_Sf_tmp_0[3 * p3 + 1] * h11 + Ip_Sf_tmp_0[3 * p3] * A1_1_tmp) + Ip_Sf_tmp_0[3 * p3 + 2] * w1v_1;
+    }
+}
+for (p2 = 0; p2 <= 6; p2 += 2) {
+    /* {S!d288}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&Qm_1[p2]);
+    _mm_storeu_pd(&Em_1[p2], _mm_mul_pd(_mm_set1_pd(0.0438998768456049), tmp_16));
+    tmp_16 = _mm_loadu_pd(&DCM11_0[p2]);
+    _mm_storeu_pd(&I13_Sf_2[p2], _mm_mul_pd(tmp_16, _mm_set1_pd(-1.0)));
+}
+/* {S!d290}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 8; p2 < 9; p2++) {
+    Em_1[p2] = 0.0438998768456049 * Qm_1[p2];
+    I13_Sf_2[p2] = -DCM11_0[p2];
+}
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d292}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&Em_1[p2 + 3]);
+    tmp_17 = _mm_set1_pd(0.0);
+    tmp_18 = _mm_loadu_pd(&Em_1[p2]);
+    tmp_11 = _mm_loadu_pd(&Em_1[p2 + 6]);
+    _mm_storeu_pd(&Qm_4[p2], _mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, tmp_17), _mm_mul_pd(tmp_18, tmp_17)), _mm_mul_pd(tmp_11, _mm_set1_pd(-9.80665))));
+}
+/* {S!d294}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 2; p2 < 3; p2++) {
+    Qm_4[p2] = (Em_1[p2 + 3] * 0.0 + Em_1[p2] * 0.0) + Em_1[p2 + 6] * -9.80665;
+}
+h12 = Qm_4[1];
+B1_1 = Qm_4[0];
+h22 = Qm_4[2];
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d296}MATLAB Function: '<S1>/RegGeneratoe' */
+    tmp_16 = _mm_loadu_pd(&I13_Sf_2[p2 + 3]);
+    tmp_17 = _mm_loadu_pd(&I13_Sf_2[p2]);
+    tmp_18 = _mm_loadu_pd(&I13_Sf_2[p2 + 6]);
+    tmp_11 = _mm_loadu_pd(&tmp_s[p2]);
+    tmp_12 = _mm_loadu_pd(&tmp_t[p2]);
+    tmp_13 = _mm_loadu_pd(&tmp_u[p2]);
+    tmp_14 = _mm_loadu_pd(&tmp_v[p2]);
+    tmp_15 = _mm_loadu_pd(&tmp_w[p2]);
+    tmp_y = _mm_loadu_pd(&tmp_x[p2]);
+    tmp_z = _mm_loadu_pd(&Qm_2[p2]);
+    tmp_10 = _mm_loadu_pd(&Qm_3[p2]);
+    _mm_storeu_pd(&Qm_4[p2], _mm_add_pd(_mm_add_pd(_mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, _mm_set1_pd(h12)), _mm_mul_pd(tmp_17, _mm_set1_pd(B1_1))), _mm_mul_pd(tmp_18, _mm_set1_pd(h22))), _mm_add_pd(_mm_add_pd(_mm_add_pd(tmp_11, tmp_12), _mm_add_pd(tmp_13, tmp_14)), _mm_add_pd(tmp_15, tmp_y))), _mm_add_pd(tmp_z, tmp_10)));
+}
+/* {S!d298}MATLAB Function: '<S1>/RegGeneratoe' */
+for (p2 = 2; p2 < 3; p2++) {
+    Qm_4[p2] = (((I13_Sf_2[p2 + 3] * h12 + I13_Sf_2[p2] * B1_1) + I13_Sf_2[p2 + 6] * h22) + (((tmp_s[p2] + tmp_t[p2]) + (tmp_u[p2] + tmp_v[p2])) + (tmp_w[p2] + tmp_x[p2]))) + (Qm_2[p2] + Qm_3[p2]);
+}
+h11 = Qm_4[1];
+A1_1_tmp = Qm_4[0];
+w1v_1 = Qm_4[2];
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d300}MATLAB Function: '<S1>/RegGeneratoe' incorporates:
+ *  Gain: '<S1>/Gain2'
+ */
+    tmp_16 = _mm_loadu_pd(&tmp_r[p2 + 3]);
+    tmp_17 = _mm_loadu_pd(&tmp_r[p2]);
+    tmp_18 = _mm_loadu_pd(&tmp_r[p2 + 6]);
+    /* {S!d302}Gain: '<S1>/Gain2' incorporates:
+ *  MATLAB Function: '<S1>/RegGeneratoe'
+ */
+    _mm_storeu_pd(&DynamicValidation_B.Gain2[p2], _mm_mul_pd(_mm_add_pd(_mm_add_pd(_mm_mul_pd(tmp_16, _mm_set1_pd(h11)), _mm_mul_pd(tmp_17, _mm_set1_pd(A1_1_tmp))), _mm_mul_pd(tmp_18, _mm_set1_pd(w1v_1))), _mm_set1_pd(DynamicValidation_P.Gain2_Gain)));
+    /* {S!d304}Gain: '<S1>/Gain3' incorporates:
+ *  Gain: '<S1>/Gain2'
+ *  Gain: '<S1>/Gain4'
+ */
+    tmp_16 = _mm_loadu_pd(&DynamicValidation_B.Gain4[p2]);
+    /* {S!d306}Gain: '<S1>/Gain3' incorporates:
+ *  Gain: '<S1>/Gain2'
+ */
+    _mm_storeu_pd(&DynamicValidation_B.Gain3[p2], _mm_mul_pd(_mm_set1_pd(DynamicValidation_P.Gain3_Gain), tmp_16));
+}
+for (p2 = 2; p2 < 3; p2++) {
+    /* {S!d308}Gain: '<S1>/Gain2' incorporates:
+ *  MATLAB Function: '<S1>/RegGeneratoe'
+ */
+    DynamicValidation_B.Gain2[p2] = ((tmp_r[p2 + 3] * h11 + tmp_r[p2] * A1_1_tmp) + tmp_r[p2 + 6] * w1v_1) * DynamicValidation_P.Gain2_Gain;
+    /* {S!d310}Gain: '<S1>/Gain3' incorporates:
+ *  Gain: '<S1>/Gain4'
+ */
+    DynamicValidation_B.Gain3[p2] = DynamicValidation_P.Gain3_Gain * DynamicValidation_B.Gain4[p2];
+}
+if (%<(SLibCGIRIsSampleHit(1, 6))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS6B10)
+    /* {S!d312}Scope: '<S1>/Scope5' */
+%<tlcOutputsFcnOfS6B10>\
+%endif
+}
+/* {S!d314}MATLAB Function: '<S7>/W2dEA' */
+absx11 = sin(w1v_0[0]);
+rtb_Product3 = cos(w1v_0[1]);
+absx31 = cos(w1v_0[0]);
+h12 = sin(w1v_0[1]);
+Qm[0] = 0.0;
+Qm[3] = -absx11;
+Qm[6] = absx31 * rtb_Product3;
+Qm[1] = 0.0;
+Qm[4] = absx31;
+Qm[7] = absx11 * rtb_Product3;
+Qm[2] = 1.0;
+Qm[5] = 0.0;
+Qm[8] = -h12;
+memcpy(&Em[0], &Qm[0], 9U * sizeof(real_T));
+p2 = 3;
+p3 = 0;
+Em[5] = -absx11;
+Em[2] = 0.0;
+Em[4] -= Em[1] * 0.0;
+Em[7] -= Em[1] * Qm[8];
+Em[8] = Qm[6] - 0.0 * Qm[8];
+if (fabs(-absx11) > fabs(Em[4])) {
+    p2 = 0;
+    p3 = 3;
+    Em[2] = Em[1];
+    Em[1] = 0.0;
+    Em[5] = Em[4];
+    Em[4] = Qm[3];
+    absx11 = Em[7];
+    Em[7] = Em[8];
+    Em[8] = absx11;
+}
+Em[5] /= Em[4];
+Em[8] -= Em[5] * Em[7];
+absx11 = (Em[1] * Em[5] - Em[2]) / Em[8];
+rtb_Product3 = -(Em[7] * absx11 + Em[1]) / Em[4];
+Qm[6] = (1.0 - 0.0 * rtb_Product3) - -h12 * absx11;
+Qm[7] = rtb_Product3;
+Qm[8] = absx11;
+absx11 = -Em[5] / Em[8];
+rtb_Product3 = (1.0 - Em[7] * absx11) / Em[4];
+Qm[p2] = -(0.0 * rtb_Product3 + -h12 * absx11);
+Qm[p2 + 1] = rtb_Product3;
+Qm[p2 + 2] = absx11;
+absx11 = 1.0 / Em[8];
+rtb_Product3 = -Em[7] * absx11 / Em[4];
+Qm[p3] = -(0.0 * rtb_Product3 + -h12 * absx11);
+Qm[p3 + 1] = rtb_Product3;
+Qm[p3 + 2] = absx11;
+for (p2 = 0; p2 <= 0; p2 += 2) {
+    /* {S!d316}MATLAB Function: '<S7>/W2dEA' */
+    tmp_16 = _mm_loadu_pd(&Qm[p2]);
+    tmp_16 = _mm_mul_pd(tmp_16, _mm_set1_pd(rtb_OUTPUT_1_0[14]));
+    tmp_17 = _mm_loadu_pd(&Qm[p2 + 3]);
+    tmp_17 = _mm_mul_pd(tmp_17, _mm_set1_pd(rtb_OUTPUT_1_0[15]));
+    tmp_18 = _mm_loadu_pd(&Qm[p2 + 6]);
+    tmp_18 = _mm_mul_pd(tmp_18, _mm_set1_pd(rtb_OUTPUT_1_0[16]));
+    tmp_16 = _mm_add_pd(tmp_18, _mm_add_pd(tmp_17, tmp_16));
+    /* {S!d318}MATLAB Function: '<S7>/W2dEA' */
+    _mm_storeu_pd(&rtb_qr[p2], tmp_16);
+    /* {S!d320}Sum: '<S1>/Sum3' incorporates:
+ *  MATLAB Function: '<S7>/W2dEA'
+ */
+    tmp_17 = _mm_loadu_pd(&rtb_Delay[p2]);
+    /* {S!d322}Gain: '<S2>/Gain' incorporates:
+ *  MATLAB Function: '<S7>/W2dEA'
+ */
+    _mm_storeu_pd(&DynamicValidation_B.Gain_cw[p2], _mm_mul_pd(_mm_sub_pd(tmp_17, tmp_16), _mm_set1_pd(DynamicValidation_P.Gain_Gain_e)));
+}
+for (p2 = 2; p2 < 3; p2++) {
+    /* {S!d324}MATLAB Function: '<S7>/W2dEA' */
+    h11 = Qm[p2] * rtb_OUTPUT_1_0[14];
+    h11 += Qm[p2 + 3] * rtb_OUTPUT_1_0[15];
+    h11 += Qm[p2 + 6] * rtb_OUTPUT_1_0[16];
+    rtb_qr[p2] = h11;
+    /* {S!d326}Gain: '<S2>/Gain' incorporates:
+ *  MATLAB Function: '<S7>/W2dEA'
+ *  Sum: '<S1>/Sum3'
+ */
+    DynamicValidation_B.Gain_cw[p2] = (rtb_Delay[p2] - h11) * DynamicValidation_P.Gain_Gain_e;
+}
+if (%<(SLibCGIRIsSampleHit(1, 6))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS6B12)
+    /* {S!d328}Scope: '<S1>/Scope6' */
+%<tlcOutputsFcnOfS6B12>\
+%endif
+}
+/* {S!d330}Gain: '<S4>/Gain' */
+DynamicValidation_B.Gain_i[0] = DynamicValidation_P.Gain_Gain_c * rtb_qr[0];
+DynamicValidation_B.Gain_i[1] = DynamicValidation_P.Gain_Gain_c * rtb_qr[1];
+DynamicValidation_B.Gain_i[2] = DynamicValidation_P.Gain_Gain_c * rtb_qr[2];
+if (%<(SLibCGIRIsSampleHit(1, 6))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS6B13)
+    /* {S!d332}Scope: '<S1>/Scope7' */
+%<tlcOutputsFcnOfS6B13>\
+%endif
+%if !WHITE_SPACE(tlcOutputsFcnOfS6B14)
+    /* {S!d334}Scope: '<S1>/Scope8' */
+%<tlcOutputsFcnOfS6B14>\
+%endif
+}
+/* {S!d336}Gain: '<S1>/Gain6' */
+DynamicValidation_B.Gain6[0] = DynamicValidation_P.Gain6_Gain * rtb_OUTPUT_1_0[2];
+DynamicValidation_B.Gain6[1] = DynamicValidation_P.Gain6_Gain * rtb_OUTPUT_1_0[5];
+DynamicValidation_B.Gain6[2] = DynamicValidation_P.Gain6_Gain * rtb_OUTPUT_1_0[8];
+/* {S!d338}Gain: '<S43>/Gain' */
+DynamicValidation_B.Gain_ca = DynamicValidation_P.Gain_Gain_a * rtb_OUTPUT_1_0[9];
+if (%<(SLibCGIRIsSampleHit(1, 6))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS6B41)
+    /* {S!d340}Scope: '<S37>/Scope' */
+%<tlcOutputsFcnOfS6B41>\
+%endif
+}
+/* {S!d342}Gain: '<S55>/Gain' */
+DynamicValidation_B.Gain_d[0] = DynamicValidation_P.Gain_Gain_i * w1v_0[0];
+DynamicValidation_B.Gain_d[1] = DynamicValidation_P.Gain_Gain_i * w1v_0[1];
+DynamicValidation_B.Gain_d[2] = DynamicValidation_P.Gain_Gain_i * w1v_0[2];
+if (%<(SLibCGIRIsSampleHit(1, 6))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS6B47)
+    /* {S!d344}Scope: '<S12>/Scope1' */
+%<tlcOutputsFcnOfS6B47>\
+%endif
+}
+/* {S!d346}Gain: '<S54>/Gain' */
+DynamicValidation_B.Gain_k[0] = DynamicValidation_P.Gain_Gain_at * rtb_OUTPUT_1_0[14];
+DynamicValidation_B.Gain_k[1] = DynamicValidation_P.Gain_Gain_at * rtb_OUTPUT_1_0[15];
+DynamicValidation_B.Gain_k[2] = DynamicValidation_P.Gain_Gain_at * rtb_OUTPUT_1_0[16];
+if (%<(SLibCGIRIsSampleHit(1, 6))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS6B49)
+    /* {S!d348}Scope: '<S12>/Scope3' */
+%<tlcOutputsFcnOfS6B49>\
+%endif
+}
+%<SLibInsertSolverResetCode()>\
+%closefile cfgTxt
+%<cfgTxt>
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction
+%function OutputsFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Outputs(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 7, fcnProtoType)>
+%endfunction
